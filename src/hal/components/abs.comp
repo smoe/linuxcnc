@@ -15,22 +15,28 @@
 //   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 component abs """Compute the absolute value and sign of the input signal.
        :lang: es Calcule el valor absoluto y el signo de la señal de entrada.
-        :lang:fr Calculer la valeur absolue et le signe du signal d'entrée.""";
+        :lang:fr Calculer la valeur absolue et le signe du signal d'entrée.
+	:lang: de Berechnet den Absolutwert und bestimmt das Vorzeichen des Eingangssignals""";
 pin in float in """Analog input value
          :lang:es Valor de entrada analógica"
-        :lang: fr Valeur d'entrée analogique""";
+        :lang: fr Valeur d'entrée analogique
+	:lang: de Eingangssignal""";
 pin out float out """Analog output value, always positive
            :lang: fr Valeur de sortie analogique, toujours positive
-            :lang:es Valor de salida analógica, siempre positivo""";
+            :lang:es Valor de salida analógica, siempre positivo
+	    :lang:de Analoges Ausgangssignal, immer positiv""";
 pin out bit sign """Sign of input, false for positive, true for negative
           :lang:es "Signo de entrada, falso para positivo, verdadero para negativo
-         :lang: fr "Signe d'entrée, faux pour positif, vrai pour négatif""" ;
+         :lang: fr "Signe d'entrée, faux pour positif, vrai pour négatif
+	 :lang: de "Vorzeich des Eingangs, 'false' für positiv, 'true' für negativ""" ;
 pin out bit is_positive """TRUE if input is positive, FALSE if input is 0 or negative
                   :lang:es VERDADERO si la entrada es positiva, FALSO si la entrada es 0 o negativa
-                  :lang: frTRUE si l'entrée est positive, FALSE si l'entrée est 0 ou négative""";
+                  :lang: frTRUE si l'entrée est positive, FALSE si l'entrée est 0 ou négative
+		  :lang: de TRUE wenn der Eingang positiv ist, FALSE wenn der Input 0 oder negativ ist""";
 pin out bit is_negative """TRUE if input is negative, FALSE if input is 0 or positive
                   :lang:es VERDADERO si la entrada es negativa, FALSO si la entrada es 0 o positiva
-                 :lang: fr TRUE si l'entrée est négative, FALSE si l'entrée est 0 ou positive""";
+                 :lang: fr TRUE si l'entrée est négative, FALSE si l'entrée est 0 ou positive
+		 :lang: de TRUE wenn der Eingang negativ ist, FALSE wenn der Eingang 0 oder positiv ist""";
 function _;
 license "GPL";
 ;;
