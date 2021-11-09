@@ -16,3 +16,6 @@ if ! sudo apt-get -y build-dep . ; then
     exit 1
 fi
 sudo apt install -y lintian
+# checking validity of links - needs online access, hence not applicable
+# as part of the Debian package building and not a package build dependency
+sudo apt-get install -y w3c-linkchecker
