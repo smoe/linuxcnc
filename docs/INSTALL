@@ -1,5 +1,6 @@
-Basic description
------------------
+Basic build description
+=======================
+
 From the top level directory, switch to the source directory:
 
 cd src
@@ -22,7 +23,7 @@ Detailed description
 ====================
 
 Run-time script
-===============
+---------------
 
 The runtime script is called linuxcnc, thus allowing you on an installed
 to just type 'linuxcnc' and get it running.  On a run-in-place system
@@ -34,7 +35,7 @@ replace some default values for your system (folders, paths, etc).
 
 
 Configure script
-================
+----------------
 
    The `configure' shell script attempts to guess correct values for
 various system-dependent variables used during compilation.  It uses
@@ -66,7 +67,7 @@ The simplest way to compile this package is:
   
 
 Optional Features
-=================
+-----------------
    LinuxCNC can operate hardware only if a real time system has been
 installed. Either RT-PREEMPT or RTAI. If you don't have any installed,
 you cannot run LinuxCNC to control any machines. Please install one
@@ -87,7 +88,7 @@ configure also accepts other arguments. Use --help to view the list.
 
 
 Operation Controls
-==================
+------------------
 
    `configure' recognizes the following options to control how it
 operates.

@@ -1,5 +1,6 @@
 Descripción básica
-------------------
+==================
+
 Desde el directorio de nivel superior, cambie al directorio de fuentes:
 
 cd src
@@ -22,7 +23,7 @@ Descripción detallada
 =====================
 
 Script de tiempo de ejecución
-=============================
+-----------------------------
 
 El script de tiempo de ejecución se llama linuxcnc, lo que le permite escribir simplemente 
 'linuxcnc' en una instalacion para hacerlo funcionar. En un sistema de ejecución in situ (RIP)
@@ -34,7 +35,7 @@ reemplaza algunos valores predeterminados para su sistema (carpetas, rutas, etc.
 
 
 Script configure
-=================
+----------------
 
    El script de shell `configure 'intenta adivinar los valores correctos de
 varias variables dependientes del sistema utilizadas durante la compilación. Usa
@@ -66,7 +67,8 @@ La forma más sencilla de compilar este paquete es:
   
 
 Características opcionales
-==========================
+--------------------------
+
    LinuxCNC puede operar hardware solo si ha sido instalado un sistema de 
 tiempo real. Ya sea RT-PREEMPT o RTAI. Si no tiene ninguno instalado,
 no puede ejecutar LinuxCNC para controlar ninguna máquina. Por favor instale uno
@@ -87,7 +89,7 @@ configure también acepta otros argumentos. Use --help para ver la lista.
 
 
 Controles de operación
-======================
+----------------------
 
    `configure' reconoce las siguientes opciones para controlar cómo
 opera.
