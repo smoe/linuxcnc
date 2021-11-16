@@ -195,7 +195,11 @@ type of toolchanger specified by *[EMCIO]RANDOM_TOOLCHANGER=type*.
 . For *RANDOM_TOOLCHANGER = 0*, (0 is default and specifies a non-random
   toolchanger) idx is a number indicating the sequence in which tooldata was loaded.
 . For *RANDOM_TOOLCHANGER = 1*, idx is the *current* pocket number
+<<<<<<< refs/remotes/upstream/translate-po4a
   for the toolnumber specified by the gcode select tool command *Tn*.
+=======
+for the toolnumber specified by the gcode select tool command *Tn*.
+>>>>>>> Fix typos in misc. source comments and docs
 
 The io program provides hal output pins to facilitate toolchanger management:
 
