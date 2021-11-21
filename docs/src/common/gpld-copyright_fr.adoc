@@ -4,6 +4,7 @@ Ce document n'est pas traduit en raison de la complexité de la
 validation des documents juridiques. Vous trouverez sur ce site 
 plus d'information: http://www.gnu.org/licenses/licenses.fr.html
 
+[#copyright,reftext=Copyright]
 == Copyright Terms
 
 Copyright (c) 2000-2020 LinuxCNC.org
@@ -15,7 +16,7 @@ with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
 A copy of the license is included in the section entitled "GNU
 Free Documentation License".
 
-
+[#gpld,reftext=GPLD]
 == GNU Free Documentation License
 
 GNU Free Documentation License Version 1.1, March 2000
