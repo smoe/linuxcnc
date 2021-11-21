@@ -1,32 +1,41 @@
+[WARNING]
+.AVERTISSEMENT
+=================================================
+La version française de la documentation n'a pas 
+été mise à jour depuis LinuxCNC version 2.5, 
+publiée en 2012, faute de traducteur.
+
+Elle est donc très dépassée ! Veuillez utiliser 
+la documentation en anglais.
+=================================================
+
 [NOTE]
 .AVIS
 =================================================
-La version Française de la documentation de LinuxCNC 
-est toujours en retard sur l'originale faute de
-disponibilité des traducteurs.
+Si vous souhaitez mettre à jour cette traduction, 
+veuillez contacter l'équipe LinuxCNC via le 
+https://forum.linuxcnc.org[forum ]
+ou la http://lists.sourceforge.net/lists/listinfo/emc-developers[liste de diffusion].
+=================================================
 
-Il est recommandé d'utiliser la documentation 
-en Anglais chaque fois que possible.
+[WARNING]
+.WARNING
+=================================================
+The French version of the LinuxCNC documentation 
+has nt been updated since LinuxCNC version 2.5, 
+back in 2012, fault availability of translator.
 
-Si vous souhaitez être un traducteur bénévole
-pour la documentation française de LinuxCNC, 
-merci de nous contactez. 
+It is very much outdated ! Please use the 
+English documentation.
 =================================================
 
 [NOTE]
 .NOTICE
 =================================================
-The French version of the LinuxCNC documentation 
-is always behind the original fault
-availability of translators.
-
-It's recommended to use the 
-English documentation whenever possible.
-
-If you would like to be 
-a volunteer editor for the 
-French translation of LinuxCNC, 
-please contact us.
+If you would like to update this translation, 
+please contact the LinuxCNC team through the 
+https://forum.linuxcnc.org[forum ] or the 
+http://lists.sourceforge.net/lists/listinfo/emc-developers[mailing-list]
 =================================================
 
 // vim: set syntax=asciidoc:
