@@ -1,0 +1,7 @@
+[[cha:starting-linuxcnc_fr]]
+
+= Démarrage de LinuxCNC
+
+include::../common/outdated-notice_fr.adoc[]
+
+Lien vers la xref:starting-linuxcnc.adoc[version anglaise].

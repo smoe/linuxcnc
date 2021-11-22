@@ -1,0 +1,7 @@
+[[cha:parametres-dh]] (((Exemples de paramètres DH)))
+
+= Mise en place de paramètres Denavit-Hartenberg (DH) "modifiés pour 'genserkins'
+
+include::../common/outdated-notice_fr.adoc[]
+
+Lien vers la xref:dh-parameters.adoc[version anglaise].

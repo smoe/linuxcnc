@@ -1,0 +1,7 @@
+[[cha:moveoff]]
+
+= Composant Moveoff
+
+include::../common/outdated-notice_fr.adoc[]
+
+Lien vers la xref:moveoff.adoc[version anglaise].

@@ -1,0 +1,5 @@
+Cette page concerne le cadençage des pas et de la direction des moteurs pas à pas.
+
+include::../common/outdated-notice_fr.adoc[]
+
+Lien vers la xref:stepper-timing.adoc[version anglaise].

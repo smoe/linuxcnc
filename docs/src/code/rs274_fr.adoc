@@ -1,0 +1,7 @@
+[[cha:rs274]]
+
+= Interpréteur autonome
+
+include::../common/outdated-notice_fr.adoc[]
+
+Lien vers la xref:rs274.adoc[version anglaise].

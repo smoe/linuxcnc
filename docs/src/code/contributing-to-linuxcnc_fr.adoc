@@ -1,0 +1,5 @@
+= Contribuer à LinuxCNC
+
+include::../common/outdated-notice_fr.adoc[]
+
+Lien vers la xref:contributing-to-linuxcnc.adoc[version anglaise].

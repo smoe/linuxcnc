@@ -1,0 +1,7 @@
+[[cha:tooldatabase]]
+
+= Interface de base de données outils
+
+include::../common/outdated-notice_fr.adoc[]
+
+Lien vers la xref:tooldatabase.adoc[version anglaise].

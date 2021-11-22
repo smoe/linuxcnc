@@ -1,0 +1,7 @@
+[[cha:mb2hal]]
+
+= MB2HAL
+
+include::../common/outdated-notice_fr.adoc[]
+
+Lien vers la xref:mb2hal.adoc[version anglaise].

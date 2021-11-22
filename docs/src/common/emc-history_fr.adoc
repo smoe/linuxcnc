@@ -1,0 +1,7 @@
+[[cha:linuxcnc-history_fr]]
+
+== Origines
+
+include::outdated-notice_fr.adoc[]
+
+Lien vers la xref:emc-history.adoc[version anglaise].

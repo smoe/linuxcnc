@@ -1,0 +1,7 @@
+[[cha:exemples-halui]]
+
+= Exemples Halui
+
+include::../common/outdated-notice_fr.adoc[]
+
+Lien vers la xref:halui-examples.adoc[version anglaise].
