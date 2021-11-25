@@ -1,8 +1,10 @@
+:lang: en
+
 ////////////////////////////////////////////////
-useimage:: for equation png files -- no latexmath
+use image:: for equation png files -- no latexmath
 ////////////////////////////////////////////////
 
-[[cha:5-axis-kinematics]] (((5-Axis Kinematics)))
+[[cha:5-axis-kinematics]](((5-Axis Kinematics)))
 
 = 5-Axis Kinematics
 
@@ -54,7 +56,7 @@ In these machine tools the two rotational axes mount on the work table of the ma
 * A tilting table which rotates about the X- or Y-axis (A- or B-rotation, secondary) is mounted on a rotary table which rotates about the Z-axis (C-rotation, primary), with the workpiece on the tilting table.
 
 .General configuration and coordinate systems
-image::5-axis-figures/Figure-2.png[align= "center"]
+image::5-axis-figures/Figure-2.png[align="center"]
 
 A multi-axis machine can be considered to consist of a series of links connected by joints. By embedding a coordinate frame in each link of the machine and using homogeneous transformations, we can describe the relative position and orientation between these coordinate frames
 
