@@ -74,8 +74,6 @@ include::gui/touchy_es.adoc[]
 
 include::gui/gscreen_es.adoc[]
 
-include::gui/tklinuxcnc_es.adoc[]
-
 :leveloffset: 1
 
 = Programacion

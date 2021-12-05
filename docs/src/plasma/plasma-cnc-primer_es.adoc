@@ -1,9 +1,9 @@
 :lang: es
-:toc:
 
-[[cha:plasma-primer]]
+[[cha:plasma-primer]]((((Basicos del Corte por Plasma)))
 
 = Basicos del Corte por Plasma para Usuarios de LinuxCNC
+:toc:
 
 == ¿Qué es el plasma?
 
@@ -36,13 +36,13 @@ Las operaciones de plasma en máquinas CNC son bastante especiales en comparaci�
 
 Un arco de plasma tiene forma ovalada y la altura de corte debe controlarse para minimizar  bordes biselados. Si la antorcha está demasiado alta o demasiado baja, los bordes pueden quedar excesivamente biselados. También es crítico que la antorcha se mantenga perpendicular a la superficie.
 
-* La distancia de la antorcha al trabajo puede afectar el bisel del borde *
+*La distancia de la antorcha al trabajo puede afectar el bisel del borde*
 
 image::images/primer_cut-angularity.png[width=50%]
 
-* Ángulo de corte negativo: * antorcha demasiado baja, aumente la distancia de la antorcha al trabajo.
+*Ángulo de corte negativo:* antorcha demasiado baja, aumente la distancia de la antorcha al trabajo.
 
-* Ángulo de corte positivo: * antorcha demasiado alta, disminuir la antorcha a la distancia de trabajo.
+*Ángulo de corte positivo:* antorcha demasiado alta, disminuir la antorcha a la distancia de trabajo.
 
 NOTA: Una ligera variación en los ángulos de corte puede ser normal, siempre que esté dentro de tolerancia.
 
@@ -84,7 +84,8 @@ Con el lanzamiento de la interfaz de voltaje a frecuencia Mesa THCAD, LinuxCNC p
 
 Jim Colt, de Hypertherm, dice que los mejores controladores de THC estaban completamente integrados en el controlador CNC. Por supuesto, se refería a los sistemas de gama alta fabricados por Hypertherm, Esab, Thermal Dynamics y otros, como Advanced Robotic Technology en Australia, sin soñar que el código abierto podría producir sistemas utilizando este enfoque que rivaliza con los sistemas de gama alta.
 
-La inclusión de offsets externos en Linuxcnc V2.8 permitió que el control de plasma en LinuxCNC se elevara a un nivel completamente nuevo. Los offsets externos se refieren a la capacidad de aplicar un offset a la posición ordenada del eje, externa al controlador de movimiento. Esto es perfecto para el control de THC por plasma como un método para ajustar la altura de la antorcha en tiempo real según nuestra metodología de control de proceso elegida. Después de una serie de compilaciones experimentales, la configuración link:http://linuxcnc.org/docs/devel/html/plasma/qtplasmac.html[QtPlasmaC] se incorporó a LinuxCNC 2.8. Este ha sido un proyecto extremadamente ambicioso y muchas personas en todo el mundo han participado en las pruebas y la mejora del conjunto de características. QtPlasmaC es único en el sentido de que su objetivo de diseño era admitir todos los THC, incluidos los de bit bang, hasta el sofisticado control de voltaje de la antorcha si el voltaje está disponible para LinuxCNC a través de un THCAD o algún otro sensor de voltaje. Además, QtPlasmaC está diseñado para ser un sistema independiente que no necesita ninguna subrutina adicional de código G y permite al usuario definir sus propias tablas de corte que están almacenadas en el sistema y accesibles mediante un menú desplegable.
+La inclusión de offsets externos en Linuxcnc V2.8 permitió que el control de plasma en LinuxCNC se elevara a un nivel completamente nuevo. Los offsets externos se refieren a la capacidad de aplicar un offset a la posición ordenada del eje, externa al controlador de movimiento. Esto es perfecto para el control de THC por plasma como un método para ajustar la altura de la antorcha en tiempo real según nuestra metodología de control de proceso elegida. Después de una serie de compilaciones experimentales, la configuración <<cha:qtplasmac, QtPlasmaC>> se incorporó a LinuxCNC 2.8.
+Este ha sido un proyecto extremadamente ambicioso y muchas personas en todo el mundo han participado en las pruebas y la mejora del conjunto de características. QtPlasmaC es único en el sentido de que su objetivo de diseño era admitir todos los THC, incluidos los de bit bang, hasta el sofisticado control de voltaje de la antorcha si el voltaje está disponible para LinuxCNC a través de un THCAD o algún otro sensor de voltaje. Además, QtPlasmaC está diseñado para ser un sistema independiente que no necesita ninguna subrutina adicional de código G y permite al usuario definir sus propias tablas de corte que están almacenadas en el sistema y accesibles mediante un menú desplegable.
 
 == Señal Arc OK
 
@@ -104,9 +105,8 @@ La antorcha se monta en una plataforma deslizante que puede moverse hacia arriba
 
 Independientemente del método de sondeo utilizado, se recomienda encarecidamente que se implemente el interruptor flotante para que haya una señal fallback o secundaria para evitar daños a la antorcha por un choque.
 
-[[ohmic-sensing]]
 
-=== Detección óhmica
+=== Detección óhmica[[ohmic-sensing]]
 
 La detección óhmica se basa en el contacto entre la antorcha y el material que actúa como un interruptor para activar una señal eléctrica que es detectada por el controlador CNC. Siempre que el material esté limpio, este puede ser un método mucho más preciso para detectar el material que un interruptor  flotante que puede causar la desviación de la superficie del material. Este circuito de detección óhmico está funcionando en un entorno extremadamente hostil, por lo que es necesario implementar una serie de medidas de seguridad para garantizar la seguridad tanto de la electrónica del CNC como del operador. En el corte por plasma, la abrazadera de tierra unida al material es positiva y la antorcha es negativa. Se recomienda que:
 
@@ -120,7 +120,7 @@ El siguiente es un circuito de ejemplo que se ha demostrado que funciona y es co
 
 image::images/primer_ohmic-sensing.png[width=100%]
 
-== Hipersensibilidad con  MESA THCAD-5
+=== Hipersensibilidad con MESA THCAD-5
 
 Un método más sofisticado de detección de material que elimina los relés y diodos es usar otro THCAD-5 para monitorear el voltaje del circuito de detección de material desde una fuente de alimentación aislada. La ventaja que tiene es que el THCAD está diseñado para el entorno eléctrico de plasma hostil y aísla totalmente y con seguridad el lado lógico del lado de alto voltaje.
 
@@ -136,7 +136,7 @@ image::images/primer_hypersensing.png[width=75%]
 
 Utilizamos una Fuente de alimentación aislada de riel DIN Mean Well HDR-15 ultradelgada de 15 vatios basada en riel DIN de 24 V .. Este es un dispositivo de doble aislamiento de clase II que resistirá cualquier voltaje de arco que pueda aplicarse a los terminales.
 
-== Ejemplo de código HAL para hipersensibilidad
+.Ejemplo de código HAL para hipersensibilidad
 
 El siguiente código HAL se puede pegar en su QtPlasmaC custom.hal para habilitar la detección Ohmica en el codificador 2 de un 7i76e. Instale el archivo de bits correcto y conecte el THCAD a IDX + e IDX-. Asegúrese de cambiar la configuración de calibración para estar de acuerdo con su THCAD-5.
 
@@ -219,7 +219,7 @@ Tendrá que experimentar para obtener el tamaño exacto del agujero porque el co
 
 Esta ralentización se puede lograr manipulando la velocidad de alimentación directamente en su postprocesador o utilizando alimentación adaptativa y un pin analógico como entrada. Esto le permite usar M67 / M68 para establecer el porcentaje de alimentación deseada para cortar.
 
-- Conociendo el avance
+-- Conociendo el avance
 
 De la discusión anterior es evidente que el controlador de plasma necesita conocer la velocidad de alimentación establecida por el usuario. Esto plantea un problema con LinuxCNC porque LinuxCNC no guarda la velocidad de avance después de que el código G se almacena y analiza. Hay dos enfoques para solucionar esto:
 
@@ -254,7 +254,7 @@ Por lo general, se requieren los siguientes pines (tenga en cuenta que las conex
 * En algunas circunstancias, se puede usar el relé del husillo integrado en las tarjetas Mesa en lugar de un relé externo.
 * Generalmente conectado a 'spindle.0.on'
 
-[WARNING] Se recomienda encarecidamente que la antorcha no se pueda habilitar mientras este pin sea falso; de lo contrario, la antorcha no se apagará cuando se presione Estop;
+WARNING: Se recomienda encarecidamente que la antorcha no se pueda habilitar mientras este pin sea falso; de lo contrario, la antorcha no se apagará cuando se presione Estop;
 
 === Interruptor flotante (entrada)
 
@@ -392,9 +392,9 @@ En el lado de alto voltaje:
 
 Suponiendo que está conectado a una 7i76e, conecte la salida a la entrada del codificador de husillo:
 
-* THCAD + 5v a TB3 Pin 6 (+5 VP)
+* THCAD +5v a TB3 Pin 6 (+5 VP)
 * THCAD -5v a TB3 Pin 1 (GND)
-* THCAD FOUT + a TB3 Pin 7 (ENC A +)
+* THCAD FOUT+ a TB3 Pin 7 (ENC A+)
 * THCAD FOUT- a TB3 Pin 8 (ENC A-)
 
 === Prueba inicial de THCAD
@@ -421,7 +421,7 @@ Debido a que no es probable que haya ningún EMI significativo, debería poder i
 
 * Si tiene un divisor de voltaje, instale un THCAD-10 en su panel de control. No hemos tenido problemas con esta configuración con un cortador de plasma Thermal Dynamics de 120 amp.
 
-. Inicio HF 
+.Inicio HF 
 
 Instale el THCAD en el inverter ya que la señal de frecuencia es mucho más inmune al ruido EMI. 
 
@@ -481,7 +481,7 @@ Los motores paso a paso sufren de resonancia y es probable que un piñón de tra
 
 == QtPlasmaC, Configuración de plasma LinuxCNC 
 
-La link:http://linuxcnc.org/docs/devel/html/plasma/qtplasmac.html[configuración de QtPlasmaC] se compone de un componente HAL (plasmac.hal) más configuraciones completas para Axis y Gmoccapy ha recibido una contribución considerable de muchos en el movimiento de código abierto LinuxCNC que ha avanzado  en la comprensión de los controladores de plasma desde aproximadamente 2015. Se han realizado muchas pruebas y trabajos de desarrollo para lograr que QtPlasmaC alcance su estado de funcionamiento actual. Se ha incluido todo, desde el diseño del circuito hasta el control y la configuración del código G. Además, QtPlasmaC admite THC externos como el Proma 150, pero realmente se destaca cuando se combina con un controlador Mesa, ya que esto permite que el integrador incluya el convertidor de voltaje a frecuencia Mesa THCAD, diseñado específicamente para lidiar con el entorno de plasma hostil.
+La <<cha:qtplasmac,configuración de QtPlasmaC>> se compone de un componente HAL (plasmac.hal) más configuraciones completas para Axis y Gmoccapy ha recibido una contribución considerable de muchos en el movimiento de código abierto LinuxCNC que ha avanzado  en la comprensión de los controladores de plasma desde aproximadamente 2015. Se han realizado muchas pruebas y trabajos de desarrollo para lograr que QtPlasmaC alcance su estado de funcionamiento actual. Se ha incluido todo, desde el diseño del circuito hasta el control y la configuración del código G. Además, QtPlasmaC admite THC externos como el Proma 150, pero realmente se destaca cuando se combina con un controlador Mesa, ya que esto permite que el integrador incluya el convertidor de voltaje a frecuencia Mesa THCAD, diseñado específicamente para lidiar con el entorno de plasma hostil.
 
 QtPlasmaC está diseñado para ser independiente e incluye la capacidad de incluir sus tablas de corte, pero también incluye características para ser utilizadas con un postprocesador como SheetCam.
 
@@ -499,7 +499,7 @@ Al seleccionar una interfaz RS485 para usar en el extremo de la PC, los usuarios
 
 Los programas CAM (Fabricación asistida por computadora) son el puente entre CAD (Diseño asistido por computadora) y la operación final del CNC (Control numérico por computadora). A menudo incluyen un postprocesador configurable por el usuario para definir el código que se genera para una máquina o dialecto específico de G-Code.
 
-Muchos usuarios de Linuxcnc están perfectamente contentos con el uso de Inkscape para convertir archivos basados en vectores .SVG a G-Code. Si está utilizando un plasma para hobby o uso doméstico, considere esta opción. Sin embargo, si sus necesidades son más complejas, probablemente la mejor y más razonable solución sea SheetCam. SheetCam es compatible con Windows y Linux y hay disponibles postprocesadores, incluida la configuración de QtPlasmaC. SheetCam le permite anidar partes sobre una hoja completa de material y le permite configurar conjuntos de herramientas y fragmentos de código para satisfacer sus necesidades. Los postprocesadores SheetCam son archivos de texto escritos en el lenguaje de programación Lua y, en general, son fáciles de modificar para adaptarse a sus requisitos exactos. Para obtener más información, consulte https://sheetcam.com [sitio web de SheetCam] y su foro de soporte.
+Muchos usuarios de Linuxcnc están perfectamente contentos con el uso de Inkscape para convertir archivos basados en vectores .SVG a G-Code. Si está utilizando un plasma para hobby o uso doméstico, considere esta opción. Sin embargo, si sus necesidades son más complejas, probablemente la mejor y más razonable solución sea SheetCam. SheetCam es compatible con Windows y Linux y hay disponibles postprocesadores, incluida la configuración de QtPlasmaC. SheetCam le permite anidar partes sobre una hoja completa de material y le permite configurar conjuntos de herramientas y fragmentos de código para satisfacer sus necesidades. Los postprocesadores SheetCam son archivos de texto escritos en el lenguaje de programación Lua y, en general, son fáciles de modificar para adaptarse a sus requisitos exactos. Para obtener más información, consulte https://sheetcam.com[sitio web de SheetCam] y su foro de soporte.
 
 Se incluye otro postprocesador popular con el popular paquete Fusion360, pero los postprocesadores incluidos necesitarán cierta personalización.
 

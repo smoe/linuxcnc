@@ -1,0 +1,10 @@
+# Files to skip since these have content that is not in the original
+man/es/man1/iocontrol.1
+src/common/linux-faq_es.adoc
+src/hal/basic-hal_es.adoc
+src/gui/qtdragon_es.adoc - completely divergent except for the beginning
+
+#
+# conceptual failure
+#
+src/common/glossary_es.adoc - the order is wrong

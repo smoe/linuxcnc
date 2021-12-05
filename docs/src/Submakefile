@@ -283,15 +283,11 @@ DOC_SRCS_ES := \
 	gui/gladevcp_es.adoc \
 	gui/gmoccapy_es.adoc \
 	gui/gscreen_es.adoc \
-	gui/halui_es.adoc \
 	gui/ngcgui_es.adoc\
 	gui/pyvcp_es.adoc \
 	gui/pyvcp-examples_es.adoc \
 	gui/qtdragon_es.adoc \
 	gui/qtvcp_es.adoc \
-	gui/qtvcp_widgets_es.adoc \
-	gui/qtvcp_custom_widgets_es.adoc \
-	gui/qtvcp_code_snippets_es.adoc \
 	gui/qtvcp_development_es.adoc \
 	gui/tooledit_es.adoc \
 	gui/touchy_es.adoc \
