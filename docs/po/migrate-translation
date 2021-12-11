@@ -13,10 +13,7 @@ cd $(dirname $0)/..
 
 do_man=true
 do_adoc=true
-<<<<<<< refs/remotes/upstream/translate-po4a
 lang="es fr zh_CN"
-=======
->>>>>>> Enable adoc migration.
 
 match_translation() {
     type=$1
