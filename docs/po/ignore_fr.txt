@@ -1,0 +1,6 @@
+# Breaks at line 143/144
+src/config/integrator-concepts_fr.adoc
+# Chokes on line 4/5
+#src/config/stepper-diagnostics_fr.adoc
+# Breaks on lines 87/88
+src/drivers/gs2_fr.adoc
