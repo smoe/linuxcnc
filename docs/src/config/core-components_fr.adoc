@@ -1,7 +1,0 @@
-[[cha:composants-principaux]]
-
-= Composants principaux
-
-include::../common/outdated-notice_fr.adoc[]
-
-Lien vers la xref:core-components.adoc[version anglaise].

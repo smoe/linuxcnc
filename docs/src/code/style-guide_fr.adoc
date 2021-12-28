@@ -1,5 +1,0 @@
-= Style de codage
-
-include::../common/outdated-notice_fr.adoc[]
-
-Lien vers la xref:style-guide.adoc[version anglaise].

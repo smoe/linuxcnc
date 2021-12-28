@@ -4,9 +4,7 @@
 
 [[cha:Assistant-graphique-StepConf]] (((Assistant stepconf)))
 
-[[sec:Introduction]]
-== Introduction
-(((Introduction)))
+== Introduction[[sec:Introduction]](((Introduction)))
 
 LinuxCNC est capable de contrôler un large éventail de machines
 utilisant de nombreuses interfaces matérielles différentes.
@@ -16,16 +14,15 @@ pour une classe spécifique de machine CNC: celles qui sont pilotées
 via un, ou plusieurs ports parallèles standards et contrôlées par des signaux
 de type pas/direction (step/dir).
 
-Stepconf est installé en même temps que LinuxCNC et un lanceur se trouve
-dans le menu _Application → CNC → LinuxCNC StepConf_.
+Stepconf est installé en même temps que LinuxCNC et un lanceur se trouve dans le menu _Application → CNC → LinuxCNC StepConf_.
 
 Stepconf place les fichiers qu'il crée dans le répertoire _~/linuxcnc/config_
 pour y stocker les paramètres de chaque configuration.
 Lorsque quelque chose doit être modifié, il faut choisir le fichier
-correspondant au nom de la configuration et portant l'extension .stepconf.
+correspondant au nom de la configuration et
+portant l'extension .stepconf.
 
-L'Assistant Stepconf a besoin, au minimum, d'une résolution de 800 x 600
-pour que les boutons sur le bas des pages soient apparents.
+L'Assistant Stepconf a besoin, au minimum, d'une résolution de 800 x 600 pour que les boutons sur le bas des pages soient apparents.
 
 == Page d'accueil
 
@@ -33,56 +30,52 @@ pour que les boutons sur le bas des pages soient apparents.
 
 image::images/stepconf-config_fr.png[alt="La page d'accueil de stepconf"]
 
-* _Créer une nouvelle configuration_ - 
-Créera une configuration nouvelle.
+FIXME
 
-* _Modifier une configuration déjà créée_ - 
-Modifiera une configuration existante, déjà créée avec Stepconf.
+FIXME
+
+Les trois premiers boutons parlent d'eux-même:
+
+* _Créer une nouvelle configuration_ - Créera une configuration nouvelle.
+* _Modifier une configuration déjà créée_ - Modifiera une configuration existante, déjà créée avec Stepconf.
 Après la sélection de celle-ci un sélecteur de fichier s'ouvre pour y
-choisir le fichier .stepconf à modifier. Si des modifications sont
+choisir le fichier .stepconf à modifier.Si des modifications sont
 faites aux fichiers .hal et .ini avec un autre éditeur, ils ne seront
-plus utilisables par Stepconf. Les modifications de custom.hal et de
-custom_postgui.hal, par contre, sont conservées par Stepconf.
+plus utilisables par Stepconf. Les modifications de custom.hal et de custom_postgui.hal, par contre, sont conservées par Stepconf.
+FIXME
+FIXME
+FIXME
 
-* _Créer un lien_ - 
-Placera un lien sur le bureau, pointant sur le dossier des fichiers
-de configuration.
+FIXME
 
-* _Créer un lanceur_ - 
-Placera un lanceur sur le bureau pour démarrer l'application avec sa
-configuration.
+* _Créer un lien_ - Placera un lien sur le bureau, pointant sur le dossier des fichiers de configuration.
+* _Créer un lanceur_ - Placera un lanceur sur le bureau pour démarrer l'application avec sa configuration.
+FIXME
 
-[[sub:Informations-base]]
-== Informations machine
+== Informations machine[[sub:Informations-base]]
 
 .Page d'informations sur la machine
 
 image::images/stepconf-basic_fr.png[alt="Page d'informations sur la machine"]
 
-* _Nom de la machine_ - 
-(((Nom de la machine)))
+* _Nom de la machine_ - (((Nom de la machine)))
 Choisir un nom pour la machine.
-Utiliser uniquement des lettres majuscules, minuscules, des chiffres
-ou "-" et "_".
+Utiliser uniquement des lettres majuscules, minuscules, des chiffres ou "-" et "_".
 
-* _Configuration des axes_ - 
-(((Configuration des axes)))
-Choisir les axes correspondants à la machine:
-XYZ (fraiseuse 3 axes), XYZA (fraiseuse 4 axes) ou XZ (tour).
+* _Configuration des axes_ - (((Configuration des axes)))
+Choisir les axes correspondants à la machine: XYZ (fraiseuse 3 axes), XYZA (fraiseuse 4 axes) ou XZ (tour).
 
-* _Unité machine_ - 
-(((Unité machine)))
+* _Unité machine_ - (((Unité machine)))
 Choisir entre le pouce et le millimètre. Toutes les questions suivantes
 (telles que la longueur des courses, le pas de la vis, etc)
 devront obtenir des réponses dans l'unité choisie ici.
+FIXME
 
-* _Caractéristiques du pilote_ - 
-(((Caractéristiques du pilote)))
+* _Caractéristiques du pilote_ - (((Caractéristiques du pilote)))
 Si un des pilotes énumérés dans la liste déroulante peut être utilisé,
 cliquer	sur son nom. Sinon, trouver les 4 valeurs de timing dans la fiche
 de caractéristiques fournie par le fabricant du pilote et les saisir.
-Si la fiche donne des valeurs en microsecondes, les multiplier par 1000.
-pour les convertir en nanosecondes.
+Si la fiche donne des valeurs en microsecondes, les multiplier par 1000 pour les convertir en nanosecondes.
 Par exemple, pour 4.5µs saisir 4500ns.
 
 Une liste de certains des pilotes pas à pas les plus populaires, avec leurs
@@ -92,10 +85,12 @@ http://wiki.linuxcnc.org/cgi-bin/wiki.pl?Stepper_Drive_Timing[Timming des pilote
 D'éventuels traitements des signaux, une opto-isolation ou des filtres RC,
 peuvent imposer des contraintes de temps supplémentaires aux signaux,
 il convient de les ajouter à celles du pilote.
+FIXME
+
 La Configuration LinuxCNC pour Sherline est déjà réglée.
 
-* _Step Time_ - 
-Durée de la largeur de l'impulsion de pas à l'état _on_, en nanosecondes.
+* _Step Time_ - Durée de la largeur de l'impulsion de pas à l'état _on_, en nanosecondes.
+FIXME
 
 * _Valeur Space d'un pas_ - 
 Temps entre deux impulsions de pas, en nanosecondes.

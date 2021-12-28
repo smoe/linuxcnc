@@ -1,5 +1,0 @@
-= Ajout d'éléments de sélection de configuration
-
-include::../common/outdated-notice_fr.adoc[]
-
-Lien vers la xref:adding-configs.adoc[version anglaise].

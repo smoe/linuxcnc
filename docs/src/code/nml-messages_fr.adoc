@@ -1,5 +1,0 @@
-= Messages NML
-
-include::../common/outdated-notice_fr.adoc[]
-
-Lien vers la xref:nml-messages.adoc[version anglaise].

@@ -1,9 +1,9 @@
 :lang: fr
-:toc:
+
+[[cha:ini-configuration]](((INI Configuration)))
 
 = Configuration de LinuxCNC
 
-[[cha:ini-configuration]]
 
 == Script de lancement
 
@@ -101,6 +101,7 @@ pourra gérer de multiples instances d'un même composant. Par exemple: si vous
 utilisez une portes AND à deux entrées, composant (and2), à trois endroits
 différents de votre configuration, vous ne devez avoir que cette seule ligne
 quelque part pour le spécifier:
+
 ----
 loadrt and2 count=3
 ----
@@ -109,6 +110,7 @@ Ce qui fournira finalement les composants and2.0, and2.1, and2.2.
 
 Les configurations seront plus lisibles si vous spécifiez les composants sous
 la forme names=option quand c'est supporté, par exemple:
+
 ----
 loadrt and2 names=aa,ab,ac
 ----
@@ -121,11 +123,13 @@ vous devrez trouver et mettre à jour, la ligne de directives de loadrt,
 applicable à ce composant.
 
 Le processus TWOPASS est activé par inclusion d'un paramètre dans le fichier ini:
+
 ----
 [HAL]TWOPASS=anything
 ----
 
 Avec ce réglage, vous pouvez avoir de multiples spécifications comme:
+
 ----
 loadrt and2 names=aa
 ...
@@ -163,6 +167,7 @@ la méthode count= donnera un composant au nom ésotérique comme ddt.0, ddt.1,
 ddt.2, etc.
 
 Alternativement, l'utilisation de names=option comme:
+
 ----
 loadrt ddt names=xvit,yvit,zvit
 ...
@@ -291,6 +296,7 @@ Pour utiliser une section de variable utilisateur dans un fichier HAL, ajouter
 la section et la variable dans le fichier INI.
 
 .Exemple de section utilisateur
+
 ----
 [OFFSETS]
 OFFSET_1 = 0.1234
@@ -300,6 +306,7 @@ Pour ajouter une variable utilisateur à une section LinuxCNC, inclure simplemen
 cette variable dans la section souhaitée.
 
 .Exemple de variable utilisateur
+
 ----
 [AXIS_0]
 TYPE = LINEAR
@@ -311,6 +318,7 @@ Pour utiliser une variable utilisateur dans un fichier HAL, utiliser les noms
 de section et de variable en lieu et place de leurs valeurs.
 
 .Exemple d'utilisation dans un fichier HAL
+
 ----
 setp offset.1.offset [OFFSETS]OFFSET_1
 setp stepgen.0.position-scale [AXIS_0]SCALE
@@ -1177,51 +1185,49 @@ réduction de 10 tours/pouce et des unités souhaitées en pouces, nous avons: +
 
 (D'anciens fichiers .ini et .hal utilisaient INPUT_SCALE pour cette valeur.)
 
-* 'STEPGEN_MAXACCEL = 21.0' - (hal) Limite d'accélération pour le générateur
-de pas. Elle doit être 1% à 10% supérieure à celle de l'axe MAX_ACCELERATION.
-Cette valeur améliore les réglages de la 'boucle de position' de stepgen. Si
+* 'STEPGEN_MAXACCEL = 21.0' - (hal) Limite d'accélération pour le générateur de pas. Elle doit être 1% à 10% supérieure à celle de l'axe MAX_ACCELERATION.
+Cette valeur améliore les réglages de la 'boucle de position' de stepgen. Si 
 une correction de jeu a été appliquée sur un axe, alors STEPGEN_MAXACCEL doit
 être 1,5 à 2 fois plus grande que MAX_ACCELERATION.
 
-* 'STEPGEN_MAXVEL = 1.4' - (hal) Les anciens fichiers de configuration avaient
-également une limite de vitesse du générateur de pas. Si spécifiée, elle doit
-aussi être 1% à 10% supérieure à celle de l'axe MAX_VELOCITY. Des tests
-ultérieurs ont montré que l'utilisation de STEPGEN_MAXVEL n'améliore pas le
+* 'STEPGEN_MAXVEL = 1.4' - (hal) Les anciens fichiers de configuration avaient également une limite de vitesse du générateur de pas. Si spécifiée, elle doit
+aussi être 1% à 10% supérieure à celle de l'axe MAX_VELOCITY. Des tests ultérieurs ont montré que l'utilisation de STEPGEN_MAXVEL n'améliore pas le
 réglage de la boucle de position de stepgen.
 
-[[sub:Section-EMCIO]]
+[[sub:Section-EMCIO]](((Section [EMCIO] du fichier ini)))
+
 === Section [EMCIO]
-(((Section [EMCIO] du fichier ini)))
+
+* 'EMCIO = io' - Name of IO controller program.
 
 * 'CYCLE_TIME = 0.100' - La période en secondes, à laquelle EMCIO va tourner.
 La mettre à 0.0 ou à une valeur négative fera que EMCIO tournera en permanence.
 Il est préférable de ne pas modifier cette valeur.
 
-* 'TOOL_TABLE = tool.tbl' - Ce fichier contient les informations des outils,
-décrites dans le Manuel de l'utilisateur.
+* 'TOOL_TABLE = tool.tbl' - Ce fichier contient les informations des outils, décrites dans le Manuel de l'utilisateur.
 
-* 'TOOL_CHANGE_POSITION = 0 0 2' - Quand trois digits sont utilisés, spécifie
-la position XYZ ou le mobile sera déplacé pour le changement d'outil.
-Si six digits sont utilisés, spécifie l'emplacement ou sera envoyé
-le mobile pour réaliser le changement d'outil sur une machine de type XYZABC et
+* 'DB_PROGRAM = db_program' - Path to an executable program that manages tool data.
+  (When a DB_PROGRAM is specified, a TOOL_TABLE entry is ignored)
+
+* 'TOOL_CHANGE_POSITION = 0 0 2' -
+Quand trois digits sont utilisés, spécifie la position XYZ ou le mobile sera déplacé pour le changement d'outil.
+Si six digits sont utilisés, spécifie l'emplacement ou sera envoyé le mobile pour réaliser le changement d'outil sur une machine de type XYZABC et
 de même, sur une machine de type XYZABCUVW lorsque 9 digits sont utilisés.
 Les variables relatives à la position du changement d'outil peuvent être
-combinées, par exemple; en combinant TOOL_CHANGE_POSITION avec
-TOOL_CHANGE_QUILL_UP il est possible de déplacer d'abord Z puis X et Y.
+combinées, par exemple; en combinant TOOL_CHANGE_POSITION avec TOOL_CHANGE_QUILL_UP il est possible de déplacer d'abord Z puis X et Y.
 
-* 'TOOL_CHANGE_WITH_SPINDLE_ON = 1' - Avec cette valeur à 1, la broche reste en
+* 'TOOL_CHANGE_WITH_SPINDLE_ON = 1' -
+Avec cette valeur à 1, la broche reste en
 marche pendant le changement d'outil. Particulièrement utile sur les tours.
 
-* 'TOOL_CHANGE_QUILL_UP = 1' - Avec cette valeur à 1, l'axe Z sera déplacé sur
+* 'TOOL_CHANGE_QUILL_UP = 1' -
+Avec cette valeur à 1, l'axe Z sera déplacé sur
 son origine machine avant le changement d'outil. C'est l'équivalent d'un G0 G53 Z0.
 
-* 'TOOL_CHANGE_AT_G30 = 1' - Avec cette valeur à 1, le mobile sera envoyé sur
-un point de référence prédéfini par G30 dans les paramètres 5181-5186. Pour
-plus de détails sur les paramètres de G30, voir le chapitre relatif au G-code
-dans le Manuel de l'utilisateur.
+* 'TOOL_CHANGE_AT_G30 = 1' -
+Avec cette valeur à 1, le mobile sera envoyé sur un point de référence prédéfini par G30 dans les paramètres 5181-5186. Pour
+plus de détails sur les paramètres de G30, voir le chapitre relatif au G-code dans le Manuel de l'utilisateur.
 
-* 'RANDOM_TOOLCHANGER = 1' - C'est pour des machines qui ne peuvent pas placer
-l'outil dans la poche il vient. Par exemple, les machines qui change l'outil
+* 'RANDOM_TOOLCHANGER = 1' -
+C'est pour des machines qui ne peuvent pas placer l'outil dans la poche il vient. Par exemple, les machines qui change l'outil
 dans la poche active avec l'outil dans la broche.
-
-
