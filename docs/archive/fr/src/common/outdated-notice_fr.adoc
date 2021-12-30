@@ -1,0 +1,43 @@
+[WARNING]
+.AVERTISSEMENT
+=================================================
+La version française de la documentation n'a pas 
+été mise à jour depuis LinuxCNC version 2.5, 
+publiée en 2012, faute de traducteur.
+
+Elle est donc très dépassée ! Veuillez utiliser 
+la documentation en anglais.
+=================================================
+
+[NOTE]
+.AVIS
+=================================================
+Si vous souhaitez mettre à jour cette traduction, 
+veuillez contacter l'équipe LinuxCNC via le 
+https://forum.linuxcnc.org[forum ]
+ou la http://lists.sourceforge.net/lists/listinfo/emc-developers[liste de diffusion].
+=================================================
+
+[WARNING]
+.WARNING
+=================================================
+The French version of the LinuxCNC documentation 
+has nt been updated since LinuxCNC version 2.5, 
+back in 2012, fault availability of translator.
+
+It is very much outdated ! Please use the 
+English documentation.
+=================================================
+
+[NOTE]
+.NOTICE
+=================================================
+If you would like to update this translation, 
+please contact the LinuxCNC team through the 
+https://forum.linuxcnc.org[forum ] or the 
+http://lists.sourceforge.net/lists/listinfo/emc-developers[mailing-list]
+=================================================
+
+// vim: set syntax=asciidoc:
+
+

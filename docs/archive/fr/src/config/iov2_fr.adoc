@@ -1,0 +1,7 @@
+[[cha:iov2]]
+
+= Contrôle d'E/S V2
+
+include::../common/outdated-notice_fr.adoc[]
+
+Lien vers la xref:iov2.adoc[version anglaise].

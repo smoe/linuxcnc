@@ -1,0 +1,7 @@
+[[cha:interface-utilisateur-hal]]
+
+= Interface utilisateur HAL
+
+include::../common/outdated-notice_fr.adoc[]
+
+Lien vers la xref:halui.adoc[version anglaise].

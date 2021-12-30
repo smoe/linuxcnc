@@ -1,0 +1,5 @@
+= Compiler LinuxCNC
+
+include::../common/outdated-notice_fr.adoc[]
+
+Lien vers la xref:building-linuxcnc.adoc[version anglaise].

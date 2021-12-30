@@ -1,0 +1,7 @@
+[[cha:plasma-primer_fr]]
+
+= Introduction à la découpe plasma pour les utilisateurs de LinuxCNC
+
+include::../common/outdated-notice_fr.adoc[]
+
+Lien vers la xref:plasma-cnc-primer.adoc[version anglaise].

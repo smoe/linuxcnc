@@ -1,0 +1,5 @@
+= Notes de codage
+
+include::../common/outdated-notice_fr.adoc[]
+
+Lien vers la xref:code-notes.adoc[version anglaise].

@@ -1,0 +1,7 @@
+[[cha:vismach]]
+
+= Vismach
+
+include::../common/outdated-notice_fr.adoc[]
+
+Lien vers la xref:vismach.adoc[version anglaise].
