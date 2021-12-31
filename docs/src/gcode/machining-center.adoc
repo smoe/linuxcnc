@@ -17,7 +17,7 @@ Interpreter. Mechanical components that do not interact directly with
 the Interpreter, such as the jog buttons, are not described here, even
 if they affect control.
 
-=== Axes
+=== Axes (((axes)))
 
 Any CNC machine has one or more Axes. Different types of CNC machines
 have different combinations. For instance, a '4-axis milling machine'
@@ -31,6 +31,9 @@ functions will still be usable, as long as the lower levels of control
 know how to control the actual mechanisms to produce the same relative
 motion of tool and workpiece as would be produced by independent axes.
 This is called 'kinematics'.]
+footnote:[Avec LinuxCNC, le cas de la machine à portique XYYZ avec deux
+moteurs pour un axe est mieux traité par la cinématique que par un
+axe linéaire supplémentaire.]
 
 .Primary Linear Axes (((axes, primary linear)))
 
@@ -64,6 +67,8 @@ If a CNC machine has components to provide mist coolant and/or flood
 coolant they can be controlled by G codes.
 
 === Feed and Speed Override
+(((correcteurs vitesse)))
+(((correcteur vitesse broche)))
 
 A CNC machine can have separate feed and speed override controls,
 which let the operator specify that the actual feed rate or spindle
@@ -112,6 +117,7 @@ parallelism requirement is violated, the system builder will
 have to say how to distinguish clockwise from counterclockwise.]
 
 === Controlled Point
+[[sec:controlled-point]](((Controlled Point)))
 
 The controlled point is the point whose position and rate of motion
 are controlled. When the tool length offset is zero (the default
@@ -128,6 +134,7 @@ controlled point is either at the tool tip or slightly outside it
 'side' of the tool intersect).
 
 === Coordinated Linear Motion
+[[sec:Mouvement-lineaire-coordonne]]
 
 To drive a tool along a specified path, a machining center must often
 coordinate the motion of several axes. We use the term 'coordinated linear motion'
@@ -148,7 +155,8 @@ feed rate, or at traverse rate, or it may be synchronized to the
 spindle rotation. If physical limits on axis speed make the desired
 rate unobtainable, all axes are slowed to maintain the desired path.
 
-=== Feed Rate[[sub:feed-rate]](((Feed Rate)))
+=== Feed Rate
+[[sub:feed-rate]](((Feed Rate)))
 
 The rate at which the controlled point moves is nominally a steady
 rate which may be set by the user. In the Interpreter, the feed
@@ -179,6 +187,11 @@ is to break and clear chips, so the spindle is usually turning during a
 dwell. Regardless of the Path Control Mode (see Section
 <<sec:path-control-mode,Path Control>>) the machine will stop exactly at the end of
 the previous programmed move, as though it was in exact path mode.
+
+* MATCH ME A
+* MATCH ME A
+* MATCH ME A
+* MATCH ME A
 
 === Units (((units)))
 
@@ -217,23 +230,55 @@ Zero or one tool is assigned to each slot in the tool carousel.
 
 A machining center may be commanded to change tools.
 
+* MATCH ME B
+* MATCH ME B
+* MATCH ME B
+* MATCH ME B
+
 === Pallet Shuttle
 
 The two pallets may be exchanged by command.
 
-=== Path Control Mode[[sec:path-control-mode]](((Path Control Mode)))
+=== From _Fr: Chargeur de pièces (((chargement)))
+
+From _Fr:From _Fr:  Une machine à commande numérique peut être équipée d'un système de chargement des
+pièces. Le système se compose de deux porte-pièces sur lesquels sont
+fixés les bruts des pièces à usiner. Un seul porte-pièce à la fois est
+en position d'usinage.
+
+=== Boutons des correcteurs de vitesses
+
+Taken from the _fr.adoc: Les boutons des correcteurs de vitesses peuvent être activés (ils
+fonctionnent normalement) ou rendus inopérants (Ils n'ont plus aucun
+effet). Le langage RS274/NGC dispose d'une commande qui active tous les
+boutons et une autre qui les désactive. Voir l'inhibition et l'activation
+<<sec:M48-M49, des correcteurs de vitesse>>.
+Voir également <<sec:Interaction-vitesses, ici pour d'autres détails>>.
+
+=== Path Control Mode
+[[sec:path-control-mode]](((Path Control Mode)))
 
 The machining center may be put into any one of three path control
-modes: (1) exact stop mode, (2) exact path mode, or (3) continuous mode
-with optional tolerance. In exact stop mode, the machine stops briefly
-at the end of each programmed move. In exact path mode, the machine
-follows the programmed path as exactly as possible, slowing or stopping
-if necessary at sharp corners of the path. In continuous mode, sharp
-corners of the path may be rounded slightly so that the feed rate may
-be kept up (but by no more than the tolerance, if specified). See
-Sections <<gcode:g61,G61>> and <<gcode:g64,G64>>.
+modes:
+
+* exact stop mode::
+  In exact stop mode, the machine stops briefly at the end of each
+  programmed move.
+* exact path mode::
+  In exact path mode, the machine follows the programmed path as exactly
+  as possible, slowing or stopping if necessary at sharp corners of
+  the path.
+* continuous mode::
+  In continuous mode, sharp corners of the path may be rounded slightly
+  so that the feed rate may be kept up (but by no more than the tolerance,
+  if specified).
+
+See Sections <<gcode:g61,G61>> and <<gcode:g64,G64>>.
 
 == Interpreter Interaction with Switches
+[[sec:Interaction-vitesses]] (((Interraction vitesse)))
+[[sec:Interaction-effacement-de-bloc]] (((effacement de bloc)))
+[[sec:Interaction-arrets-optionnels]] (((Arrêts optionnels)))
 
 The Interpreter interacts with several switches. This section
 describes the interactions in more detail. In no case does the
@@ -264,6 +309,7 @@ If this switch is on and an M1 code is encountered, program execution
 is paused.
 
 == Tool Table
+[[sec:Tool-Table]](((Tool-Table)))
 
 A tool table is required to use the Interpreter. The file tells which
 tools are in which tool changer slots and what the size and type of
@@ -294,6 +340,7 @@ For more information on the specifics of the tool table format, see the
 <<sec:tool-table,Tool Table Format>> Section.
 
 == Parameters
+[[sec:parametres]](((Parameters)))
 
 In the RS274/NGC language view, a machining center maintains an array
 of numerical parameters defined by a system definition
