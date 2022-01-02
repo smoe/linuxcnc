@@ -1,8 +1,8 @@
 :lang: fr
 
-= Configuration requise
+[[cha:system-requirements]](((System Requirements)))
 
-[[cha:Configuration-requise]]
+= Configuration requise
 
 == Configuration minimale
 
@@ -42,14 +42,12 @@ Pensez à regarder sur le site de https://www.debian.org/releases/stable/amd64/c
 pour le Live-CD que vous utilisé. Du matériel plus ancien peut bénéficier d'une
 version plus ancienne du Live-CD
 
-[[Noyau_et_version_requise]]
-== Noyau et version requise
+== Noyau et version requise[[Noyau_et_version_requise]]
 
 LinuxCNC a besoin d'un noyau modifié pour une utilisation en temps réel
 afin pouvoir contrôler des machines. Il peut aussi être exécuter sur un noyau
 standard en mode simulation pour vérifier le G-code, tester des fichiers de config
 et apprendre le système.
-
 Pour utiliser un noyaux temps réel, deux versions de LinuxCNC sont disponible:
 Les noms des paquets sont: "linuxcnc" et "linuxcnc-uspace"
 
@@ -57,9 +55,18 @@ Les options temps réel du noyau sont: "preempt-rt", "RTAI" et "Xenomai"
 
 Pour savoir la version de votre noyau, utiliser la commande suivante dans un terminal:
 
- uname -a
+----
+uname -a
+----
 
- === Preempt-RT avec linuxcnc-uspace
+If you see (as above) `-rt-` in the kernel name then you are running the
+preempt-rt kernel and should install the "uspace" version of linuxcnc.
+You should also install uspace for "sim" configs on non-realtime kernels
+
+If you see `-rtai-` in the kernel name then you are running RTAI
+realtime. See below for the linuxcnc version to install.
+
+=== Preempt-RT avec linuxcnc-uspace
 
 Preempt-RT est le plus récent des systèmes temps réel, il est aussi
 le plus proche du noyau principal. Preempt-RT est disponible déjà compilé dans les
@@ -77,7 +84,6 @@ et moins de choix sur les résolutions d'écrans. Un noyau RTAI est disponible d
 dépots de LinuxCNC. Si vous avez installé depuis un Live-CD, passer sur le noyau
 LinuxCNC est décrit dans [Installer-RTAI].
 
-
 === Xenomai avec linuxcnc-uspace
 
 Xenomai est aussi supporté, mais vous devez trouvé ou crée le noyau,
@@ -87,7 +93,6 @@ puis compiler LinuxCNC depuis sa source pour pouvoir l'utiliser.
 
 Il est aussi possible d'utiliser LinuxCNC avec RTAI en mode user-space.
 Même chose que pour Xenomai, vous devez compiler a partir des sources.
-
 
 == Problématique du matériel
 

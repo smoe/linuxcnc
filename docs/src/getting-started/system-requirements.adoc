@@ -96,7 +96,6 @@ and compile LinuxCNC from source to utilise it.
 It is also possible to run linuxCNC with RTAI in user-space mode. As
 with Xenomai you will need to compile from source to do this.
 
-
 == Problematic Hardware
 
 === Laptops
@@ -113,5 +112,3 @@ can sometimes be worked-around by installing drivers or creating /
 editing Xorg.conf files.
 
 // vim: set syntax=asciidoc:
-
-

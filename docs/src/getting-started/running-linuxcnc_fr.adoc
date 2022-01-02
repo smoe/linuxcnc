@@ -1,4 +1,11 @@
-﻿= Lancer LinuxCNC
+﻿:lang: fr
+:toc:
+
+[[cha:running-emc]](((Lancer LinuxCNC)))
+
+= Lancer LinuxCNC
+
+== Invoking LinuxCNC
 
 LinuxCNC se lance comme un autre programme Linux:
 depuis un terminal en passant la commande _linuxcnc_, 

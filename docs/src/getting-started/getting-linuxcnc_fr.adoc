@@ -1,6 +1,8 @@
 ﻿:lang: fr
 
-= Se procurer LinuxCNC(((Obtenir LinuxCNC)))
+[[cha:getting-linuxcnc]](((Getting LinuxCNC)))
+
+= Se procurer LinuxCNC
 
 == Par téléchargement classique
 
