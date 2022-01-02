@@ -1,12 +1,11 @@
 :lang: en
+:toc:
 
 [[cha:other-codes]](((Other Codes)))
 
 = Other Codes
 
-[[sec:set-feed-rate]]
-== F: Set Feed Rate
-(((F: Set Feed Rate)))
+== F: Set Feed Rate[[sec:set-feed-rate]](((F: Set Feed Rate)))
 
 'Fx' - set the feed rate to 'x'.  'x' is usually in machine units
 (inches or millimeters) per minute.
@@ -16,9 +15,7 @@ The application of the feed rate is as described in the
 or 'feed per revolution mode' are in effect, in which case the feed rate
 is as described in the <<gcode:g93-g94-g95,G93 G94 G95>> Section.
 
-[[sec:set-spindle-speed]]
-== S: Set Spindle Speed
-(((S: Set Spindle Speed)))
+== S: Set Spindle Speed[[sec:set-spindle-speed]](((S: Set Spindle Speed)))
 
 'Sx [$n]' - set the speed of the spindle to 'x' revolutions per minute (RPM)
 with the optional $ set the spindle speed for a specific spindle. Without the $
@@ -35,9 +32,14 @@ It is an error if:
 
 * the S number is negative.
 
-[[sec:select-tool]]
-== T: Select Tool
-(((T: Select Tool)))
+Introduced in _fr: Comme décrit dans la section <<sec:G84-Taraudage-a-droite, sur le cycle de
+taraudage à droite>>, si un cycle de perçage 'G84' (taraudage) est actif et que
+les potentiomètres de vitesse et d'avance sont autorisés, celui qui a le
+réglage le plus bas sera utilisé. La vitesse de rotation et d'avance resterons
+synchronisées. Dans ce cas, la vitesse peut différer de celle programmée, même
+si le potentiomètre de correction de vitesse travail est sur 100%.
+
+== T: Select Tool[[sec:select-tool]](((T: Select Tool)))
 
 'Tx' - prepare to change to tool 'x'.
 

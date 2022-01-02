@@ -1,8 +1,11 @@
 :lang: en
+:toc:
 
 [[cha:o-codes]](((O Codes)))
 
 = O Codes
+
+== Use of O-codes
 
 O-codes provide for flow control in NC programs. Each block has an
 associated number, which is the number used after O. Care must be taken
@@ -12,7 +15,9 @@ number zero as the first character in the number like O100 or o100.
 == Numbering
 
 Numbered O codes must have a unique number for each subroutine,
+
 .Numbering Example
+
 ----
 (the start of o100)
 o100 sub
@@ -59,6 +64,7 @@ o100 endsub
 o100 call
 M2
 ----
+
 See <<gcode:g53,G53>>, <<gcode:g0,G0>> and <<mcode:m2-m30,M2>> sections for more information.
 
 .O- Return
@@ -128,7 +134,6 @@ placing `DISABLE_FANUC_STYLE_SUB = 1` in the `[RS274NGC]` section
 of the `.ini` file.
 
 [NOTE]
-
 Numbered main and subprogram definitions and calls differ from
 traditional rs274ngc both in syntax and execution.  To reduce the
 possibility of confusion, the interpreter will raise an error if
@@ -340,7 +345,7 @@ repeat/endrepeat the specified number of times. The example shows how
 you might mill a diagonal series of shapes starting at the present
 position.
 
-.Repeat Example
+.Example with 'repeat'
 ----
 (Mill 5 diagonal shapes)
 G91 (Incremental mode)
@@ -402,6 +407,41 @@ M2
 The file names are lowercase letters only so 'o<MyFile>' is converted to 'o<myfile>'
 by the interpreter. More information about the search path and options for the
 search path are in the INI Configuration Section.
+
+== Subroutine return values(((Return Values)))
+
+Subroutines may optionally return a value by an optional expression at
+an 'endsub' or 'return' statement.
+
+.Return value example
+----
+o123 return [#2 *5]
+...
+o123 endsub [3 * 4]
+----
+
+A subroutine return value is stored in the '#<_value>'
+<<gcode:predefined-named-parameters, predefined named parameter>> , and
+the '#<_value_returned>' predefined parameter is set to 1, to indicate
+a value was returned. Both parameters are global, and are cleared just
+before the next subroutine call.
+
+== Errors[[ocode:errors]](((O-Code Errors)))
+
+The following statements  cause an error message and  abort the
+interpreter:
+
+ - a `return` or `endsub` not within a sub definition
+ - a label on `repeat` which is defined elsewhere
+ - a label on `while` which is defińed elsewhere and not referring to a `do`
+ - a label on `if` defined elsewhere
+ - a undefined label on `else` or `elseif`
+ - a label on `else`, `elseif` or `endif` not pointing to a matching `if`
+ - a label on `break` or `continue` which does not point to a matching `while` or `do`
+ - a label on `endrepeat` or `endwhile` no referring to a corresponding `while` or `repeat`
+
+To make these errors non-fatal  warnings on stderr, set bit 0x20 in
+the `[RS274NGC]FEATURE=` mask ini option.
 
 == Subroutine return values(((Return Values)))
 

@@ -1,3 +1,6 @@
+:lang: en
+:toc:
+
 [[cha:rs274ngc-programs]]
 
 = RS274/NGC Differences
@@ -43,9 +46,10 @@ When G28 or G30 is programmed with only some axis words present,
 LinuxCNC only moves the named axes. This is common on other machine 
 controls. To move some axes to an intermediate point and then 
 move all axes to the predefined point, write two lines of G code:
-+
-G0 X- Y- (axes to move to intermediate point) G28 (move all axes 
-to predefined point)
+----
+G0 X- Y- (axes to move to intermediate point)
+G28 (move all axes to predefined point)
+----
 
 == Additions to RS274/NGC
 
