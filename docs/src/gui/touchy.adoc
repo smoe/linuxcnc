@@ -1,9 +1,11 @@
 :lang: en
 [[cha:touchygui]](((touchygui)))
-
+:toc:
 :ini: {basebackend@docbook:'':ini}
 :hal: {basebackend@docbook:'':hal}
 :ngc: {basebackend@docbook:'':ngc}
+
+= The Touchy Graphical User Interface
 
 Touchy is a user interface for LinuxCNC meant for use on machine control panels,
 and therefore does not require keyboard or mouse.
@@ -16,20 +18,18 @@ The 'Handwheel' tab has radio buttons to select between 'Feed Override',
 input. Radio buttons for axis selection and increment for jogging are also
 provided.
 
-.Touchy
-
-image::images/touchy.png[align="center", alt="Touchy GUI"]
+image::images/touchy.png["Touchy GUI",align="center"]
 
 == Panel Configuration
 
 === HAL connections
 
-Touchy looks in the INI file, under the heading '[HAL]' for entries of 'POSTGUI_HALFILE=<filename>' +
-Typically '<filename>' would be 'touchy_postgui.hal', but can be any legal filename. +
+Touchy looks in the INI file, under the heading '[HAL]' for entries of 'POSTGUI_HALFILE=<filename>'
+Typically '<filename>' would be 'touchy_postgui.hal', but can be any legal filename.
 These commands are executed after the screen is built, guaranteeing the widget HAL
-pins are available. +
-You can have multiple line of 'POSTGUI_HALFILE=<filename>' in the INI. +
-Each will be run one after the other in the order they appear in the INI file. +
+pins are available.
+You can have multiple line of 'POSTGUI_HALFILE=<filename>' in the INI.
+Each will be run one after the other in the order they appear in the INI file.
 
 [NOTE]
 Touchy used to require that you create a file named 'touchy.hal' in your
@@ -104,7 +104,9 @@ Touchy can invoke O-word macros using the MDI interface.  To configure
 this, in the '[TOUCHY]' section of the ini file, add one or more 'MACRO'
 lines.  Each should be of the format
 
-'MACRO=increment xinc yinc'
+----
+MACRO=increment xinc yinc
+----
 
 In this example, increment is the name of the macro, and it accepts two
 parameters, named xinc and yinc.
