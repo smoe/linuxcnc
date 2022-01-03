@@ -325,7 +325,7 @@ l'affichage comme il se doit.
 * 'Afficher les limites machine...' - Les limites maximales de déplacement
   machine pour chacun des axes, qui sont fixées dans le fichier ini,
   s'affichent comme une boîte rectangulaire en lignes pointillées rouges. Il
-  st facile, au chargement d'un nouveau programme G-code, de voir si la pièce
+  est facile, au chargement d'un nouveau programme G-code, de voir si la pièce
   est contenue dans le volume représenté. Ou de vérifier de combien l'étau doit
   être décalé, pour que le G-code puisse être usiné sans dépasser les limites
   de déplacements de la machine. Cette option peut être désactivée si
