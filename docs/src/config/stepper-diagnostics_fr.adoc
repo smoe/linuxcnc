@@ -41,12 +41,12 @@ peut maintenir le suivi demandé par une commande, si ce n'est pas
 possible il stoppe le mouvement et affiche une erreur de suivi. Les
 erreurs de suivi sur les systèmes pas à pas sont habituellement les suivantes:
 
- - FERROR to small - (FERROR trop petit)
- - MIN_FERROR to small - (MIN_FERROR trop petit)
- - MAX_VELOCITY to fast - (MAX_VELOCITY trop rapide)
- - MAX_ACCELERATION to fast - (MAX_ACCELERATION trop rapide)
- - BASE_PERIOD set to long - (BASE_PERIOD trop longue)
- - Backlash ajouté à un axe (rattrapage de jeu)
+- FERROR to small - (FERROR trop petit)
+- MIN_FERROR to small - (MIN_FERROR trop petit)
+- MAX_VELOCITY to fast - (MAX_VELOCITY trop rapide)
+- MAX_ACCELERATION to fast - (MAX_ACCELERATION trop rapide)
+- BASE_PERIOD set to long - (BASE_PERIOD trop longue)
+- Backlash ajouté à un axe (rattrapage de jeu)
 
 Toutes ces erreurs se produisent lorsque l'horloge temps réel n'est pas capable de fournir le nombre de pas nécessaire pour maintenir la
 vitesse requise par le réglage de la variable BASE_PERIOD. Ce qui peut se produire, par exemple après un test de latence trop bref pour
@@ -72,9 +72,6 @@ _Latency Test_ pendant une durée plus longue pour voir si vous n'avez
 pas un délai excessif quelque part, responsable de ce problème. Si
 c'est le cas réajuster alors BASE_PERIOD avec la nouvelle valeur
 obtenue.
-FIXME
-FIXME
-FIXME
 
 LinuxCNC vérifie le nombre de cycles du CPU entre les invocations du thread temps réel. Si certains éléments de votre matériel provoquent un
 délai excessif ou que les threads sont ajustés à des valeurs trop
@@ -104,7 +101,7 @@ vous avez un problème de configuration, la position de l'axe Z affichée
 à la fin du programme, soit 10.00mm, ne correspondra pas à la position
 mesurée. Pour tester un autre axe remplacez simplement le Z des G0 par le nouvel axe.
 
-FIXME
+[source,{ngc}]
 ----
 ( Ce programme teste les pertes de position en Z )
 ( msg, test 1 de la configuration de l'axe Z ) 

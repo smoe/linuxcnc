@@ -5,7 +5,7 @@
 Composant de HAL pour la série de variateurs de fréquence GS2 fournie par
 la société Automation Direct. footnote:[En Europe on trouve l'équivalent sous la marque Omron.]
 
-* Ce composant est chargé en utilisant la commande suivante:
+Ce composant est chargé en utilisant la commande suivante:
 ----
 loadusr -Wn spindle-vfd gs2_vfd -n spindle-vfd
 ----
@@ -15,25 +15,25 @@ chapitre: <<sec:loadusr,loadusr>>.
 
 == Options spécifiques au chargement
 
-* _-b_ ou _--bits <n>_ (défaut 8) Fixe le nombre de bits de donnée à _<n>_, dans
-    lequel _<n>_ doit être compris entre 5 et 8 inclus. 
-* _-d_ ou _--device <path>_ (défaut /dev/ttyS0) Fixe le nom de la liaison série
+* '-b' ou '--bits <n>' (défaut 8) Fixe le nombre de bits de donnée à _<n>_, dans
+    lequel _<n>' doit être compris entre 5 et 8 inclus. 
+* '-d' ou '--device <path>' (défaut /dev/ttyS0) Fixe le nom de la liaison série
     à utiliser. 
-* _-g_ ou _--debug_ Active les messages de débogage. 
+* '-g' ou '--debug' Active les messages de débogage. 
     Le drapeau du mode verbeux pourra être activé. Le débogage affichera tous 
     les messages modbus en hexadécimal sur terminal. 
-* _-n_ ou _--name <string>_ (défaut gs2_vfd) Fixe le nom du composant de HAL à 
+* '-n' ou '--name <string>' (défaut gs2_vfd) Fixe le nom du composant de HAL à 
     _<string>_, les noms de toutes ses pins et paramètres commenceront également 
     par _<string>_. 
-* _-p_ ou _--parity {even, odd, none}_ (défaut odd) Fixe la parité de la liaison 
+* '-p' ou '--parity {even, odd, none}' (défaut odd) Fixe la parité de la liaison 
     série à parité paire, parité impaire ou sans parité. 
-* _-r_ ou _--rate <n>_ (défaut 38400) Fixe le débit de la liaisons à _<n>_. 
+* '-r' ou '--rate <n>' (défaut 38400) Fixe le débit de la liaisons à _<n>_. 
     C'est une erreur si le débit n'est pas une des valeurs suivantes: 110, 300,
     600, 1200, 2400, 4800, 9600, 19200, 38400, 57600, 115200. 
-* _-s_ ou _--stopbits {1,2}_ (défaut 1) Fixe le nombre de bits de stop de la liaison série à 1 ou 2.
-* _-t_ ou _--target <n>_ (défaut 1) Fixe le nombre de cibles MODBUS (esclaves). 
+* '-s' ou '--stopbits {1,2}' (défaut 1) Fixe le nombre de bits de stop de la liaison série à 1 ou 2.
+* '-t' ou '--target <n>' (défaut 1) Fixe le nombre de cibles MODBUS (esclaves). 
     Doit correspondre au nombre de périphériques réglé dans le GS2. 
-* _-v_ ou _--verbose_ Active les messages de débogage. Noter qu'en cas d'erreurs série, cela ne fera pas beaucoup de différence ce qui peut être gênant.
+* '-v' ou '--verbose' Active les messages de débogage. Noter qu'en cas d'erreurs série, cela ne fera pas beaucoup de différence ce qui peut être gênant.
 
 * '-A ou --accel-seconds' <n> FIXME
   FIXME
