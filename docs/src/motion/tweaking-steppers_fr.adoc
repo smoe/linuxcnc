@@ -3,8 +3,6 @@
 
 = Réglages des pas à pas
 
-[[cha:Reglages-de-pas-a-pas]]
-
 == Obtenir le meilleur pilotage logiciel possible
 
 Faire générer les impulsions de pas au logiciel présente un gros
@@ -29,6 +27,14 @@ d'un PC consiste à exécuter le test de latence RTAI.
 
 Lancer un test comme décrit <<cha:test-de-latence, au chapitre sur le test>>
 de latence.
+
+Missing1
+
+Missing2
+
+Missing3
+
+Missing4
 
 === Connaître ce dont vos cartes de pilotage ont besoin
 
@@ -226,5 +232,3 @@ aussi la fréquence de pas maximum que vous serez en mesure de générer.
 
 J'ai ajouté quelques petites choses à la feuille de calcul pour
 calculer la fréquence maximum et quelques autres calculs.
-
-
