@@ -1,14 +1,14 @@
 :lang: fr
 :toc:
 
+[[cha:compensation-outil]](((Les compensations d'outil)))
+
 = Les compensations d'outil
 
-[[cha:compensation-outil]]
 
 == Compensation de longueur d'outil
 
-=== Toucher
-(((Toucher)))
+=== Toucher(((Toucher)))
 
 Dans la boîte de dialogue du bouton 'Toucher' de l'interface AXIS, il
 est possible de mettre à jour automatiquement la table d'outils.
@@ -16,15 +16,13 @@ est possible de mettre à jour automatiquement la table d'outils.
 Séquence typique pour mise à jour de la table d'outils:
 
 * Après la prise d'origine, charger un outil 'Tn M6' dans lequel 'n' est le
-   numéro de l'outil.
+  numéro de l'outil.
 * Déplacer l'outil pour établir le zéro pièce, en utilisant une cale
-d'épaisseur ou en faisant une petite passe puis une mesure.
+  d'épaisseur ou en faisant une petite passe puis une mesure.
 * Cliquer sur le bouton 'Toucher' de l'onglet 'Controle manuel' (ou presser la
-touche 'Fin' du clavier).
-* Sélectionner 'Table d'outils' dans la liste déroulante des systèmes de
-coordonnées.
-* Entrer l'épaisseur de la cale ou la cote mesurée.
-* Presser OK.
+  touche 'Fin' du clavier).
+* Sélectionner 'Table d'outils' dans la liste déroulante des systèmes de coordonnées.
+* Entrer l'épaisseur de la cale ou la cote mesurée è Presser OK.
 
 La table d'outil sera alors modifiée avec la longueur correcte en Z de l'outil.
 La visu affichera la position en Z correcte et une commande G43 sera passée pour
@@ -34,7 +32,7 @@ avec 'Tn M6'.
 
 .Toucher et table d'outils[[cap:Touch-Off-Tool]]
 
-image::images/ToolTable-TouchOff_fr.png[alt="Toucher et table d'outils"]
+//image::images/ToolTable-TouchOff_fr.png[alt="Toucher et table d'outils"]
 
 === Utilisation de G10 L1/L10/L11
 
@@ -43,17 +41,11 @@ dans la table d'outils:
   (Ce sera juste une brève présentation, se reporter au guide de références du
 G-code pour des explications plus détaillées)
 
-G10 L1  Pn  - (n est le N° d'outil) Fixe les offsets de l'outil. La position
-courante n'est pas significative. <<sec:G10-L1, Tous les détails ici>>. (((G10 L1)))
+* G10 L1  Pn - (n est le N° d'outil) Fixe les offsets de l'outil. La position courante n'est pas significative. <<sec:G10-L1, Tous les détails ici>>. (((G10 L1)))
+* G10 L10 Pn - (n est le N° d'outil) Fixe l'offset à la position courante, met les valeurs dans un système de 1 à 8. <<sec:G10-L10, Tous les détails ici>>.(((G10 L10)))
+* G10 L11 Pn - (n est le N° d'outil) Fixe l'offset à la position courante, met les valeurs dans le système 9. <<sec:G10-L11, Tous les détails ici>>. (((G10 L11)))
 
-G10 L10 Pn  - (n est le N° d'outil) Fixe l'offset à la position courante, met
-les valeurs dans un système de 1 à 8. <<sec:G10-L10, Tous les détails ici>>.(((G10 L10)))
-
-G10 L11 Pn  - (n est le N° d'outil) Fixe l'offset à la position courante, met
-les valeurs dans le système 9. <<sec:G10-L11, Tous les détails ici>>. (((G10 L11)))
-
-[[sec:Table-Outils]]
-== Table d'outils
+== Table d'outils[[sec:Table-Outils]](((Table d'outils)))
 
 La 'table d'outils' est un fichier texte qui contient les informations de chaque
 outil. Ce fichier est placé dans le même répertoire que le fichier de
@@ -65,8 +57,11 @@ pour ce qui concerne les outils de tour, avec un exemple de table. Le nombre
 d'outils est limité à 1000 dans une table d'outils même si la numérotation des
 outils et des poches peut aller jusqu'à 99999.
 
-=== Format de la table d'outils[[sec:Tool-Table-Format]]
-(((Format de la table d'outils)))
+The <<cha:tooledit-gui,Tool Editor>> or a text editor can be used to edit the
+tool table.  If you use a text editor make sure you reload the tool table in
+the GUI.
+
+=== Format de la table d'outils[[sec:Tool-Table-Format]](((Format de la table d'outils)))
 
 .Format de la table d'outils
 
@@ -135,6 +130,7 @@ n'importe quel outil, tant que les codes sont des entiers non signés.
 La colonne 'P' contient un nombre entier non signé, qui représente
 le numéro de poche (numéro de slot) du changeur d'outils, poche dans laquelle
 l'outil se trouve. Les entrées de cette colonne doivent être toutes différentes.
+
 Le numéro de poche commence typiquement à 1 et va au maximum de poches
 disponibles sur le changeur d'outils. Mais tous les changeurs d'outils ne
 suivent pas ce modèle. Votre numéro de poche sera déterminé, par le numéro
@@ -181,8 +177,7 @@ La colonne des commentaires peut optionnellement être utilisée pour décrire
 l'outil. Elle commence par un point-virgule, elle peut contenir n'importe quel
 texte pour le seul bénéfice de l'opérateur.  
 
-[[sec:Outils-et-Compensations]]
-= Fichier d'outils et compensations
+= Fichier d'outils et compensations[[sec:Outils-et-Compensations]]
 
 == Fichier d'outils
 

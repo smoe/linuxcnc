@@ -1,3 +1,6 @@
+:lang: en
+:toc:
+
 [[cha:hal-components]]
 
 [[cha:componentes-hal]]((("HAL Components")))
@@ -35,9 +38,7 @@ linuxcnc:: LinuxCNC (The Enhanced Machine Controller).
 pyvcp:: Virtual Control Panel for LinuxCNC.
 shuttle:: control HAL pins with the ShuttleXpress and ShuttlePRO devices made by Contour Design.
 
-[[sec:realtime-components]]
-
-== Realtime Components List
+== Realtime Components List[[sec:realtime-components]]
 
 Some of these will have expanded descriptions from the man pages. Some
 will have limited descriptions. All of the components have man pages.
@@ -50,26 +51,29 @@ man motion (or perhaps 'man 9 motion' if your system requires it.)
 ----
 
 [NOTE]
+Si le composant requière un thread avec flottant, c'est normalement le plus
+lent, soit  _servo-thread_.
+
+[NOTE]
 See also the 'Man Pages' section of the link:../index.html[docs main page] or the
 link:../man/man9/[directory listing of man9].
 
 [NOTE]
 Si el componente requiere un hilo de punto flotante, suele ser el hilo servo, más lento.
 
-=== Core LinuxCNC components
+=== Core LinuxCNC components[[sec:Realtime-Components-coeur]]
 
 motion:: (((motion)))Accepts NML motion commands, interacts with HAL in realtime.
 
 axis:: (((axis)))Accepts NML motion commands, interacts with HAL in realtime.
 
-classicladder:: (((classicladder)))Realtime software PLC based on ladder logic.
-See <<cha:classicladder,ClassicLadder>> chapter for more information.
+classicladder:: (((classicladder)))Realtime software PLC based on ladder logic. See <<cha:classicladder,ClassicLadder>> chapter for more information.
 
 gladevcp:: (((gladevcp)))Displays Virtual Control Panels built with GTK/Glade.
 
 threads:: (((threads)))Creates hard realtime HAL threads.
 
-=== Logic and Bitwise components
+=== Logic and Bitwise components[[sec:Realtime-Components-logic]]
 
 and2:: (((and2)))Two-input AND gate. For out to be true both inputs must be true. link:../man/man9/and2.9.html[Details]
 
@@ -97,7 +101,13 @@ match8:: (((match8)))8-bit binary match detector.
 
 select8:: (((select8)))8-bit binary match detector.
 
-=== Arithmetic and float-components
+* MATCH ME A
+* MATCH ME A
+* MATCH ME A
+* MATCH ME A
+* MATCH ME A
+
+=== Arithmetic and float-components[[sec:Realtime-Components-flottant]]
 
 abs:: [[sub:abs]](((abs)))Compute the absolute value and sign of the input signal.
 
@@ -110,6 +120,9 @@ constant:: (((constant)))Use a parameter to set the value of a pin.
 sum2:: (((sum2)))Sum of two inputs (each with a gain) and an offset.
 
 counter:: (((counter)))Counts input pulses (deprecated).  Use the <<sec:encoder, encoder>> component.
+
+From French: Utiliser le composant _encoder_ avec _... counter-mode = TRUE_.
+Voir la section <<sec:Codeur, codeur>>.
 
 updown:: (((updown)))Counts up or down, with optional limits and wraparound behavior.
 
@@ -183,14 +196,13 @@ conv_u32_float:: (((conv_u32_float)))Convert a value from u32 to float.
 
 conv_u32_s32:: (((conv_u32_s32)))Convert a value from u32 to s32.
 
-=== Hardware Drivers
+=== Hardware Drivers[[sec:Realtime-Components-pilotes]]
 
 hal_ppmc:: (((hal_ppmc))) Pico Systems <<cha:pico-drivers,driver>> for analog servo, PWM and Stepper controller.
 
 hm2_7i43:: (((hm2_7i43))) Mesa Electronics driver for the 7i43 EPP Anything IO board with HostMot2. (See the man page for more information)
 
-hm2_pci:: (((hm2_pci))) Mesa Electronics driver for the 5i20, 5i22, 5i23, 4i65, and 4i68 Anything I/O boards, with HostMot2 firmware.
-(See the man page for more information)
+hm2_pci:: (((hm2_pci))) Mesa Electronics driver for the 5i20, 5i22, 5i23, 4i65, and 4i68 Anything I/O boards, with HostMot2 firmware.  (See the man page for more information)
 
 hostmot2:: (((hostmot2))) Mesa Electronics <<cha:mesa-hostmot2-driver,driver>> for the HostMot2 firmware.
 
@@ -204,35 +216,35 @@ thc:: (((torch height control))) Torch Height Control using a Mesa THC card or a
 
 serport:: (((serport))) Hardware driver for the digital I/O bits of the 8250 and 16550 serial port.
 
-=== Kinematics
+=== Kinematics[[sec:Realtime-Components-cinematiques]]
 
-kins:: (((kins)))kinematics definitions for LinuxCNC.
+kins:: (((kins))) kinematics definitions for LinuxCNC.
 
-gantrykins:: (((gantrykins)))A kinematics module that maps one axis to multiple joints.
+gantrykins:: (((gantrykins))) A kinematics module that maps one axis to multiple joints.
 
-genhexkins:: (((genhexkins)))Gives six degrees of freedom in position and orientation (XYZABC).
+genhexkins:: (((genhexkins))) Gives six degrees of freedom in position and orientation (XYZABC).
 The location of the motors is defined at compile time.
 
-genserkins:: (((genserkins)))Kinematics that can model a general serial-link manipulator with up to
+genserkins:: (((genserkins))) Kinematics that can model a general serial-link manipulator with up to
 6 angular joints.
 
-maxkins:: (((maxkins)))Kinematics for a tabletop 5 axis mill named 'max' with tilting head (B axis) and
+maxkins:: (((maxkins))) Kinematics for a tabletop 5 axis mill named 'max' with tilting head (B axis) and
 horizontal rotary mounted to the table (C axis).
 Provides UVW motion in the rotated coordinate system.
 The source file, maxkins.c, may be a useful starting point for other 5-axis systems.
 
-tripodkins:: (((tripodkins)))The joints represent the distance of the controlled point from three
+tripodkins:: (((tripodkins))) The joints represent the distance of the controlled point from three
 predefined locations (the motors), giving three degrees of freedom in
 position (XYZ).
 
-trivkins:: (((trivkins)))There is a 1:1 correspondence between joints and axes. Most standard
+trivkins:: (((trivkins))) There is a 1:1 correspondence between joints and axes. Most standard
 milling machines and lathes use the trivial kinematics module.
 
-pumakins:: (((pumakins)))Kinematics for PUMA-style robots.
+pumakins:: (((pumakins))) Kinematics for PUMA-style robots.
 
-rotatekins:: (((rotatekins)))The X and Y axes are rotated 45 degrees compared to the joints 0 and 1.
+rotatekins:: (((rotatekins))) The X and Y axes are rotated 45 degrees compared to the joints 0 and 1.
 
-scarakins:: (((scarakins)))Kinematics for SCARA-type robots.
+scarakins:: (((scarakins))) Kinematics for SCARA-type robots.
 
 === Motor control
 
@@ -269,9 +281,7 @@ feedcomp:: (((feedcomp)))Multiply the input by the ratio of current velocity to 
 
 gearchange:: (((gearchange)))Select from one of two speed ranges.
 
-[[sec:ilowpass]] (((ilowpass)))
-
-ilowpass:: While it may find other applications,
+ilowpass:: (((ilowpass)))While it may find other applications,
 this component was written to create smoother motion while jogging with an MPG.
 +
 In a machine with high acceleration, a short jog can behave almost like a step

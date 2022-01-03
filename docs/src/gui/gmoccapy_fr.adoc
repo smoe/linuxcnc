@@ -1,7 +1,0 @@
-[[cha:gmoccapy_fr]]
-
-= GMOCCAPY
-
-include::../common/outdated-notice_fr.adoc[]
-
-Lien vers la xref:gmoccapy.adoc[version anglaise].

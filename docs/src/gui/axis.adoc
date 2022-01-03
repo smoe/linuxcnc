@@ -1,4 +1,5 @@
 :lang: en
+:toc:
 
 [[cha:axisgui]](((axisgui)))
 
@@ -21,6 +22,9 @@ section '[DISPLAY]' change the 'DISPLAY' line to read
 
 The sample configuration
 'sim/axis.ini' is already configured to use AXIS as its front-end.
+
+From French: Quand AXIS démarre, une fenêtre telle que celle de la figure
+<<cap:Fenetre-AXIS,ci-dessus>> s'ouvre.
 
 === INI settings
 
@@ -55,16 +59,33 @@ then you might need to only run the program again. See the
 <<sub:axis-machine-menu,Machine Menu>> for more information on the run
 command.
 
+From French:
+ . Lancer LinuxCNC et sélectionner un fichier de configuration.
+ . Relâcher le bouton d'arrêt d'urgence 'A/U'(((A/U))) et presser
+   celui de 'Marche' machine.
+ . Faire les prises d'origine machine 'POM' pour chacun des axes.
+ . Charger un fichier d'usinage.
+ . Utiliser l'affichage du parcours d'outil pour vérifier que le
+   programme est correct.
+ . Brider le brut à usiner sur la table.
+ . Faire les prises d'origine pièce 'POP' de chacun des axes avec le jog
+   et en utilisant le bouton 'Toucher'.(((Toucher)))
+ . Lancer le programme.
+ . Pour usiner le même fichier une nouvelle fois, retourner à l'étape 6.
+   Pour usiner un fichier différent, retourner à l'étape 4. Quand le travail
+   est terminé, quitter AXIS.
+
+
 == AXIS Display
 
 The AXIS window contains the following elements:
 
 * A display area that shows one of the following:
- ** a preview of the loaded file (in this case,
+** a preview of the loaded file (in this case,
    'axis.ngc'), as well as the current location of the CNC
    machine's 'controlled point'. Later, this area will display the path
    the CNC machine has moved through, called the 'backplot'
- ** a large readout showing the current position and all offsets.
+** a large readout showing the current position and all offsets.
 * A menu bar and toolbar that allow you to perform various actions
 * 'Manual Control Tab' - which allows you to make the
   machine move, turn the spindle on or off, and turn the coolant on or
@@ -77,11 +98,9 @@ The AXIS window contains the following elements:
   and can be set to a different
   value in the ini file. See the <<sec:display-section,Display Section>> of the
   INI file for more information.
-* 'Spindle Override' - which allows you to
-  scale the spindle speed up or down.
-* 'Jog Speed' - which allows you to set the jog speed
-  within the limits set in the ini file. See the
- <<sec:display-section,Display Section>> of the INI file for more information.
+* 'Spindle Override' - which allows you to scale the spindle speed up or down.
+* 'Jog Speed' - which allows you to set the jog speed within the limits set in the ini file.
+  See the <<sec:display-section,Display Section>> of the INI file for more information.
 * 'Max Velocity' - which allows you to restrict the maximum velocity of all
   programmed motions (except spindle synchronized motion).
 * A text display area that shows the loaded G-Code.
@@ -132,9 +151,7 @@ file configured. For more information on configuration see the
 * 'Quit' -
   Terminates the current LinuxCNC session.
 
-[[sub:axis-machine-menu]]
-
-.Machine Menu
+.Machine Menu[[sub:axis-machine-menu]]
 
 * 'Toggle Emergency Stop F1' - Change the state of the Emergency Stop.
 

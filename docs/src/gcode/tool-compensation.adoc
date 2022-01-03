@@ -1,4 +1,6 @@
 :lang: en
+:toc:
+
 [[cha:tool-compensation]](((Tool Compensation)))
 
 = Tool Compensation
@@ -53,8 +55,7 @@ The <<cha:tooledit-gui,Tool Editor>> or a text editor can be used to edit the
 tool table.  If you use a text editor make sure you reload the tool table in
 the GUI.
 
-=== Tool Table Format
-(((Tool-Table-Format)))
+=== Tool Table Format[[sec:Table-Outils]](((Tool-Table-Format)))
 
 .Tool Table Format
 
@@ -71,8 +72,7 @@ In general, the new tool table line format is:
 
  - ; - punto y coma de apertura, sin datos
  - T - tool number (tool numbers must be unique)
- - P - pocket number, 1-1000 (pocket numbers must be unique, Pocket 0
-   represents the spindle)
+ - P - pocket number, 1-1000 (pocket numbers must be unique, Pocket 0 represents the spindle)
  - X..W - tool offset on specified axis - floating-point
  - D - tool diameter - floating-point, absolute value
  - I - front angle (lathe only) - floating-point
@@ -81,12 +81,10 @@ In general, the new tool table line format is:
  - ; - beginning of comment or remark - text
 
 El archivo consta de un punto y coma de apertura en la primera línea, seguido de hasta un máximo de 1000 entradas de herramientas.
-
-[NOTE]
-Aunque se permiten números de herramienta hasta 99999, el número de entradas en
+foootnote:[Aunque se permiten números de herramienta hasta 99999, el número de entradas en
 la tabla de herramientas, por el momento, todavía está limitada a un máximo de 1000 herramientas por
 razones técnicas. Los desarrolladores de LinuxCNC planean eliminar esa limitación.
-Si tiene un cambiador de herramientas muy grande, sea paciente.
+Si tiene un cambiador de herramientas muy grande, sea paciente.]
 
 Earlier versions of LinuxCNC had two different tool table formats for
 mills and lathes, but since the 2.4.x release, one tool table format
@@ -195,11 +193,7 @@ type of toolchanger specified by *[EMCIO]RANDOM_TOOLCHANGER=type*.
 . For *RANDOM_TOOLCHANGER = 0*, (0 is default and specifies a non-random
   toolchanger) idx is a number indicating the sequence in which tooldata was loaded.
 . For *RANDOM_TOOLCHANGER = 1*, idx is the *current* pocket number
-<<<<<<< refs/remotes/upstream/translate-po4a
   for the toolnumber specified by the gcode select tool command *Tn*.
-=======
-for the toolnumber specified by the gcode select tool command *Tn*.
->>>>>>> Fix typos in misc. source comments and docs
 
 The io program provides hal output pins to facilitate toolchanger management:
 

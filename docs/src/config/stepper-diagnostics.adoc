@@ -96,7 +96,7 @@ also possible you have either the MAX_ACCELERATION or MAX_VELOCITY set
 too high for that axis.
 
 The following program will test the Z axis configuration for proper
-setup. Copy the program to your ~/emc2/nc_files directory and name it
+setup. Copy the program to your \~/emc2/nc_files directory and name it
 TestZ.ngc or similar. Zero your machine with Z = 0.000 at the table
 top. Load and run the program. It will make 200 moves back and forth
 from 0.5 to 1". If you have a configuration issue, you will find that
@@ -106,28 +106,28 @@ G0 lines.
 
 [source,{ngc}]
 ----
-    ( test program to see if Z axis loses position )
-    ( msg, test 1 of Z axis configuration )
-    G20 #1000=100 ( loop 100 times )
-    ( this loop has delays after moves )
-    ( tests acc and velocity settings )
-    o100 while [#1000]
-    G0 Z1.000
-    G4 P0.250
-    G0 Z0.500
-    G4 P0.250
-    #1000 = [#1000 - 1]
-    o100 endwhile
-    ( msg, test 2 of Z axis configuration S to continue)
-    M1 (stop here)
-    #1000=100 ( loop 100 times )
-    ( the next loop has no delays after moves )
-    ( tests direction hold times on driver config and also max accel setting )
-    o101 while [#1000]
-    G0 Z1.000
-    G0 Z0.500
-    #1000 = [#1000 - 1]
-    o101 endwhile
-    ( msg, Done...Z should be exactly .5" above table )
-    M2
+( test program to see if Z axis loses position )
+( msg, test 1 of Z axis configuration )
+G20 #1000=100 ( loop 100 times )
+( this loop has delays after moves )
+( tests acc and velocity settings )
+o100 while [#1000]
+   G0 Z1.000
+   G4 P0.250
+   G0 Z0.500
+   G4 P0.250
+   #1000 = [#1000 - 1]
+o100 endwhile
+( msg, test 2 of Z axis configuration S to continue)
+M1 (stop here)
+#1000=100 ( loop 100 times )
+( the next loop has no delays after moves )
+( tests direction hold times on driver config and also max accel setting )
+o101 while [#1000]
+   G0 Z1.000
+   G0 Z0.500
+   #1000 = [#1000 - 1]
+o101 endwhile
+( msg, Done...Z should be exactly .5" above table )
+M2
 ----

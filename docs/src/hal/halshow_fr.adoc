@@ -1,11 +1,9 @@
 :lang: fr
 :toc:
 
+[[cha:halshow]](((Halshow)))
+
 = Les fonctionnalités de Halshow
-
-[[cha:halshow]]
-
-== Le script Halshow
 
 Le script halshow peut vous aider à retrouver votre chemin dans un HAL
 en fonctionnement. Il s'agit d'un système très spécialisé qui doit se
@@ -18,20 +16,19 @@ Comme nous le verrons bientôt, cette capacité de HAL de se documenter
 lui même est un des facteurs clés pour arriver à un système CNC
 optimum.
 
+=== Zone de l'arborescence de Hal
+
 On peut accéder à Halshow depuis Axis, pour cela, aller dans le menu
 _Machine_ puis choisir _Afficher la configuration de HAL_.
 
-=== Zone de l'arborescence de Hal
+FIXME Halshow is in the TkLinuxCNC menu under Scripts/HAL Show.
 
 La gauche de l'écran que montre la figure ci-dessous est
 une arborescence, un peu comme vous pouvez le voir avec certains
 navigateurs de fichiers. Sur la droite, une zone avec deux onglets:
 MONTRER et WATCH.
 
-[[cap:Fenetre-Halshow]]
-.La fenêtre de Halshow
-
-image::images/halshow-1_fr.png[alt="La fenêtre de Halshow"]
+image::images/halshow-1_fr.png["La fenêtre de Halshow"]
 
 L'arborescence montre toutes les parties principales de HAL. En face
 de chacune d'entre elles, se trouve un petit signe + ou - dans une
@@ -52,7 +49,7 @@ image::images/halshow-3.png[alt="L'onglet Montrer"]
 En cliquant sur un nom dans l'arborescence plutôt que sur son signe
 plus ou moins, par exemple le mot _Components_, HAL affichera tout ce
 qu'il connait du contenu de celui-ci. La figure 
-<<cap:Fenetre-Halshow, halshow>> montre une liste comme celle que vous verrez si
+<<cap:Fenetre-Halshow,halshow>> montre une liste comme celle que vous verrez si
 vous cliquez sur _Components_ avec une carte servo standard m5i20 en
 fonctionnement. L'affichage des informations est exactement le même que
 celui des traditionnels outils d'analyse de HAL en mode texte.
@@ -68,10 +65,12 @@ pins et certains paramètres affichent plusieurs réponses. C'est dû à la
 nature des routines de recherche dans halcmd lui même. Si vous cherchez
 une pin, vous pouvez en trouver deux comme cela:
 
-    Component Pins: 
-    Owner  Type  Dir  Value  Name 
-    06     bit    -W   TRUE  parport.0.pin-10-in 
-    06     bit    -W  FALSE  parport.0.pin-10-in-not 
+----
+Component Pins: 
+Owner  Type  Dir  Value  Name 
+06     bit    -W   TRUE  parport.0.pin-10-in 
+06     bit    -W  FALSE  parport.0.pin-10-in-not 
+----
 
 Le deuxième nom de pin contient le nom complémenté du premier.
 

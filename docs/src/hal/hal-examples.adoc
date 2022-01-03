@@ -1,4 +1,5 @@
 :lang: en
+:toc:
 
 [[cha:hal-examples]](((HAL Examples)))
 
@@ -155,9 +156,7 @@ The following figure shows the result when the X axis is moving at 15
 IPM in the minus direction. Notice that we can get the absolute value
 from either the abs.0.out pin or the X-IPM signal.
 
-.Velocity Example[[cap:Velocity-Example]]
-
-image::images/velocity-01.png[alt="Velocity Example"]
+image::images/velocity-01.png["Velocity Example"]
 
 == Soft Start
 
@@ -229,9 +228,7 @@ start a run and when it finishes you will see your traces.
 To separate the signals so you can see them better click on a channel
 then use the Pos slider in the Vertical box to set the positions.
 
-.Softstart[[cap:Softstart]]
-
-image::images/softstart-scope.png[alt="Softstart"]
+image::images/softstart-scope.png["Softstart"]
 
 To see the effect of changing the set point values of any of the
 components you can change them in the terminal window. To see what
@@ -249,7 +246,7 @@ halrun and close the halscope. Don't close the terminal window with
 halrun running as it might leave some things in memory that could
 prevent EMC from loading.
 
-For more information on Halscope see the HAL manual.
+For more information on Halscope see the HAL manual and the <<sec:Intro-tutoriel,tutorial>>.
 
 == Stand Alone HAL
 

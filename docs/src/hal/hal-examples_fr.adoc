@@ -1,16 +1,14 @@
 :lang: fr
 :toc:
 
-= Exemples pour HAL 
+[[cha:hal-examples]](((HAL Examples)))
 
-[[Exemples-pour-HAL]]
+= Exemples pour HAL 
 
 Tous ces exemples s'appuient sur une configuration créée par Stepconf, 
 elle a deux threads, _base-thread_ et _servo-thread_. 
-
 L'assistant de configuration Stepconf aura créé le fichier vide _custom.hal_ 
 et le fichier _custom_postgui.hal_.
-
 Le fichier custom.hal sera chargé après le fichier de configuration de HAL, 
 le fichier custom_postgui.hal sera chargé après que l'interface graphique ne le
 soit.
@@ -96,16 +94,13 @@ La figure suivante montre le résultat quand l'axe X se déplace à 15 unités/m
 dans la direction négative. Noter que la valeur absolue peut être prise sur
 la pin _abs.0.out_ ou le signal X-IPM.
 
-[[cap:Velocity-Example]]
-.Exemple avec la vitesse
-(((Velocity exemple)))
+[[cap:Velocity-Example]](((Velocity exemple)))
 
-image::images/velocity-01.png[]
+image::images/velocity-01.png["Exemple avec la vitesse"]
 
 == Amortissement d'un signal
 
-Cette exemple montre comment les composants de HAL _lowpass_, _limit2_ ou
-_limit3_ peuvent être utilisés pour amortir de brusques changements d'un signal.
+Cette exemple montre comment les composants de HAL _lowpass_, _limit2_ ou _limit3_ peuvent être utilisés pour amortir de brusques changements d'un signal.
 
 Nous sommes sur un tour dont la broche est pilotée par un servomoteur. Si nous 
 envoyions directement la consigne de vitesse de broche sur le servo, celui-ci
@@ -117,22 +112,22 @@ de sorte que la valeur de commande du PID soit amortie.
 
 Les trois composants intégrés pour amortir le signal seront:
 
-limit2::
-- Limite le signal de sortie pour qu’il soit entre min et max.
-- Limite sa vitesse de montée à moins de MaxV par seconde. (dérivée première)
+* 'limit2'
+  Limite le signal de sortie pour qu’il soit entre min et max.
+  Limite sa vitesse de montée à moins de MaxV par seconde. (dérivée première)
 
-limit3::
-- Limite le signal de sortie pour qu’il soit entre min et max.
-- Limite sa vitesse de montée à moins de MaxV par seconde. (dérivée première)
-- Limite sa vitesse de montée à moins de MaxV par seconde^2^. (dérivée seconde)
+* 'limit3'
+  Limite le signal de sortie pour qu’il soit entre min et max.
+  Limite sa vitesse de montée à moins de MaxV par seconde. (dérivée première)
+  Limite sa vitesse de montée à moins de MaxV par seconde^2^. (dérivée seconde)
 
-lowpass::
-- Filtre passe-bas. 
+* 'lowpass' Filtre passe-bas. 
 
 Pour plus de détails voir <<cha:Composants-de-HAL, les composants de HAL>> 
 ou les man pages des composants concernés.
 
-Placer le code suivant dans un fichier appelé _softstart.hal_. 
+Placer le code suivant dans un fichier appelé 'softstart.hal'. 
+
 ----
 loadrt threads period1=1000000 name1=thread  
 loadrt siggen  
@@ -157,6 +152,7 @@ loadusr halscope
 ----
 
 Ouvrir un terminal et et lancer le fichier avec la commande suivante:
+
 ----
 halrun -I softstart.hal
 ----
@@ -168,9 +164,7 @@ Ensuite, il faut ajouter les signaux à suivre aux canaux du scope. Cliquer sur
 le canal _1_ puis sélectionner _square_ depuis l'onglet _Signaux_. Répéter 
 pour les canaux suivants en ajoutant _lowpass_, _limit2_ et _limit3_.
 
-Ensuite, pour régler le signal du déclencheur cliquer sur le bouton 
-_Source_ est sélectionner _square_. Le bouton devrait changer pour 
-_Source Canal 1_.
+Ensuite, pour régler le signal du déclencheur cliquer sur le bouton _Source_ est sélectionner _square_. Le bouton devrait changer pour _Source Canal 1_.
 
 Puis, cliquer sur _Simple_ dans le groupe _Mode Run_. L'oscillo 
 devrait faire un balayage puis, afficher les traces.
@@ -178,14 +172,13 @@ devrait faire un balayage puis, afficher les traces.
 Pour séparer les signaux et mieux les visualiser, cliquer sur un canal et 
 utiliser le curseur de position verticale pour positionner les traces.
 
-.Amortissement d'un signal carré[[cap:Softstart]]
-
-image::images/softstart-scope_fr.png[]
+image::images/softstart-scope_fr.png["Amortissement d'un signal carré"]
 
 Pour voir l'effet d'un changement du point de réglage des valeurs des composants,
 il est possible de passer des commandes depuis le terminal. Par exemple,pour 
 voir différentes valeurs de gain pour le passe-bas, taper la commande suivante,
 puis essayer différentes valeurs:
+
 ----
 setp lowpass.0.gain .01
 ----
@@ -196,8 +189,7 @@ Pour terminer, taper _exit_ dans le terminal pour fermer halrun et halscope.
 Ne pas refermer le terminal avec halrun en marche, la mémoire ne serait pas
 vidée proprement, ce qui pourrait empêcher LinuxCNC de se charger.
 
-Pour tout savoir sur Halscope et Halrun <<sec:Intro-tutoriel, voir le
-tutoriel de HAL>>.
+Pour tout savoir sur Halscope et Halrun <<sec:Intro-tutoriel, voir le tutoriel de HAL>>.
 
 == HAL en autonome
 

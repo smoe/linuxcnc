@@ -1,6 +1,9 @@
-= Stepper Tuning
+:lang: en
+:toc:
 
 [[cha:Stepper-Tuning]]
+
+= Stepper Tuning
 
 == Getting the most out of Software Stepping
 
@@ -17,6 +20,11 @@ This chapter has some steps that can help you get the best results
 from software generated steps.
 
 === Run a Latency Test
+
+FIXME from French: Le CPU n'est pas le seul facteur déterminant la latence. Les cartes
+mères, cartes graphiques, ports USB et nombre d'autres choses peuvent
+la dégrader. La meilleure façon de savoir ce que vous pouvez attendre
+d'un PC consiste à exécuter le test de latence RTAI.
 
 Run the latency test as described in the <<cha:latency-test,Latency Test>>
 chapter.
@@ -220,8 +228,8 @@ measurements on your computer, and do the math to ensure that your
 drives get the signals they need.
 
 To make the math easier, I've created an Open Office spreadsheet  
-http://wiki.linuxcnc.org/uploads/StepTimingCalculator.ods 
- You enter your latency test result and your stepper drive timing
+http://wiki.linuxcnc.org/uploads/StepTimingCalculator.ods[Step Timing Calculator].
+You enter your latency test result and your stepper drive timing
 requirements and the spreadsheet calculates the optimum BASE_PERIOD.
 Next, you test the period to make sure it won't slow down or lock up
 your PC. Finally, you enter the actual period, and the spreadsheet will

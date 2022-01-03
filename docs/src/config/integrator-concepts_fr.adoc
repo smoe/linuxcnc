@@ -40,22 +40,19 @@ Optional locations for some files can be configured in the INI file. See the
 <<sec:display-section,DISPLAY>> section and the <<sec:rs274ngc-section,RS274NGC>>
 section.
 
-
 == Files
 
 Each configuration directory requires at least the following files:
 
 * An INI file .ini
-* A HAL file .hal or HALTCL file .tcl specified in the 
-  <<sec:hal-section,HAL>> section of the INI file.
+* A HAL file .hal or HALTCL file .tcl specified in the <<sec:hal-section,HAL>> section of the INI file.
 
 [NOTE]Other files may be required for some GUI's.
 
 Optionally you can also have:
 
 * A Variables file .var
-** If you omit a .var file in a directory but include
-   [<<sec:rs274ngc-section,RS274NGC>>] PARAMETER_FILE=somefilename.var, the file
+** If you omit a .var file in a directory but include [<<sec:rs274ngc-section,RS274NGC>>] PARAMETER_FILE=somefilename.var, the file
    will be created for you when LinuxCNC starts.
 ** If you omit a .var file  and  omit the item [RS274NGC] PARAMETER_FILE, a var
    file named rs274ngc.var will be created when LinuxCNC starts. There may be
@@ -140,8 +137,7 @@ Cette différence s'explique par le mode de régulation différent
 des deux systèmes. Les servosystèmes sont régulés en _boucle fermée_ et le moteur pas à pas en _boucle ouverte_.
 Que signifie _boucle fermée_ ? Regardons un schéma simplifié et la façon dont un système de servomoteur fonctionne.
 
-.Boucle fermée
-image::images/servo-feedback_fr.png[alt="Boucle fermée"]
+image::images/servo-feedback_fr.png["Boucle fermée"]
 
 Ce diagramme montre que le signal de consigne (de commande) et le signal
 de retour pilotent l'amplificateur sommateur, ensuite celui-ci pilote
@@ -172,8 +168,7 @@ de mathématique qui sont appliquées pour fournir un processus de suivi
 d'une consigne. Dans le cas de LinuxCNC le processus que nous
 voulons contrôler est l'actuelle position de l'axe et le point de consigne qui est la position commandée l'axe.
 
-.Boucle PID
-image::images/pid-feedback_fr.png[alt="Boucle PID"]
+image::images/pid-feedback_fr.png["Boucle PID"]
 
 En ajustant trois composantes (proportionnelle, intégrale et dérivée)
 dans l'algorithme du contrôleur PID, nous pouvons concevoir

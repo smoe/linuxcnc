@@ -1,9 +1,9 @@
 :lang: fr
 :toc:
 
-= LinuxCNC
+[[cha:linuxcnc-user-introduction]](((introduction)))
 
-[[cha:linuxcnc-user-introduction]]
+= LinuxCNC
 
 == Introduction
 

@@ -1,3 +1,6 @@
+:lang: en
+:toc:
+
 [[cha:image-to-g-code]]
 
 = Image to G Code
@@ -179,5 +182,5 @@ offset is 0.1 inches.
 
 .Roughing passes and final pass
 
-image::images/i2g-roughing.png[alt="Roughing passes and final pass"]
+image::images/i2g-roughing.png["Roughing passes and final pass"]
 

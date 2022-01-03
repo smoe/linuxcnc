@@ -1,7 +1,0 @@
-[[cha:pilote-pmx485]]
-
-= Pilote ModBus Powermax Modbus
-
-include::../common/outdated-notice_fr.adoc[]
-
-Lien vers la xref:pmx485.adoc[version anglaise].

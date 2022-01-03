@@ -1,7 +1,0 @@
-[[cha:info-pas-a-pas]]
-
-= Informations sur les moteurs pas-à-pas
-
-include::../common/outdated-notice_fr.adoc[]
-
-Lien vers la xref:steppers.adoc[version anglaise].

@@ -1,9 +1,9 @@
 :lang: fr
 :toc:
 
-= Fichiers TCL pour HAL
+[[cha:haltcl]]
 
-[[cha:hal-tcl]]
+= Fichiers TCL pour HAL
 
 Le langage de halcmd excelle pour spécifier des composants et des connexions
 mais il n'offre aucune possibilité de calcul.
@@ -39,6 +39,7 @@ sous-ensemble du puissant et polyvalent langage de script Tcl.
 Les fichiers haltcl utilisent le langage de script Tcl, auquel s'ajoutent
 les commandes spécifiques de la couche d'abstraction matériel de LinuxCNC (HAL).
 Les commandes spécifiques sont les suivantes:
+
 ....
 addf, alias,
 delf, delsig,
@@ -105,6 +106,44 @@ MAX_VELOCITY = 4
 
 est exprimé comme   [AXIS_0]MAX_VELOCITY dans les fichiers .hal pour halcmd
 et comme            $::AXIS_0(MAX_VELOCITY) dans les fichiers .tcl pour haltcl.
+
+Because inifiles can repat the same ITEM in the same SECTION multiple times,
+$::SECTION(ITEM) is actually a Tcl list of each individual value.
+
+When there is just one value and it is a simple value (all values that
+are just letters and numbers without whitespace are in this group), then it is
+possible to treat $::SECTION(ITEM) as though it is not a list.
+
+When the value could contain special characters--quote characters,
+curly-brace characters, embedded whitespace, and other characters that
+have special meaning in Tcl--it is necessary to distinguish between the list of
+values and the initial (and possibly only) value in the list.
+
+In Tcl, this is written `[lindex $::SECTION(ITEM) 0]`.
+
+For example: given the following ini values
+----
+[HOSTMOT2]
+DRIVER=hm2_eth
+IPADDR="10.10.10.10"
+BOARD=7i92
+CONFIG="num_encoders=0 num_pwmgens=0 num_stepgens=6"
+----
+And this loadrt command:
+----
+loadrt $::HOSTMOT2(DRIVER) board_ip=$::HOSTMOT2(IPADDR) config=$::HOSTMOT2(CONFIG)
+----
+Here is the actual command that is run:
+----
+loadrt hm2_eth board_ip={"10.10.10.10"} config={"num_encoders=0 num_pwmgens=0 num_stepgens=6"}
+----
+This fails because loadrt does not recognize the braces.
+
+So to get the values just as entered in the ini file, re-write the loadrt line like this:
+----
+loadrt $::HOSTMOT2(DRIVER) board_ip=[lindex $::HOSTMOT2(IPADDR) 0] config=[lindex $::HOSTMOT2(CONFIG) 0]
+----
+
 
 == Conversion des fichiers .hal en fichiers .tcl
 

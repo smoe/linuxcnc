@@ -1,10 +1,9 @@
 :lang: fr
 :toc:
 
+[[cha:Systemes-de-coordonnees]](((Systemes-de-coordonnees)))
+
 = Systèmes de coordonnées et décalages
-
-[[cha:Systemes-de-coordonnees]]
-
 
 == Introduction
 
@@ -16,6 +15,7 @@ Nous montrerons également, qu'il est très intéressant d'utiliser un point de
 référence sur le brut ou la pièce et de faire travailler le programme à partir 
 de ce point, sans avoir à tenir compte d'où est placée la pièce sur la
 machine pendant l'usinage.
+
 Ce chapitre va donc introduire les décalages et comment ils sont utilisés
 par LinuxCNC:
 
@@ -24,6 +24,7 @@ par LinuxCNC:
 * Un jeu de décalages globaux.(G92)
 
 == Commande en coordonnées machine: G53 
+[[sec.machine-coordinate-system]]
 
 Indépendamment de tout décalage pouvant être actif, un G53 dans une ligne de
 code indique à l'interpréteur de se déplacer aux positions réelles des axes
@@ -43,12 +44,28 @@ zone de travail et accéder à la pièce dans l'étau.
 G53 est une commande non modale. Elle doit être utilisée sur chaque
 ligne où un mouvement basé sur les coordonnées machine est souhaité.
 
+== Coordinate Systems
+
+.Example of Coordinate Systems
+image::images/offsets.png["Exemple de décalages pour 8 ilots",align="center"]
 [[fig:decalages-ilots]]
+
+.Coordinate System Offsets
+
+* G54 - use coordinate system 1
+* G55 - use coordinate system 2
+* G56 - use coordinate system 3
+* G57 - use coordinate system 4
+* G58 - use coordinate system 5
+* G59 - use coordinate system 6
+* G59.1 - use coordinate system 7
+* G59.2 - use coordinate system 8
+* G59.3 - use coordinate system 9
+
+
 == Décalages pièce (G54 à G59.3)
 
-image::images/offsets.png[alt="Exemple de décalages pour 8 ilots"]
 
-.Exemple de décalages pour 8 ilots
 
 Le décalage d'origine est utilisé pour séparer le point de référence
 de la pièce, de l'origine machine, créant ainsi un système de

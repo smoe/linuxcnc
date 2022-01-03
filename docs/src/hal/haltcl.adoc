@@ -1,3 +1,6 @@
+:lang: en
+:toc:
+
 [[cha:haltcl]]
 
 = HALTCL Files
