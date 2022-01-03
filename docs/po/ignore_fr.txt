@@ -14,5 +14,3 @@ src/gcode/tool-compensation_fr.adoc
 # English not existing
 src/hal/halui_fr.adoc
 src/Master_User_fr.adoc
-# Me blind
-src/lathe/lathe-user_fr.adoc

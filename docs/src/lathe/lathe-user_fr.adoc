@@ -82,7 +82,11 @@ image:images/tool_pos_8.png["Outil dans les position 8"]
 
 Quand AXIS est utilisé sur un tour, il est possible de corriger l'outil sur les
 axes X et Z. Les corrections sont alors introduites directement dans la table
-d'outils en utilisant le bouton _Toucher_ et sa fenêtre de dialogue.
+d'outils en utilisant le bouton 'Toucher' et sa fenêtre de dialogue.
+For more information on the G codes used for tools see
+<<mcode:m6,M6>>, <<sec:select-tool,Tn>>, and <<gcode:g43,G43>>.
+For more information on tool touch off options in Axis see
+<<axis:tool-touch-off,Tool Touch Off>>.
 
 === Offset d'outil en X
 
@@ -102,10 +106,10 @@ l'offset s'applique immédiatement à l'outil courant.
 Séquence typique de correction d'outil en X:
 
  . Prise d'origine machine de chacun des axes, si ce n'est pas déjà fait.
- . Déclarer l'outil avec _M6 Tn_ dans lequel _n_ est le numéro de l'outil courant, présent en table d'outils.
- . Sélectionner l'axe X dans la fenêtre de l'onglet _Contrôle manuel (F3)_.
+ . Déclarer l'outil avec 'M6 Tn' dans lequel 'n' est le numéro de l'outil courant, présent en table d'outils.
+ . Sélectionner l'axe X dans la fenêtre de l'onglet 'Contrôle manuel (F3)'.
  . Déplacer l'axe X sur une position connue ou prendre une passe de test puis mesurer le diamètre obtenu.
- . Cliquer le bouton _Toucher_ et choisir l'option _Table d'outils_, ce qui entrera la correction directement dans la table d'outil.
+ . Cliquer le bouton 'Toucher' et choisir l'option 'Table d'outils', ce qui entrera la correction directement dans la table d'outil.
  . Recommencer la même séquence pour corriger l'axe Z.
 
 Remarque: si le mode rayon est le mode courant, il faut évidemment entrer le rayon et non pas le diamètre.
@@ -125,21 +129,14 @@ Séquence typique de correction d'outil en Z:
 
  . Prise d'origine machine de tous les axes, si ce n'est pas déjà fait.
  . S'assurer qu'aucune compensation n'est activée pour le système de coordonnées courant.
- . Déclarer l'outil avec _M6 Tn_ dans lequel _n_ est le numéro de l'outil courant, présent en table d'outils.
- . Sélectionner l'axe Z dans la fenêtre de l'onglet _contrôle manuel (F3)_.
+ . Déclarer l'outil avec 'M6 Tn' dans lequel 'n' est le numéro de l'outil courant, présent en table d'outils.
+ . Sélectionner l'axe Z dans la fenêtre de l'onglet 'contrôle manuel (F3)'.
  . Placer un cylindre dans le mandrin.
  . Faire tangenter l'outil contre la face du cylindre.
- . Cliquer le bouton _Toucher_ puis choisir _Table d'outils_ et saisir la position à 0.0.
+ . Cliquer le bouton 'Toucher' puis choisir 'Table d'outils' et saisir la position à 0.0.
  . Répéter l'opération pour chaque outil, en utilisant le même cylindre.
 
-Maintenant, tous les outils sont compensés à la même distance d'une position
-standard. Si un outil doit être changé, par exemple par un foret il suffira de
-répéter la séquence précédente pour qu'il soit synchronisé avec l'offset Z du
-reste des outils. Certains outils pourraient nécessiter un peu de réflexion
-pour déterminer le point contrôlé par rapport au point de 'Toucher'.
-Par exemple, un outil de tronçonnage de 3.17mm d'épaisseur qui est touché sur le
-côté gauche, alors que l'opérateur veut Z0 sur le côté droit, il lui faudra
-alors saisir 3.17 dans la fenêtre du 'Toucher'.
+Maintenant, tous les outils sont compensés à la même distance d'une position standard. Si un outil doit être changé, par exemple par un foret il suffira de répéter la séquence précédente pour qu'il soit synchronisé avec l'offset Z du reste des outils. Certains outils pourraient nécessiter un peu de réflexion pour déterminer le point contrôlé par rapport au point de 'Toucher'. Par exemple, un outil de tronçonnage de 3.17mm d'épaisseur qui est touché sur le côté gauche, alors que l'opérateur veut Z0 sur le côté droit, il lui faudra alors saisir 3.17 dans la fenêtre du 'Toucher'.
 
 === Machine avec tous les outils compensés
 
@@ -221,8 +218,6 @@ le rayon, même en mode diamètre G7.
 
 == Parcours d'outil
 
-//=== Point contrôlé
-
 Le point contrôlé pour l'outil, suit la trajectoire programmée. Le point contrôlé
 est l'intersection entre deux lignes parallèles aux axes X et Z, tangentes au
 rayon de bec de l'outil, définies en faisant tangenter l'outil en X puis en Z.
@@ -282,8 +277,6 @@ face mais en laissant un coin carré à la place du beau rayon attendu. Noter au
 que, pour la même raison, pour ne pas laisser de téton au centre de la pièce
 lors du dressage de sa face, il convient de dépasser le centre de rotation de la
 valeur d'un rayon de bec de l'outil.
-
-.Dressage de la face
 
 image::images/radius_4.png["Dressage de la face"]
 
