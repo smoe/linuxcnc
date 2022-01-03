@@ -1,23 +1,27 @@
 :lang: fr
 :toc:
 
-= Commandes et composants de base
-
 [[sec:Commandes-de-HAL]]
 
-== Commandes de Hal
+= Commandes et composants de base
+:toc:
+:toclevels: 3
+
+This document provides a reference to the basics of HAL.
+
+== Commandes de Hal[[sec:hal-commands]]
 
 Des informations plus détaillées peuvent être trouvées dans la man
-page en tapant 'man halcmd' dans une console. Pour voir la
+page en tapant 'man halcmd' dans une console.
+
+Pour voir la
 configuration de HAL ainsi que le statut de ses pins et paramètres
 utiliser la fenêtre HAL Configuration dans le menu 'Machine' d'AXIS.
 Pour visualiser le statut des pins, ouvrir l'onglet 'Watch' puis
 cliquer dans l'arborescence sur les pins qui doivent être visualisées
 dans la fenêtre watch.
 
-.Fenêtre de configuration de HAL
-
-image::images/HAL_Configuration.png[alt="Fenêtre de configuration de HAL"]
+image::images/HAL_Configuration.png["Fenêtre de configuration de HAL",align="center"]
 
 === loadrt
 
@@ -509,5 +513,3 @@ Owner   Type  Dir         Value  Name
     10  s32   I/O             0  wsum.0.offset
     10  s32   Out             5  wsum.0.sum
 ----
-
-

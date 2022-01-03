@@ -1,7 +1,0 @@
-[[cha:interfaces-peripheriques-standards]]
-
-= Interfaces de périphériques standards
-
-include::../common/outdated-notice_fr.adoc[]
-
-Lien vers la xref:canonical-devices.adoc[version anglaise].

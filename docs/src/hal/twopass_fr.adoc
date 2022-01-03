@@ -1,7 +1,0 @@
-[[cha:hal-twopass]]
-
-= HAL TWOPASS
-
-include::../common/outdated-notice_fr.adoc[]
-
-Lien vers la xref:twopass.adoc[version anglaise].

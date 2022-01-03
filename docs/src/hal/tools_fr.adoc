@@ -1,7 +1,0 @@
-[[cha:outils-hal]]
-
-= Outils HAL
-
-include::../common/outdated-notice_fr.adoc[]
-
-Lien vers la xref:tools.adoc[version anglaise].
