@@ -1,3 +1,6 @@
+:lang: fr
+:toc:
+
 [[cha:kinematics]](((kinematics)))
 
 = Kinematics
@@ -74,6 +77,16 @@ joints[2] = pos->tran.z;
 In LinuxCNC, the identity kinematics are implemented with the
 'trivkins' kinematics module and extended to 9 axes.  The default
 relationships between axis coordinates and joint numbers are:
+footnote:[Si la
+machine (par exemple un tour) est montée avec seulement les axes
+X, Z et A et que le fichier d'init de LinuxCNC contient uniquement la
+définition de ces 3 articulations, alors l'assertion précédente est fausse.
+Parce-que nous avons actuellement (joint0=x, joint1=Z, joint2=A) ce qui
+suppose que joint1=Y. Pour faire en sorte que cela fonctionne dans LinuxCNC
+il suffit de définir tous les axes (XYZA), LinuxCNC utilisera alors une
+simple boucle dans HAL pour l'axe Y inutilisé.]footnote:[Une autre 
+façon de le faire fonctionner, est de changer le code
+correspondant et recompiler le logiciel.]
 
 ----
 pos->tran.x = joints[0];
@@ -245,6 +258,10 @@ image::images/kinematics-math-06.png[align="center"]
 
 image::images/kinematics-math-07.png[align="center"]
 
+//*AD=sqrt(x^2^+y^2^)*
+
+//*BD=sqrt((Bx-x)^2^+y^2^)*
+
 /////////////////////////////////////////////////
 latexmath::[\[AD=\sqrt{x^{2}+y^{2}}\]]
 
@@ -257,7 +274,7 @@ or translated to actual code:
 double x2 = pos->tran.x * pos->tran.x;
 double y2 = pos->tran.y * pos->tran.y;
 joints[0] = sqrt(x2 + y2);
-joints[1] = sqrt((Bx - pos->tran.x)*(Bx - pos->tran.x) + y2);
+joints[1] = sqrt(Bx - pos->tran.x)*(Bx - pos->tran.x) + y2);
 return 0;
 ----
 
@@ -273,7 +290,7 @@ const KINEMATICS_FORWARD_FLAGS *fflags,
 KINEMATICS_INVERSE_FLAGS *iflags)
 ----
 
-Implements the forward kinematics function.
+Implements the <<sec:Forward-transformation,forward kinematics function>>.
 
 ----
 int kinematicsInverse(const EmcPose * world, double *joints,

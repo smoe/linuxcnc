@@ -1,8 +1,0 @@
-[[cha:decalages-externes]]
-
-= Décalages d'axes externes
-
-include::../common/outdated-notice_fr.adoc[]
-
-Lien vers la xref:external-offsets.adoc[version anglaise].
-

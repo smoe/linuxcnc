@@ -5,6 +5,9 @@
 
 = Lathe User Information
 
+FIXME from French: Ce chapitre va regrouper les informations spécifiques aux tours, il
+est encore en cours de rédaction.
+
 == Lathe Mode
 
 If your CNC machine is a lathe, there are some specific changes you
@@ -39,7 +42,7 @@ If your using Gmoccapy then see the <<gmoccapy:lathe-section,the Gmoccapy Lathe 
 
 == Lathe Tool Table
 
-The "Tool Table" is a text file that contains information about each tool.
+The 'Tool Table' is a text file that contains information about each tool.
 The file is located in the same directory as your configuration and is called "tool.tbl" by default.
 The tools might be in a tool changer or just changed manually.
 The file can be edited with a text editor or be updated using G10 L1,L10,L11.
@@ -47,31 +50,27 @@ There is also a built-in tool table editor in the Axis display.
 The maximum number of entries in the tool table is 56.
 The maximum tool and pocket number is 99999.
 
-Earlier versions of LinuxCNC had two different tool table formats for mills and lathes,
-but since the 2.4.x release, one tool table format is used for all machines.
-Just ignore the parts of the tool table that don't pertain to your
-machine, or which you don't need to use.
-For more information on the specifics of the tool table format,
-see the <<sec:tool-table,Tool Table>> Section.
+Earlier versions of LinuxCNC had two different tool table formats for mills and lathes, but since the 2.4.x release, one tool table format is used for all machines.
+Just ignore the parts of the tool table that don't pertain to your machine, or which you don't need to use.
+For more information on the specifics of the tool table format, see the <<sec:tool-table,Tool Table>> Section.
 
-== Lathe Tool Orientation
+//== Lathe Tool Orientation
 
-The following figure shows the lathe tool orientations with the center line
-angle of each orientation and info on FRONTANGLE and BACKANGLE.
+The following figure shows the lathe tool orientations with the center line angle of each orientation and info on FRONTANGLE and BACKANGLE.
 The FRONTANGLE and BACKANGLE are clockwise starting at a line parallel to Z+.
 
 image::images/tool-positions_en.svg["Lathe Tool Orientations",align="center"]
 
 In AXIS the following figures show what the Tool Positions look like, as entered in the tool table.
 
-.Tool Positions 1, 2, 3 & 4
+.Tool Positions 1, 2, 3 & 4[[fig:Outil-Positions-1-2-3-4]](((Outils en positions 1, 2, 3 et 4)))
 
 image:images/tool-pos-1_en.svg["Tool Position 1"]
 image:images/tool-pos-2_en.svg["Tool Position 2"]
 image:images/tool-pos-3_en.svg["Tool Position 3"]
 image:images/tool-pos-4_en.svg["Tool Position 4"]
 
-.Tool Positions 5, 6, 7 & 8
+.Tool Positions 5, 6, 7 & 8[[fig:Outil-Positions-5-6-7-8]](((Outils en positions 5, 6, 7 et 8)))
 
 image:images/tool-pos-5_en.svg["Tool Position 5"]
 image:images/tool-pos-6_en.svg["Tool Position 6"]
@@ -151,7 +150,7 @@ For example, if you have a 0.125" wide parting tool and
 you touch the left side off but want the right to be Z0,
 then enter 0.125" in the touch off window.
 
-=== The Z Machine Offset
+//=== The Z Machine Offset
 
 Once all the tools have the Z offset entered into the tool table,
 you can use any tool to set the machine offset
@@ -297,10 +296,8 @@ image::images/radius-4_en.svg["Face Cut",align="center"]
 
 === Using Cutter Comp
 
-When using cutter comp on a lathe think of the tool tip radius as the
-radius of a round cutter. When using cutter comp the path must be large
-enough for a round tool that will not gouge into the next line. When
-cutting straight lines on the lathe you might not want to use cutter
-comp. For example boring a hole with a tight fitting boring bar you may
-not have enough room to do the exit move. The entry move into a cutter
-comp arc is important to get the correct results.
+- When using cutter comp on a lathe think of the tool tip radius as the radius of a round cutter.
+- When using cutter comp the path must be large enough for a round tool that will not gouge into the next line.
+- When cutting straight lines on the lathe you might not want to use cutter comp.
+  For example boring a hole with a tight fitting boring bar you may not have enough room to do the exit move.
+- The entry move into a cutter comp arc is important to get the correct results.
