@@ -154,7 +154,7 @@ Dans le fichier custompanel.xml nous ajoutons la description des widgets.
 
 Après les ajouts précédents, nous avons un panneau PyVCP tel que celui
 de l'image suivante, attaché à droite d'Axis. Il est beau mais ne fait rien tant
-que les boutons ne sont pas 'connectés' à halui. Si, à ce stade, une erreur se
+que les boutons ne sont pas "connectés" à halui. Si, à ce stade, une erreur se
 produit lors du déplacement de la fenêtre vers le bas, c'est généralement dû à
 une erreur de syntaxe ou d'écriture, elle est donc dans cette partie qu'il
 conviendra tout d'abord de vérifier soigneusement.
