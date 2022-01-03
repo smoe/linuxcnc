@@ -59,7 +59,7 @@ halcmd: show pin
 == Composants de l'espace utilisateur et délais
 
 Si vous tapez rapidement _show pin_, vous pourrez voir que
-'passe_tout.out' conserve un moment son ancienne valeur de 0. Ceci
+'passthrough.out' conserve un moment son ancienne valeur de 0. Ceci
 est dû à l'appel de la fonction _time.sleep(1)_, qui fait que les pins
 de sortie changent d'état, au plus, une fois par seconde.
 Parce-que ce composant appartient à l'espace utilisateur,
