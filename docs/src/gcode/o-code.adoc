@@ -130,8 +130,7 @@ alternative to the rs274ngc subroutines described above, provided for
 compatibility with Fanuc and other machine controllers.
 
 Numbered programs are enabled by default, and may be disabled by
-placing `DISABLE_FANUC_STYLE_SUB = 1` in the `[RS274NGC]` section
-of the `.ini` file.
+placing `DISABLE_FANUC_STYLE_SUB = 1` in the `[RS274NGC]` section of the `.ini` file.
 
 [NOTE]
 Numbered main and subprogram definitions and calls differ from
@@ -196,10 +195,9 @@ following ways:
 
 * `M98` subprogram calls have no return value.
 
-* `M98` subprogram call blocks may contain an optional L-word
-  specifying a loop repeat count.  Without the L-word, the subprogram
-  will execute once only (equivalent to `M98 L1`).  An `M98 L0` block
-  will not execute the subprogram.
+* `M98` subprogram call blocks may contain an optional L-word specifying a loop repeat count.
+  Without the L-word, the subprogram will execute once only (equivalent to `M98 L1`).
+  An `M98 L0` block will not execute the subprogram.
 
 In rare cases, the `M99` M-code may be used to terminate the main
 program, where it indicates an 'endless program'.  When the
@@ -421,42 +419,7 @@ o123 endsub [3 * 4]
 ----
 
 A subroutine return value is stored in the '#<_value>'
-<<gcode:predefined-named-parameters, predefined named parameter>> , and
-the '#<_value_returned>' predefined parameter is set to 1, to indicate
-a value was returned. Both parameters are global, and are cleared just
-before the next subroutine call.
-
-== Errors[[ocode:errors]](((O-Code Errors)))
-
-The following statements  cause an error message and  abort the
-interpreter:
-
- - a `return` or `endsub` not within a sub definition
- - a label on `repeat` which is defined elsewhere
- - a label on `while` which is defińed elsewhere and not referring to a `do`
- - a label on `if` defined elsewhere
- - a undefined label on `else` or `elseif`
- - a label on `else`, `elseif` or `endif` not pointing to a matching `if`
- - a label on `break` or `continue` which does not point to a matching `while` or `do`
- - a label on `endrepeat` or `endwhile` no referring to a corresponding `while` or `repeat`
-
-To make these errors non-fatal  warnings on stderr, set bit 0x20 in
-the `[RS274NGC]FEATURE=` mask ini option.
-
-== Subroutine return values(((Return Values)))
-
-Subroutines may optionally return a value by an optional expression at
-an 'endsub' or 'return' statement.
-
-.Return value example
-----
-o123 return [#2 *5]
-...
-o123 endsub [3 * 4]
-----
-
-A subroutine return value is stored in the '#<_value>'
-<<gcode:predefined-named-parameters, predefined named parameter>> , and
+<<gcode:predefined-named-parameters,predefined named parameter>> , and
 the '#<_value_returned>' predefined parameter is set to 1, to indicate
 a value was returned. Both parameters are global, and are cleared just
 before the next subroutine call.
@@ -479,4 +442,3 @@ To make these errors non-fatal  warnings on stderr, set bit 0x20 in
 the `[RS274NGC]FEATURE=` mask ini option.
 
 // vim: set syntax=asciidoc:
-

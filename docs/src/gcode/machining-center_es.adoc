@@ -373,4 +373,4 @@ Los comentarios no se conservan cuando se escribe el archivo.
 |==============================================
 
 Vea la sección <<gcode:parameters,Parametros para más información>>.
-
+////
