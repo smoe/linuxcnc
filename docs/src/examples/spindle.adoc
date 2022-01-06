@@ -10,6 +10,8 @@ additional pins exist with names such as spindle.6...
 
 = Spindle Control
 
+(((0-10v Spindle Speed Example)))
+
 == 0-10v Spindle Speed (((0-10v Spindle Speed Example)))
 
 If your spindle speed is controlled by an analog signal,

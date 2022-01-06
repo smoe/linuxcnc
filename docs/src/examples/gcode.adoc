@@ -17,13 +17,13 @@ machine before running.
 
 - Description: Subroutine for milling a hole using parameters.
 
-image::images/useful-subroutines-ngc.png["Useful subroutines"]
-
 === Slotting
 
 - File Name: useful-subroutines.ngc
 
 - Description: Subroutine for milling a slot using parameters.
+
+image::images/useful-subroutines-ngc.png["Useful subroutines"]
 
 === Grid Probe
 

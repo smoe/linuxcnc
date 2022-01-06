@@ -155,8 +155,7 @@ feed rate, or at traverse rate, or it may be synchronized to the
 spindle rotation. If physical limits on axis speed make the desired
 rate unobtainable, all axes are slowed to maintain the desired path.
 
-=== Feed Rate
-[[sub:feed-rate]](((Feed Rate)))
+=== Feed Rate[[sub:feed-rate]](((Feed Rate)))
 
 The rate at which the controlled point moves is nominally a steady
 rate which may be set by the user. In the Interpreter, the feed
@@ -187,11 +186,6 @@ is to break and clear chips, so the spindle is usually turning during a
 dwell. Regardless of the Path Control Mode (see Section
 <<sec:path-control-mode,Path Control>>) the machine will stop exactly at the end of
 the previous programmed move, as though it was in exact path mode.
-
-* MATCH ME A
-* MATCH ME A
-* MATCH ME A
-* MATCH ME A
 
 === Units (((units)))
 
@@ -229,11 +223,6 @@ Zero or one tool is assigned to each slot in the tool carousel.
 === Tool Change
 
 A machining center may be commanded to change tools.
-
-* MATCH ME B
-* MATCH ME B
-* MATCH ME B
-* MATCH ME B
 
 === Pallet Shuttle
 

@@ -1,6 +1,11 @@
+:lang: es
+:toc:
+
 [[cha:gs2-spindle]]
 
 = Husillo con GS2
+
+== Ejemplo
 
 Este ejemplo muestra las conexiones necesarias para usar un VFD GS2
 de Automation Direct para manejar un husillo. La velocidad y dirección del husillo son
@@ -12,8 +17,6 @@ CW" y "Husillo PWM" están configurados como no utilizados en la configuración 
 
 En el archivo custom.hal colocamos lo siguiente para conectar LinuxCNC al
 GS2 y que controle la unidad.
-
-.GS2 Ejemplo
 ----
 # cargar el componente de espacio de usuario para VFD Automation Direct GS2
 loadusr -Wn spindle-vfd gs2_vfd -r 9600 -p none -s 2 -n spindle-vfd
@@ -46,14 +49,11 @@ sobre los parámetros del variador.
 * Los interruptores de comunicación deben configurarse en RS-232C
 * Los parámetros del motor deben configurarse para que coincidan con el motor
 * P3.00 (Fuente del comando de operación) debe establecerse en Operación
-   determinada por la interfaz RS-485, 03 o 04
+  determinada por la interfaz RS-485, 03 o 04
 * P4.00 (Fuente del comando de frecuencia) debe establecerse en Frecuencia
-   determinada por la interfaz de comunicación RS232C/RS485, 05
+  determinada por la interfaz de comunicación RS232C/RS485, 05
 * P9.01 (Velocidad de transmisión) debe establecerse en 9600 baudios, 01
 * P9.02 (Protocolo de comunicación) debe establecerse en "Modo Modbus RTU,
-   8 bits de datos, sin paridad, 2 bits de parada ", 03
+  8 bits de datos, sin paridad, 2 bits de parada ", 03
 
 Un panel PyVCP basado en este ejemplo está <<gs2-rpm-meter,aqui>>.
-
-
-

@@ -33,9 +33,7 @@ net spindle-speed-scale spindle.0.speed-out => scale.0.in
 net spindle-speed-DAC scale.0.out => <su nombre pin DAC>
 ----
 
-(((PWM Spindle Speed Example)))
-
-== Velocidad del husillo PWM
+== Velocidad del husillo PWM (((PWM Spindle Speed Example)))
 
 Si su husillo puede ser controlado por una señal PWM,
 use el componente pwmgen para crear la señal:
@@ -56,9 +54,7 @@ Esto supone que la respuesta del controlador de husillo a PWM es simple:
 requerido para hacer girar el husillo, siga el ejemplo en la
 configuración de muestra de torno nist para usar un componente de escala.
 
-(((Spindle Enable Example)))
-
-== Habilitación del husillo
+== Habilitación del husillo (((Spindle Enable Example)))
 
 Si necesita una señal de habilitación de husillo,
 enlace su pin de salida a spindle.0.on.
@@ -70,9 +66,7 @@ pin que está conectado a su dispositivo de control.
 net spindle-enable spindle.N.on => parport.0.pin-14-out
 ----
 
-(((Spindle Direction Example)))
-
-== Dirección del husillo
+== Dirección del husillo (((Spindle Direction Example)))
 
 Si tiene control de dirección de su husillo, los pines HAL
 spindle.N.forward y spindle.N.reverse están controlados por M3
@@ -88,9 +82,7 @@ net spindle-fwd spindle.0.forward => parport.0.pin-16-out
 net spindle-rev spindle.0.reverse => parport.0.pin-17-out
 ----
 
-(((Spindle Soft Start Example)))
-
-== Arranque suave del husillo
+== Arranque suave del husillo (((Spindle Soft Start Example)))
 
 Si necesita rampa en el comando de velocidad del eje y su control
 no tiene esa característica, se puede hacer en HAL. Básicamente necesita
@@ -101,7 +93,11 @@ La segunda parte es informar a LinuxCNC cuando el husillo está a velocidad para
 pueda empezar.
 
 En el ejemplo de 0-10 voltios, la línea
-    'net spindle-speed-scale spindle.0.speed-out => scale.0.in'
+
+----
+net spindle-speed-scale spindle.0.speed-out => scale.0.in
+----
+
 se cambia como se muestra en el siguiente ejemplo:
 
 .Introducción a los componentes HAL2 limit2 y near:
@@ -152,9 +148,7 @@ net spindle-ready <= spindle-at-speed.out => spindle.0.at-speed
 
 == Feedback del husillo
 
-(((Spindle Synchronized Motion Example)))
-
-=== Movimiento sincronizado del husillo
+=== Movimiento sincronizado del husillo (((Spindle Synchronized Motion Example)))
 
 LinuxCNC necesita retroalimentación del husillo para realizar cualquier
 movimiento coordinado con el husillo como roscado o velocidad de superficie constante (CSS).
@@ -169,7 +163,7 @@ entradas.
 Suposiciones de hardware:
 
 * Un codificador está conectado al husillo y emite 100 pulsos por
-   revolución en la fase A
+  revolución en la fase A
 * La fase A del codificador está conectada al pin 10 del puerto paralelo
 * El pulso de índice del codificador está conectado al pin 11 del puerto paralelo
 
@@ -207,9 +201,8 @@ net spindle-phase-b encoder.3.phase-B
 net spindle-index encoder.3.phase-Z <= parport.0.pin-11-in
 ----
 
-(((Spindle At Speed Example)))
-
 === Husillo a velocidad
+[[sec:Vitesse-Broche-Atteinte]](((Spindle At Speed Example)))
 
 Para permitir que LinuxCNC espere a que el eje esté a velocidad antes de ejecutar
 una serie de movimientos, debe establecer spindle.N.at-speed en true cuando
