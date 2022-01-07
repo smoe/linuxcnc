@@ -1,5 +1,7 @@
-﻿:lang: es
-[[cha:herramienta-compensación]](((Herramiena Compensación)))
+:lang: es
+:toc:
+
+[[cha:tool-compensation]](((Herramiena Compensación)))
 
 = Compensación de herramientas
 
@@ -36,15 +38,14 @@ Los comandos G10 L1/L10/L11 se pueden usar para establecer las compensaciones de
 * 'G10 L11 Pn' - Establece los offsets de modo que la posición actual respecto a fijacion 9 se convierta en un valor (vea <<gcode:g10-l11,G10 L11>> para más detalles).
 
 
-== Tabla de herramientas[[sec:tool-table]]
+== Tabla de herramientas[[sec:tool-table]](((Tool-Table-Format)))
 
 La 'Tabla de herramientas' es un archivo de texto que contiene información sobre cada herramienta. El archivo está ubicado en el mismo directorio que su configuración y se llama 'tool.tbl'. Las herramientas pueden estar en un cambiador de herramientas o simplemente ser cambiadas manualmente. El archivo puede editarse con un editor de texto o ser actualizado con G10 L1. Vea la sección <<sec:lathe-tool-table,tabla de herramientas de torno>> para un ejemplo del formato de tabla de herramientas de torno.  El número máximo de entradas en la tabla de herramientas es 1000.  El número máximo de herramienta y de ranura es 99999.
 
 <<cha:tooledit-gui,Tool Editor>> o un editor de texto se pueden usar para editar la tabla de herramientas.
 Si utiliza un editor de texto, asegúrese de volver a cargar la tabla en la GUI.
 
-=== Formato de tabla de herramientas
-(((Tool-Table-Format)))
+=== Formato de tabla de herramientas[[sec:Table-Outils]](((Tool-Table-Format)))
 
 .Formato de tabla de herramientas
 
@@ -70,12 +71,10 @@ En general, el nuevo formato de línea de la tabla de herramientas es:
  - ; - comienzo del comentario o anotacion - texto
 
 El archivo consta de un punto y coma de apertura en la primera línea, seguido de hasta un máximo de 1000 entradas de herramientas.
-
-[NOTE]
-Aunque se permiten números de herramienta hasta 99999, el número de entradas en
+footnote:[Aunque se permiten números de herramienta hasta 99999, el número de entradas en
 la tabla de herramientas, por el momento, todavía está limitada a un máximo de 1000 herramientas por
 razones técnicas. Los desarrolladores de LinuxCNC planean eliminar esa limitación.
-Si tiene un cambiador de herramientas muy grande, sea paciente.
+Si tiene un cambiador de herramientas muy grande, sea paciente.]
 
 Las versiones anteriores de LinuxCNC tenían dos formatos de tabla de herramientas diferentes para
 fresadoras y tornos, pero desde la versión 2.4.x, el mismo formato de tabla de herramientas

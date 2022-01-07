@@ -1,12 +1,11 @@
 :lang: es
+:toc:
 
 [[cha:other-codes]](((Otros códigos)))
 
 = Otros códigos
 
-[[sec:set-feed-rate]]
-== F: Establecer velocidad de alimentación
-(((F: Establecer velocidad de alimentación)))
+== F: Establecer velocidad de alimentación[[sec:set-feed-rate]](((F: Establecer velocidad de alimentación)))
 
 'Fx' - establece la velocidad de avance a 'x'. 'x' usualmente está en unidades máquina
 (pulgadas o milímetros) por minuto.
@@ -15,9 +14,7 @@ La aplicación de la velocidad de alimentación es como se describe en la Secci�
 <<sub:feed-rate, Velocidad de alimentación>>, a menos que estén vigentes 'modo de velocidad de alimentación de tiempo inverso' o 'modo de avance por revolución', en cuyo caso la velocidad de avance
 es como se describe en la  Sección <<gcode:g93-g94-g95,G93 G94 G95>>.
 
-[[sec:set-spindle-speed]]
-== S: Establecer la velocidad de husillo
-(((S: Establecer velocidad del husillo)))
+== S: Establecer la velocidad de husillo[[sec:set-spindle-speed]](((S: Establecer velocidad del husillo)))
 
 'Sx [$n]' - establece la velocidad del husillo a 'x' revoluciones por minuto (RPM).
 Con el $ opcional establece la velocidad del husillo para un husillo específico. Sin el $,
@@ -34,9 +31,14 @@ Es un error si:
 
 * el número S es negativo.
 
-[[sec:select-tool]]
-== T: Seleccionar herramienta
-(((T: Seleccionar herramienta)))
+Introduced in _fr: Comme décrit dans la section <<sec:G84-Taraudage-a-droite, sur le cycle de
+taraudage à droite>>, si un cycle de perçage 'G84' (taraudage) est actif et que
+les potentiomètres de vitesse et d'avance sont autorisés, celui qui a le
+réglage le plus bas sera utilisé. La vitesse de rotation et d'avance resterons
+synchronisées. Dans ce cas, la vitesse peut différer de celle programmée, même
+si le potentiomètre de correction de vitesse travail est sur 100%.
+
+== T: Seleccionar herramienta[[sec:select-tool]](((T: Seleccionar herramienta)))
 
 'Tx': prepára el cambio a la herramienta 'x'.
 

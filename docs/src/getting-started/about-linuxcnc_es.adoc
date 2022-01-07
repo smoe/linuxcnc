@@ -4,18 +4,20 @@
 
 == El software
 
-////
-////
 * LinuxCNC (Enhanced Machine Control o Control de Máquina Mejorado)
   es un sistema de software para control de máquinas herramientas como
   fresadoras y tornos, robots tipos puma y scara y otras máquinas controladas por computadora, de hasta 9 ejes.
-* LinuxCNC es un software gratuito con código fuente abierto. Las versiones actuales de LinuxCNC están completamente licenciadas bajo la Licencia Pública General de GNU (GPL) y Lesser GNU General Public License (LGPL)
+* LinuxCNC es un software gratuito con código fuente abierto. Las
+  versiones actuales de LinuxCNC están completamente licenciadas bajo
+  la Licencia Pública General de GNU (GPL) y Lesser GNU General Public License (LGPL)
 * LinuxCNC proporciona:
+** FIXME from French: une installation facile à partir d'un CD live.
 ** una interfaz gráfica de usuario (en realidad, varias interfaces entre las que elegir)
 ** un intérprete para 'código G' (lenguaje de programación de máquinas herramienta RS-274)
 ** un sistema de planificación de movimiento en tiempo real con análisis de instrucción siguiente
 ** operación de la electrónica de bajo nivel de la máquina, como sensores y motores
-** una capa que actua como 'breadboard', fácil de usar, para crear rápidamente una configuración unica para su máquina
+** una capa que actua como 'breadboard', fácil de usar, para crear rápidamente una
+   configuración unica para su máquina
 ** un PLC en software, programable, con diagramas de escalera
 ** instalación fácil con un Live-CD
 * No proporciona herramientas de dibujo (CAD - Diseño asistido por computadora)
@@ -26,12 +28,32 @@
 * Las características de control de movimiento incluyen: compensación del radio de corte y longitud de herramienta, desviación de trayectoria limitada
   a una tolerancia especificada, roscado en torno, movimientos de eje sincronizados, avance adaptativo,
   control de ajuste de avance por el operador y control de velocidad constante.
-* Soporte para sistemas de movimiento no cartesianos, a través de módulos cinemáticos personalizados. Las arquitecturas disponibles incluyen hexapodos (plataformas Stewart y conceptos similares) y sistemas con articulaciones rotativas para proporcionar movimiento como robots PUMA o SCARA.
+* Soporte para sistemas de movimiento no cartesianos, a través de
+  módulos cinemáticos personalizados. Las arquitecturas disponibles
+  incluyen hexapodos (plataformas Stewart y conceptos similares) y sistemas
+  con articulaciones rotativas para proporcionar movimiento como
+  robots PUMA o SCARA.
 * LinuxCNC se ejecuta en Linux usando extensiones en tiempo real.
 
 == El sistema operativo
 
 LinuxCNC está disponible como paquetes listos para usar en distribuciones para Ubuntu y Debian
+
+La distribution Ubuntu a été choisie car elle s'intègre parfaitement dans les
+vues Open Source de LinuxCNC:
+
+ - Ubuntu sera toujours gratuit, et il n'y a aucun frais supplémentaire pour la
+   version  _"Enterprise Edition"_,
+   nous rendons nos travaux disponibles pour  tout le monde dans les mêmes
+   conditions de gratuité.
+ - LinuxCNC est jumelé avec les versions LTS d'Ubuntu qui apportent le soutien et
+   les correctifs de sécurité de l'équipe Ubuntu pour 3 à 5 ans.
+ - Ubuntu utilise les meilleurs outils de traductions et d'accessibilité
+   à l'infrastructure, que la communauté du logiciel libre a à offrir, pour
+   rendre Ubuntu accessible à un maximum de personnes.
+ - La communauté Ubuntu a entièrement souscrit aux principes du développement de
+   logiciels libres, nous encourageons tout le monde à utiliser des logiciels
+   open source, à les améliorer et à les transmettre.
 
 == Obtener ayuda
 

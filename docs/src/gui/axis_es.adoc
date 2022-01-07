@@ -1,4 +1,5 @@
 :lang: es
+:toc:
 
 [[cha:axisgui]](((axisgui)))
 
@@ -18,6 +19,9 @@ puede cambiarlo editando el archivo .ini. En la
 sección '[DISPLAY]' indiquelo con la linea 'DISPLAY = axis'.
 
 La configuracion de ejemplo 'sim/axis.ini' ya está configurada para usar AXIS como su interfaz de usuario.
+
+From French: Quand AXIS démarre, une fenêtre telle que celle de la figure
+<<cap:Fenetre-AXIS,ci-dessus>> s'ouvre.
 
 === INI settings
 
@@ -50,16 +54,32 @@ establecer un nuevo offset y luego ejecutar el programa de nuevo. Si la ubicacio
 siempre la misma, entonces es posible que solo tenga que volver a ejecutar el programa. Ver la seccion
 <<sub:axis-machine-menu,Menu Maquina>> para obtener más información sobre el comando de ejecución.
 
+From French:
+ . Lancer LinuxCNC et sélectionner un fichier de configuration.
+ . Relâcher le bouton d'arrêt d'urgence 'A/U'(((A/U))) et presser
+   celui de 'Marche' machine.
+ . Faire les prises d'origine machine 'POM' pour chacun des axes.
+ . Charger un fichier d'usinage.
+ . Utiliser l'affichage du parcours d'outil pour vérifier que le
+   programme est correct.
+ . Brider le brut à usiner sur la table.
+ . Faire les prises d'origine pièce 'POP' de chacun des axes avec le jog
+   et en utilisant le bouton 'Toucher'.(((Toucher)))
+ . Lancer le programme.
+ . Pour usiner le même fichier une nouvelle fois, retourner à l'étape 6.
+   Pour usiner un fichier différent, retourner à l'étape 4. Quand le travail
+   est terminé, quitter AXIS.
+
 == Pantalla AXIS
 
 La ventana de AXIS contiene los siguientes elementos:
 
 * Un área de visualización que muestra uno de los siguientes elementos:
- ** una vista previa del archivo cargado (en este caso,
+** una vista previa del archivo cargado (en este caso,
    'axis.ngc'), así como la ubicación actual del
    'punto controlado' de la máquina. Más adelante, esta área mostrará el camino
    por el que la máquina se ha movido, llamado 'backplot'
- ** una lector grande que muestra la posición actual y todos los offsets.
+** una lector grande que muestra la posición actual y todos los offsets.
 * Una barra de menús y una barra de herramientas que le permiten realizar varias acciones
 * Una pestaña de 'control manual (F3)' - que te permite
   mover la máquina, encender o apagar el husillo y el refrigerante,
@@ -71,11 +91,9 @@ La ventana de AXIS contiene los siguientes elementos:
   El máximo predeterminado es 120% y se puede configurar a un valor diferente
   en el archivo ini. Consulte la <<sec:display-section, Sección de visualización>> del
   archivo INI para más información.
-* 'Spindle Override' - que le permite
-  escalar la velocidad del husillo hacia arriba o hacia abajo.
-* 'Jog Speed' - que te permite configurar la velocidad de jog
-  dentro de los límites establecidos en el archivo ini. Ver la
- <<sec:display-section,Sección de visualización>> del archivo INI para obtener más información.
+* 'Spindle Override' - que le permite escalar la velocidad del husillo hacia arriba o hacia abajo.
+* 'Jog Speed' - que te permite configurar la velocidad de jog dentro de los límites establecidos en el archivo ini.
+  Ver la <<sec:display-section,Sección de visualización>> del archivo INI para obtener más información.
 * 'Velocidad máxima' - que le permite restringir la velocidad máxima de todos
   los movimientos programados (excepto movimiento sincronizados del husillo).
 * Una zona de visualización de texto que muestra el G-Code cargado.

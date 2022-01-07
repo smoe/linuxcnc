@@ -75,7 +75,6 @@ From French:
    Pour usiner un fichier différent, retourner à l'étape 4. Quand le travail
    est terminé, quitter AXIS.
 
-
 == AXIS Display
 
 The AXIS window contains the following elements:
@@ -93,9 +92,8 @@ The AXIS window contains the following elements:
 * 'MDI Tab' - where G-code programs can be entered manually,
   one line at a time. This also shows the 'Active G Codes' which shows
   which modal G Codes are in effect.
-* 'Feed Override' - which allows you to scale
-  the speed of programmed motions. The default maximum is 120%
-  and can be set to a different
+* 'Feed Override' - which allows you to scale the speed of programmed motions.
+  The default maximum is 120% and can be set to a different
   value in the ini file. See the <<sec:display-section,Display Section>> of the
   INI file for more information.
 * 'Spindle Override' - which allows you to scale the spindle speed up or down.

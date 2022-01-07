@@ -1,3 +1,6 @@
+:lang: es
+:toc:
+
 = PyVCP Examples
 
 == AXIS
@@ -7,13 +10,12 @@ attached to the right of AXIS you need to do the following basic
 things.
 
 * Create an .xml file that contains your panel description and put it in
-   your config directory.
-* Add the PyVCP entry to the [DISPLAY] section of the ini file with your
-   .xml file name.
+  your config directory.
+* Add the PyVCP entry to the [DISPLAY] section of the ini file with your .xml file name.
 * Add the POSTGUI_HALFILE entry to the [HAL] section of the ini file
-   with the name of your postgui HAL file name.
+  with the name of your postgui HAL file name.
 * Add the links to HAL pins for your panel in the postgui.hal file to
-   'connect' your PyVCP panel to LinuxCNC.
+  'connect' your PyVCP panel to LinuxCNC.
 
 == Floating Panels
 
@@ -21,10 +23,10 @@ To create floating PyVCP panels that can be used with any interface
 you need to do the following basic things.
 
 * Create an .xml file that contains your panel description and put it in
-   your config directory.
+  your config directory.
 * Add a loadusr line to your .hal file to load each panel.
 * Add the links to HAL pins for your panel in the postgui.hal file to
-   'connect' your PyVCP panel to LinuxCNC.
+  'connect' your PyVCP panel to LinuxCNC.
 
 The following is an example of a loadusr command to load two PyVCP
 panels and name each one so the connection names in HAL will be known.
@@ -35,8 +37,9 @@ loadusr -Wn btnpanel pyvcp -c btnpanel panel1.xml
 loadusr -Wn sppanel pyvcp -c sppanel panel2.xml
 ----
 
-The -Wn makes HAL 'Wait for name' to be loaded before proceeding. The
-pyvcp -c makes PyVCP name the panel.
+The -Wn makes HAL 'Wait for name' to be loaded before proceeding.
+
+The pyvcp -c makes PyVCP name the panel.
 
 The HAL pins from panel1.xml will be named btnpanel.<pin name>
 
@@ -45,7 +48,7 @@ The HAL pins from panel2.xml will be named sppanel.<pin name>
 Make sure the loadusr line is before any nets that make use of the
 PyVCP pins.
 
-== Jog Buttons
+== Jog Buttons Example
 
 In this example we will create a PyVCP panel with jog buttons for X,
 Y, and Z. This configuration will be built upon a Stepconf Wizard
@@ -58,7 +61,7 @@ Wizard.
 
 .XYZ Wizard Configuration[[cap:XYZ-Wizard-Configuration]]
 
-image::images/xyz_ACO.png[alt="XYZ Wizard Configuration"]
+image::images/xyz_ACO.png["XYZ Wizard Configuration"]
 
 The Stepconf Wizard will create several files and place them in the
 linuxcnc/configs/pyvcp_xyz directory. If you left the create link checked
@@ -164,9 +167,7 @@ get an error when you try and run scroll down to the bottom of the pop
 up window and usually the error is a spelling or syntax error and it
 will be there.
 
-.Jog Buttons[[cap:Jog-Buttons]]
-    
-image::images/xyz_buttons.png[alt="Jog Buttons"]
+image::images/xyz_buttons.png["Jog Buttons"]
 
 === Make Connections
 
@@ -269,9 +270,7 @@ panel description.
 This will create the following floating panel which contains a couple
 of in pins and a couple of out pins.
 
-.Port Tester Panel[[cap:Port-Tester-Panel]]
-
-image::images/ptest.png[alt="Port Tester Panel"]
+image::images/ptest.png["Port Tester Panel"]
 
 To run the HAL commands that we need to get everything up and running
 we put the following in our ptest.hal file.
@@ -298,12 +297,9 @@ To run the HAL file we use the following command from a terminal window.
 
 The following figure shows what a complete panel might look like.
 
-.Port Tester Complete[[cap:Port-Tester-Complete]]
+image::images/ptest-final.png["Port Tester Complete"]
 
-image::images/ptest-final.png[alt="Port Tester Complete"]
-
-To add the rest of the parallel port pins just modify the .xml and
-.hal files.
+To add the rest of the parallel port pins just modify the .xml and .hal files.
 
 To show the pins after running the HAL script use the following
 command at the halcmd prompt:
@@ -444,9 +440,7 @@ To create the panel we add the following to the .xml file.
 
 The above gives us a PyVCP panel that looks like the following.
 
-.GS2 Panel[[cap:GS2-Panel]]
-
-image::images/gs2_panel.png[alt="GS2 Panel"]
+image::images/gs2_panel.png["GS2 Panel"]
 
 === The Connections
 

@@ -31,6 +31,7 @@ you need to do the following basic things.
 The following is an example of a loadusr command to load two PyVCP
 panels and name each one so the connection names in HAL will be known.
 
+[source,c]
 ----
 loadusr -Wn btnpanel pyvcp -c btnpanel panel1.xml
 loadusr -Wn sppanel pyvcp -c sppanel panel2.xml
@@ -57,6 +58,8 @@ couple of selections to add a blank PyVCP panel as shown in the
 following figure. For this example we named the configuration
 'pyvcp_xyz' on the Basic Machine Information page of the Stepconf
 Wizard.
+
+.XYZ Wizard Configuration[[cap:XYZ-Wizard-Configuration]]
 
 image::images/xyz_ACO.png["XYZ Wizard Configuration"]
 
