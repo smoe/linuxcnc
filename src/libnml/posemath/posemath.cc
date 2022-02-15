@@ -407,8 +407,8 @@ PM_QUATERNION::PM_QUATERNION(PM_CONST PM_ROTATION_VECTOR PM_REF v)
 
 PM_QUATERNION::PM_QUATERNION(PM_CONST PM_ROTATION_MATRIX PM_REF m)
 {
-    PmRotationMatrix mat;
-    PmQuaternion quat;
+    PmRotationMatrix mat = {.x={.x=0.0,.y=0.0,.z=0.0},.y={.x=0.0,.y=0.0,.z=0.0},.z={.x=0.0,.y=0.0,.z=0.0}};
+    PmQuaternion quat = {.s=0.0,.x=0.0,.y=0.0,.z=0.0};
 
     toMat(m, &mat);
     pmMatQuatConvert(&mat, &quat);
@@ -507,7 +507,7 @@ PM_EULER_ZYZ::PM_EULER_ZYZ(PM_CONST PM_QUATERNION PM_REF q)
 
 PM_EULER_ZYZ::PM_EULER_ZYZ(PM_CONST PM_ROTATION_MATRIX PM_REF m)
 {
-    PmRotationMatrix mat;
+    PmRotationMatrix mat = {.x={.x=0.0,.y=0.0,.z=0.0},.y={.x=0.0,.y=0.0,.z=0.0},.z={.x=0.0,.y=0.0,.z=0.0}};
     PmEulerZyz zyz;
 
     toMat(m, &mat);
@@ -558,7 +558,7 @@ PM_EULER_ZYX::PM_EULER_ZYX(PM_CONST PM_QUATERNION PM_REF q)
 
 PM_EULER_ZYX::PM_EULER_ZYX(PM_CONST PM_ROTATION_MATRIX PM_REF m)
 {
-    PmRotationMatrix mat;
+    PmRotationMatrix mat = {.x={.x=0.0,.y=0.0,.z=0.0},.y={.x=0.0,.y=0.0,.z=0.0},.z={.x=0.0,.y=0.0,.z=0.0}};
     PmEulerZyx zyx;
 
     toMat(m, &mat);
@@ -617,7 +617,7 @@ PM_RPY::PM_RPY(PM_CONST PM_QUATERNION PM_REF q)
 
 PM_RPY::PM_RPY(PM_CONST PM_ROTATION_MATRIX PM_REF m)
 {
-    PmRotationMatrix mat;
+    PmRotationMatrix mat = {.x={.x=0.0,.y=0.0,.z=0.0},.y={.x=0.0,.y=0.0,.z=0.0},.z={.x=0.0,.y=0.0,.z=0.0}};
     PmRpy rpy;
 
     toMat(m, &mat);
@@ -665,7 +665,7 @@ PM_POSE::PM_POSE(double x, double y, double z,
 
 PM_POSE::PM_POSE(PM_CONST PM_HOMOGENEOUS PM_REF h)
 {
-    PmHomogeneous hom;
+    PmHomogeneous hom = {.tran={.x=0,.y=0,.z=0},.rot={.x={.x=0.0},.y={.x=0.0},.z={.x=0.0}}}; // initialization is auto-completed with defaults
     PmPose pose;
 
     toHom(h, &hom);
@@ -711,8 +711,8 @@ PM_HOMOGENEOUS::PM_HOMOGENEOUS(PM_CARTESIAN v, PM_ROTATION_MATRIX m)
 
 PM_HOMOGENEOUS::PM_HOMOGENEOUS(PM_CONST PM_POSE PM_REF p)
 {
-    PmPose pose;
-    PmHomogeneous hom;
+    PmPose pose = {.tran={.x=0.0,.y=0.0,.z=0.0},.rot={.s=0.0,.x=0.0,.y=0.0,.z=0.0}};
+    PmHomogeneous hom = {.tran={.x=0,.y=0,.z=0},.rot={.x={.x=0.0},.y={.x=0.0},.z={.x=0.0}}}; // initialization is auto-completed with defaults
 
     toPose(p, &pose);
     pmPoseHomConvert(&pose, &hom);
@@ -781,7 +781,9 @@ int PM_LINE::init(PM_POSE start, PM_POSE end)
 
 int PM_LINE::point(double len, PM_POSE * point)
 {
-    PmLine _line;
+    PmLine _line = {.start={.tran={.x=.0}}, // initialization is auto-completed with default value 0
+	            .end={.tran={.x=.0}},   // initialization is auto-completed with default value 0
+		    .uVec={.x=.0,.y=.0,.z=.0},.qVec={.s=.0,.x=.0,.y=.0,.z=.0},.tmag=.0,.rmag=.0,.tmag_zero=0,.rmag_zero=0};
     PmPose _point;
     int retval;
 
@@ -867,7 +869,7 @@ double dot(const PM_CARTESIAN &v1, const PM_CARTESIAN &v2)
 PM_CARTESIAN cross(const PM_CARTESIAN &v1, const PM_CARTESIAN &v2)
 {
     PM_CARTESIAN ret;
-    PmCartesian _v1, _v2, _v3;
+    PmCartesian _v1={.x=0.0,.y=0.0,.z=0.0}, _v2={.x=0.0,.y=0.0,.z=0.0}, _v3={.x=0.0,.y=0.0,.z=0.0};
 
     toCart(v1, &_v1);
     toCart(v2, &_v2);
@@ -1040,7 +1042,7 @@ PM_CARTESIAN inv(const PM_CARTESIAN &v)
 PM_ROTATION_MATRIX inv(const PM_ROTATION_MATRIX &m)
 {
     PM_ROTATION_MATRIX ret;
-    PmRotationMatrix _m;
+    PmRotationMatrix _m = {.x={.x=.0,.y=.0,.z=.0},.y={.x=.0,.y=.0,.z=.0},.z={.x=.0,.y=.0,.z=.0}};
 
     toMat(m, &_m);
 
@@ -1382,7 +1384,8 @@ PM_QUATERNION operator *(const PM_QUATERNION &q1, const PM_QUATERNION &q2)
 PM_ROTATION_MATRIX operator *(const PM_ROTATION_MATRIX &m1, const PM_ROTATION_MATRIX &m2)
 {
     PM_ROTATION_MATRIX ret;
-    PmRotationMatrix _m1, _m2;
+    PmRotationMatrix _m1 = {.x={.x=.0}},
+		     _m2 = {.x={.x=.0}}; // initialization is auto-completed with default value 0
 
     toMat(m1, &_m1);
     toMat(m2, &_m2);
