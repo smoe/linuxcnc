@@ -138,7 +138,7 @@ This widget looks and acts like a 5 button D-pad, with an LED ring
 Each button has an selectable type (Bit, S32 or Float) output HAL pin.
 The LED center ring has selectable colors for off and on and is controlled by a Bit HAL pin.
 
-==== ENUMS
+=== ENUMS
 There are enumerated constants used to reference indicator positions.
 
 ----
@@ -167,7 +167,7 @@ You use the widget Designer name plus the reference constant.
 self.w.halpadname.set_highlight(self.w.halpadname.LEFTRIGHT)
 ----
 
-==== Properties
+=== Properties
 * 'pin_name':
   Optional name to use for the HAL pins basename. If left blank, the designer widget name will be used.
 
@@ -208,7 +208,7 @@ FlOAT
 * 'text_font': +
   Font slelection for the button text.
 
-==== StyleSheets
+=== StyleSheets
 
 The above properties could be set in styles sheets.
 
@@ -225,7 +225,7 @@ This widget allows a user to set a HAL pin true or false.
 as an option it can be a toggle button.
 It also has other options:
 
-==== LED indicator option
+=== LED indicator option
 
 .Indicated Action Button
 image::images/qtvcp_actionButton.png["QTvcp led Action Button",scale="25%"]
@@ -326,7 +326,7 @@ ActionButton #estop button [isEstopped=false] {
 }
 ----
 
-==== Text changes on state
+=== Text changes on state
 
 Choosing the checked_state_text_option allows a 'checkable' button to change the text based
 on it's checked state. It uses the properties 'true_state_string' and 'false_state_string'
@@ -342,7 +342,7 @@ qproperty-false_state_string: "Air\\nOff";
 }
 ----
 
-==== Call python commands on state
+=== Call python commands on state
 
 The python_command_option allow small snippets of python code to be run from the push of a button,
 with out having to edit the handler file. (though it can call functions in the handler file)
@@ -414,7 +414,7 @@ by setting the property 'mode'.
 When using floats you can set a formatting string.
 You must set the property 'digitCount' to an appropriate setting to display the largest number.
 
-==== Properties
+=== Properties
 
 * 'pin_name':
   Option string to be used as the HAL pin name. If set to an empty string the widget name will be used.
@@ -588,7 +588,7 @@ These set attributes of the selected action. Availability depends on the widget.
 
 Action buttons are subclasssed from indicated_PushButton
 
-==== LED indicator option
+=== LED indicator option
 Indicator_option puts a 'LED' on the top of the button.
 It can be a triangle, circle, top bar or side bar.
 The size and position can be adjusted
@@ -653,7 +653,8 @@ Spindle Fwd
 Spindle Reverse
 On Limits
 ----
-==== Text changes on state
+
+=== Text changes on state
 
 Choosing the checked_state_text_option allows a 'checkable' button to change the text based
 on it's checked state. It uses the properties 'true_state_string' and 'false_state_string'
@@ -669,7 +670,7 @@ qproperty-false_state_string: "Air\\nOff";
 }
 ----
 
-==== Call python commands on state
+=== Call python commands on state
 
 The python_command_option allow small snippets of python code to be run from the push of a button,
 with out having to edit the handler file. (though it can call functions in the handler file)
@@ -697,7 +698,7 @@ Currently there is only one option - user view.
 
 It is based on pyQT's QToolButton.
 
-==== User View
+=== User View
 
 User view tool button allows a user to record and return to a arbitrary graphics view.
 Press and hold the button to have the menu pop up and press 'record view'.
@@ -873,7 +874,7 @@ MouseButtonMode can be set in stylesheets:
 qproperty-MouseButtonMode:1;
 ----
 
-==== ACTION functions
+=== ACTION functions
 The ACTION library can control the G-code graphics widget.
 'ACTION.RELOAD_DISPLAY()' -reload the current program which recalculates the origin/offsets.
 'ACTION.SET_GRAPHICS_VIEW(view)' The following commands can be sent:
@@ -1195,7 +1196,7 @@ These properties that can be set in designer, in python handler code or
 * 'runFromLine_overlay_color': +
   Color of transparent layer shown when the runFromLine dialog is shown.
 
-==== Setting Properties Programically
+=== Setting Properties Programically
 
 The screen designer chooses the default settings of the screenOptions widget.
 Once chosen, most won't ever need to be changed.
@@ -1234,7 +1235,7 @@ ScreenOptions {
 qproperty-close_overlay_color: rgba(0, 255, 0, 0.75) }
 ----
 
-==== Preference File Entries
+=== Preference File Entries
 
 If the preference file option is selected, screenOption widget will make an INI based preference file.
 While other Qtvcp widgets will add to this list, the screenOptions widget will add these entries:
@@ -1318,7 +1319,7 @@ This widget allow the user to adjust linuxcnc setting via a slide.
 * spindle override rate
 * Rapid override rate
 
-==== Properties
+=== Properties
 
 StatusSlider has properties that can be set in designer, in python handler code or
 (if appropriate) in stylesheets.
@@ -1456,20 +1457,20 @@ Here is a sample for the first four lines in an Oword file:
 ; MACROOPTIONS=load:yes,save:yes,default:default.txt,path:~/macros
 ----
 
-==== MACROCOMMAND
+=== MACROCOMMAND
 
 This is the first line in the Oword file.
 It is a comma separated list of text to display above an entry.
 There will be one for every variable required in the Oword function.
 If the macro does not require variables, only add '; MACROCOMMAND='
 
-==== MACRODEFAULT
+=== MACRODEFAULT
 
 This must be the second line in the Oword file.
 It is a comma separated list of the default values for each variable in the Oword function.
 If you use the word 'true' or 'false' in the list, a checkbutton will be shown.
 
-==== MACROIMAGE
+=== MACROIMAGE
 
 This must be the third line in the Oword file.
 if using a SVG image file, the must end b .svg
@@ -1489,7 +1490,7 @@ If the second entry is missing the same image will be used for macro and image.
 
 If the keyword is present but the entries are missing , no images will be used.
 
-==== MACRODEFAULT
+=== MACRODEFAULT
 This optional line must be the forth line in the Oword file.
 It is a comma separated list of keyword and data.
 
@@ -1652,7 +1653,7 @@ The comments section will be recorded in the preference file.
 It is based on pyQT's QTableView, QAbstractTableModel, and ItemEditorFactory.
 Properties, functions and styles of the pyQT base objects are always available.
 
-==== Properties
+=== Properties
 
 OriginOfsetView has properties that can be set in designer, in python handler code or
 (if appropriate) in stylesheets.
@@ -1765,7 +1766,7 @@ routine.
 It is based on pyQT's QTableView, QAbstractTableModel, and ItemEditorFactory.
 Properties, functions and styles of the pyQT base objects are always available.
 
-==== Properties
+=== Properties
 
 ToolOfsetView has properties that can be set in designer, in python handler code or
 (if appropriate) in stylesheets.
@@ -1793,7 +1794,7 @@ qproperty-styleColorSelected: #444;
 }
 ----
 
-==== Functions
+=== Functions
 
 ToolOffsetView has some function that are useful for screen builders to add actions.
 
@@ -2048,7 +2049,7 @@ You can put text or icons in each of the button positions.
 You can connect to output signals when the buttons are pressed.
 There are also input slots to change the color of the indicator(s).
 
-==== ENUMS
+=== ENUMS
 
 There are enumerated constants used to reference indicator positions.
 They are used in the Designer editor's property editor or used if using python code.
@@ -2071,7 +2072,7 @@ For python handler code, you use the widget Designer name plus the reference con
 self.w.joypadname.set_highlight(self.w.joypadname.LEFT)
 ----
 
-==== Useful Override-able Functions
+=== Useful Override-able Functions
 
 As coded they issue signals for the button pressed or released.
 On signal outputs a string code for the button, one signal outputs a bool value.
@@ -2086,7 +2087,7 @@ def _releasedOutput(self, btncode):
     self['joy_{}_pressed'.format(btncode.lower())].emit(False)
 ----
 
-==== Callable Functions
+=== Callable Functions
 
 * 'reset_highlight()': +
   Clears the highlight indicator.
@@ -2103,7 +2104,7 @@ def _releasedOutput(self, btncode):
   Sets the highlight indicator to the true color or false color.
   The set_highlight() function must be used prior to set the indicator to use.
 
-==== signals
+=== signals
 These signals will be sent when buttons are pressed.
 They can be connected to in the Designer editor or python code.
 The first two output a string the indicates the button pressed.
@@ -2123,7 +2124,7 @@ joy_b_pressed = QtCore.pyqtSignal(bool)
 joy_b_released = QtCore.pyqtSignal(bool)
 ----
 
-==== slots
+=== slots
 Slots can be connected to in the Designer editor or python code.
 
 ----
@@ -2138,7 +2139,7 @@ set_false_color(str)
 set_false_color(qcolor)
 ----
 
-==== Properties
+=== Properties
 
 These can be set in stylesheets or python code to change it's properties.
 
@@ -2168,7 +2169,7 @@ These can be set in stylesheets or python code to change it's properties.
 * 'button_font': +
   Font selection for the button text.
 
-===== StyleSheets
+=== StyleSheets
 
 The above properties could be set in styles sheets.
 You would usually use the designer widget name with '#' to set individual
@@ -2182,7 +2183,7 @@ qproperty-false_color: #444;
 }
 ----
 
-===== Python Code
+=== Python Code
 
 [source,python]
 ----

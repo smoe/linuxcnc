@@ -16,7 +16,7 @@ composants qui interagissent avec l'interpréteur. Les autres composants
 mécaniques, comme les boutons de jog, ne seront pas décrits ici, même si
 ils affectent le contrôle.
 
-=== Axes(((axes)))
+== Axes(((axes)))
 
 Toute machine à commande numérique dispose d'un ou de plusieurs axes. Les
 différents types de machines ont différentes combinaisons d'axes. Par
@@ -33,18 +33,18 @@ footnote:[Avec LinuxCNC, le cas de la machine à portique XYYZ avec deux
 moteurs pour un axe est mieux traité par la cinématique que par un
 axe linéaire supplémentaire.]
 
-==== Axes linéaires primaires(((axes linéaires primaires)))
+=== Axes linéaires primaires(((axes linéaires primaires)))
 
 Les axes X, Y et Z produisent des mouvements linéaires dans trois
 directions, mutuellement orthogonales.
 
-==== Axes linéaires secondaires(((axes linéaires secondaires)))
+=== Axes linéaires secondaires(((axes linéaires secondaires)))
 
 Les axes U, V et W produisent des mouvements linéaires dans trois
 directions, mutuellement orthogonales. Habituellement, X et U sont
 parallèles, Y et V sont parallèles et Z et W sont parallèles.
 
-==== Axes rotatifs(((Axes rotatifs)))
+=== Axes rotatifs(((Axes rotatifs)))
 
 Les axes A, B et C produisent des mouvements angulaires (rotations).
 Habituellement, l'axe de rotation de A est parallèle à X, l'axe de

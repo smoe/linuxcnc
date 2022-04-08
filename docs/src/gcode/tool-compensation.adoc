@@ -72,7 +72,7 @@ tool table.  If you use a text editor make sure you reload the tool table in
 the GUI.
 
 [[sub:tool-table-format]]
-=== Tool Table Format(((Tool Table Format)))
+== Tool Table Format(((Tool Table Format)))
 
 .Tool Table Format
 
@@ -190,7 +190,7 @@ type of description is OK. This column is for the benefit of human
 readers only. The comment must be preceded by a semicolon.
 
 [[sub:tool-io]]
-=== Tool IO(((Tool IO)))
+== Tool IO(((Tool IO)))
 
 The userspace program specified by *[EMCIO]EMCIO = io* is conventionally
 used for tool changer management (and other io functions for enabling
@@ -221,7 +221,7 @@ The io program provides hal output pins to facilitate toolchanger management:
 . *iocontrol.0.tool-prep-index*
 . *iocontrol.0.tool-prep-pocket*
 
-==== IO for non-random toolchanger
+=== IO for non-random toolchanger
 
 . Tool number N==0 indicates no tool
 . The pocket number for a tool is fixed when tooldata is loaded
@@ -234,7 +234,7 @@ The io program provides hal output pins to facilitate toolchanger management:
 .. *iocontrol.0.tool-prep-number* = 0
 .. *iocontrol.0.tool-prep-pocket* = 0
 
-==== IO for random toolchanger
+=== IO for random toolchanger
 
 . Tool number N==0 is *not special*
 . Pocket number 0 is *special* as it indicates the *spindle*
@@ -245,13 +245,13 @@ The io program provides hal output pins to facilitate toolchanger management:
 .. *iocontrol.0.tool-prep-pocket* = pocket number for tool N
 
 [[sub:tool-changers]]
-=== Tool Changers
+== Tool Changers
 
 LinuxCNC supports three types of tool changers: 'manual', 'random location'
 and 'non-random or fixed location'. Information about configuring a LinuxCNC tool changer
 is in the <<sec:emcio-section,EMCIO Section>> of the INI chapter.
 
-.Manual Tool Changer
+=== Manual Tool Changer
 
 Manual tool changer (you change the tool by hand) is treated like a
 fixed location tool changer.  Manual toolchanges can be aided by
@@ -264,7 +264,7 @@ with ini statements:
 HALFILE = axis_manualtoolchange.hal
 ----
 
-.Fixed Location Tool Changers
+=== Fixed Location Tool Changers
 
 Fixed location tool changers always return the tools to a
 fixed position in the tool changer. This would also include
@@ -272,7 +272,7 @@ designs like lathe turrets. When LinuxCNC is configured for a fixed
 location tool changer the 'P' number is not used internally (but read, preserved
 and rewritten) by LinuxCNC, so you can use P for any bookkeeping number you want.
 
-.Random Location Tool Changers
+=== Random Location Tool Changers
 
 Random location tool changers swap the tool in the spindle with the
 one in the changer. With this type of tool changer the tool will
@@ -307,15 +307,15 @@ on the next move.
 .Compensation End Point(((Compensation End Point)))
 image::images/comp-path_en.svg["Compensation End Point",align="center"]
 
-=== Overview
+== Overview
 
-==== Tool Table
+=== Tool Table
 
 Cutter compensation uses the data from the tool table to
 determine the offset needed. The data can be set at run time with G10
 L1.
 
-==== Programming Entry Moves
+=== Programming Entry Moves
 
 Any move that is long enough to perform the compensation will work as
 the entry move. The minimum length is the cutter radius. This can be a
@@ -333,28 +333,29 @@ entry move.
 .Entry Move
 image::images/comp02_en.svg["Entry Move",align="center"]
 
-==== Z Motion
+=== Z Motion
 
 Z axis motion may take place while the contour is being followed in
 the XY plane. Portions of the contour may be skipped by retracting the
 Z axis above the part and by extending the Z-axis at the next start point.
 
-==== Rapid Moves
+=== Rapid Moves
 
 Rapid moves may be programmed while compensation is turned on.
 
-==== Good Practices
+=== Good Practices
 
 - Start a program with G40 to make sure compensation is off.
 
-=== Examples
+== Examples
 
-==== Outside Profile
+=== Outside Profile
 
-.Outside Profile[[cap:outside-profile]]
+.Outside Profile
 image::images/outside-comp.png["Outside Profile",align="center"]
 
-==== Inside Profile
+=== Inside Profile
 
-.Inside Profile[[cap:inside-profile]]
+.Inside Profile
 image::images/inside-comp.png["Inside Profile",align="center"]
+
