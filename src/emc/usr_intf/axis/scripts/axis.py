@@ -25,7 +25,10 @@ from OpenGL.GL import *
 from OpenGL.GLU import *
 from OpenGL.GLUT import *
 BASE = os.path.abspath(os.path.join(os.path.dirname(sys.argv[0]), ".."))
-sys.path.insert(0, os.path.join(BASE, "lib", "python"))
+
+# avoiding change system paths - /usr/lib/python does not exist
+if "/usr" != BASE:
+    sys.path.insert(0, os.path.join(BASE, "lib", "python"))
 
 # otherwise, on hardy the user is shown spurious "[application] closed
 # unexpectedly" messages but denied the ability to actually "report [the]
@@ -113,8 +116,8 @@ class AxisPreferences(cp):
         self.set("DEFAULT", option, str(value))
         self.write(open(self.fn, "w"))
 
-if sys.argv[1] != "-ini":
-    raise SystemExit("-ini must be first argument")
+if 1 >= len(sys.argv) or sys.argv[1] != "-ini":
+    raise SystemExit("-ini must be first argument for "+sys.argv[0])
 
 inifile = linuxcnc.ini(sys.argv[2])
 
