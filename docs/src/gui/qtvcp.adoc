@@ -292,28 +292,6 @@ Or use your package manager to install the same:
 sudo apt-get install qttools5-dev-tools qttools5-dev libpython3-dev
 ----
 
-////
-Luego necesita agregar la biblioteca de carga del módulo python.
-QtVCP usa Qt5 con Python 2. Esta combinación normalmente no está disponible
-desde repositorios. Puede compilarlo usted mismo, o hay versiones precompiladas
-disponible para sistemas comunes.
-En 'lib/python/qtvcp/designer' hay carpetas basadas en arquitecturas de sistema
-y luego la versión Qt.
-Debe elegir la carpeta de arquitectura de la CPU y luego elegir la serie; 5.5,
-5.7 o 5.9 de Qt.
-Actualmente el estiramiento de Debian usa 5.7, Mint 12 usa 5.5, Mint 19 usa 5.9.
-En caso de duda, verifique la versión de Qt5 en el sistema.
-
-Debe descomprimir el archivo y luego copiar esa versión adecuada de
-'libpyqt5_py2.so' a esta carpeta
-'/usr/lib/x86_64-linux-gnu/qt5/plugins/designer'.
-
-(x86_64-linux-gnu podría llamarse algo ligeramente diferente en diferentes
-sistemas)
-
-Necesitará privilegios de superusuario para copiar el archivo en la carpeta.
-////
-
 Then you must add a link to the `qtvcp_plugin.py` to the folder that designer will search.
 
 In a RIP version of LinuxCNC `qtvcp_plugin.py` will be in:
