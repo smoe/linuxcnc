@@ -112,7 +112,7 @@ from qtvcp.lib.qt_vismach.qt_vismach import *
 == HAL pins.
 
 Originally the vismach library required creating a component and
-connecting HAL pins to control the simulation. +
+connecting HAL pins to control the simulation.
 `qt_vismach` can read the system HAL system pins directly or
 if you wish, to use separate HAL pins that you must define in a HAL
 component:
@@ -328,7 +328,7 @@ model = Collection([base, saddle, head, carousel])
 * `main(model, tooltip, work, size=10, hud=myhud, rotation_vectors=None,
   lat=0, lon=0)` +
   This is the command that makes it all happen, creates the display etc.
-  if invoked directly from python3. +
+  if invoked directly from Python 3. +
   Usually this file is imported by QtVCP and the window() object is
   instantiated and embedded into another screen. +
 ** _model_ should be a collection that contains all the machine parts. +

@@ -10,7 +10,7 @@
 
 == Introduction
 
-QtDragon and QtDragon_hd are built with the QTVCP framework.
+QtDragon and QtDragon_hd are built with the QtVCP framework.
 It is the creative vision of forum personality Persei8.
 Much of it is based on the excellent work of others in the LinuxCNC community.
 LinuxCNC's version is adapted from Persei8's Github versions.
@@ -162,10 +162,11 @@ MESSAGE_PINNAME = oktest
 
 === Embed Custom VCP Panels
 
-You can embed QTVCP Virtual Control Panels into the QtDragon or QtDragon_hd screen. +
-These panels can be either user built or builtin <<cha:qtvcp-vcp-panels,QtVCP Panels>>. +
-The TAB_NAME entry will used as the title for the new tab. + 
-Tab TAB_LOCATION options include: 'tabWidget_utilities' and 'tabWidget_setup' +
+You can embed QtVCP Virtual Control Panels into the QtDragon or QtDragon_hd screen.
+These panels can be either user built or builtin <<cha:qtvcp-vcp-panels,QtVCP Panels>>.
+
+The TAB_NAME entry will used as the title for the new tab.
+Tab TAB_LOCATION options include: 'tabWidget_utilities' and 'tabWidget_setup'.
 
 This sample adds a builtin panel; a graphical animated machine using the vismach library. 
 [source,{ini}]
@@ -178,10 +179,11 @@ EMBED_TAB_LOCATION = tabWidget_utilities
 
 === Preview Control
 
-Magic comments can be used to control the G-code preview. +
-On very large programs the preview can take a long time to load. You can control 
-what is shown and what is hidden the the graphics screen by adding the appropriate 
-comments from this list:
+Magic comments can be used to control the G-code preview.
+On very large programs the preview can take a long time to load.
+
+You can control what is shown and what is hidden the the graphics
+screen by adding the appropriate comments from this list:
 
 ----
 (PREVIEW,stop)

@@ -200,7 +200,7 @@ Get the current Realtime msg level.
 === set_msg_level
 
 Set the current Realtime msg level.
-used for debugging information.
+Used for debugging information.
 
 === connect
 
