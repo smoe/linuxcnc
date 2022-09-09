@@ -391,7 +391,7 @@ image::images/qtplasmac_plasmac2qt.png[width=500,align="center"]
 [width="100%",cols="4,10,6",options="header"]
 |===
 |Field|Description|Examples
-|INI FILE IN EXISTING PLASMAC CONFIG|This is the .ini file of the PlasmaC config that requires migrating.|<machine_name>.ini
+|INI FILE IN EXISTING PLASMAC CONFIG|This is the INI file of the PlasmaC config that requires migrating.|<machine_name>.ini
 |MONITOR ASPECT RATIO|This is the <<qt_formats, aspect ratio format>> for the GUI.|16:9
 |ESTOP|Selects the required Estop type based on the following criteria: +
     0 - Estop is an indicator only. +

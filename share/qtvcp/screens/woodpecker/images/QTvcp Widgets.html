@@ -192,10 +192,10 @@ asciidoc.install(2);
 <div id="content">
 <div id="preamble">
 <div class="sectionbody">
-<div class="paragraph" id="cha:qtvcp-widgets"><p>Qtscreen uses QTvcp widgets for linuxcnc integration.<br>
+<div class="paragraph" id="cha:qtvcp-widgets"><p>Qtscreen uses QTvcp widgets for LinuxCNC integration.<br>
 Widget is the general name for the UI objects such as buttons and labels in QTpy.<br>
 You are free to use any available widgets in the QTDesigner editor.<br>
-There are also special widgets made for linuxcnc that make integration easier.<br>
+There are also special widgets made for LinuxCNC that make integration easier.<br>
 This are split in two heading on the right side of the editor.<br>
 One is for HAL only widgets.<br>
 The other is for cnc control widgets.<br>
@@ -336,7 +336,7 @@ It also has other options:<br></p></div>
 <div class="paragraph"><p>Indicator_option puts a <em>LED</em> on the top of the button.<br>
 It can be a triangle, circle, top bar or side bar.<br>
 The size and position can be adjusted<br>
-It will indicated the current state of the button, the state of a HAL pin or linuxcnc status.<br>
+It will indicated the current state of the button, the state of a HAL pin or LinuxCNC status.<br>
 Use properties to customized the indicator (not all are applicable to every LED shape).<br></p></div>
 <div class="listingblock">
 <div class="content">
@@ -382,7 +382,7 @@ indicator_status_option
 </ul></div>
 <div class="paragraph"><p>Indicator_HAL_pin_option will add a halpin, using the button name + <em>-led</em>, that controls the<br>
 button indicator state.<br></p></div>
-<div class="paragraph"><p>indicator_status_option will make the LED indicate the state of these selectable linuxcnc status:<br></p></div>
+<div class="paragraph"><p>indicator_status_option will make the LED indicate the state of these selectable LinuxCNC status:<br></p></div>
 <div class="listingblock">
 <div class="content">
 <pre><tt>Is Estopped
@@ -590,7 +590,7 @@ You can also change these properties directly in the property editor.<br></td>
 <em>dro absolute</em><br>
 <em>dro relative</em><br>
 <em>dro dtg</em><br>
-<em>exit screen</em> Closes down linuxcnc<br>
+<em>exit screen</em> Closes down LinuxCNC<br>
 <em>Override limits</em> Temporarily override hard limits<br>
 <em>launch dialogs</em> pops up dialogs if they are included in ui file.<br>
 <em>set DRO to relative</em><br>
@@ -618,7 +618,7 @@ Then in the INI file, under the heading <em>[MDI_COMMAND_LIST]</em> add a line:<
 <div class="paragraph"><p>Indicator_option puts a <em>LED</em> on the top of the button.<br>
 It can be a triangle, circle, top bar or side bar.<br>
 The size and position can be adjusted<br>
-It will indicated the current state of the button, the state of a HAL pin or linuxcnc status.<br>
+It will indicated the current state of the button, the state of a HAL pin or LinuxCNC status.<br>
 Use properties to customized the indicator (not all are applicable to every LED shape).<br></p></div>
 <div class="listingblock">
 <div class="content">
@@ -664,7 +664,7 @@ indicator_status_option
 </ul></div>
 <div class="paragraph"><p>Indicator_HAL_pin_option will add a halpin, using the button name + <em>-led</em>, that controls the<br>
 button indicator state.<br></p></div>
-<div class="paragraph"><p>indicator_status_option will make the LED indicate the state of these selectable linuxcnc status:<br></p></div>
+<div class="paragraph"><p>indicator_status_option will make the LED indicate the state of these selectable LinuxCNC status:<br></p></div>
 <div class="listingblock">
 <div class="content">
 <pre><tt>Is Estopped
@@ -770,8 +770,8 @@ angular_template</p></div>
 <div class="sect2">
 <h3 id="_gcodeeditor_widget">2.7. GcodeEditor Widget</h3>
 <div class="paragraph"><p>This displays Gcode in text form. It will highlight the currently running line.<br>
-This can also display MDI history when linuxcnc is in MDI mode.<br>
-This can also display log entries when linuxcnc is in MANUAL mode.<br>
+This can also display MDI history when LinuxCNC is in MDI mode.<br>
+This can also display log entries when LinuxCNC is in MANUAL mode.<br>
 This will also display preference file entries if you enter <em>PREFERENCE</em> in capitals<br>
 into the MDILine widget.<br>
 It has a signal percentDone(int) that that can be connected to a slot (such as a<br>
@@ -865,7 +865,7 @@ User System <br></p></div>
 </div>
 <div class="sect2">
 <h3 id="_statusimageswicher_widget">2.11. StatusImageSwicher Widget</h3>
-<div class="paragraph"><p>Status image switcher will switch between images based on linuxcnc states.<br>
+<div class="paragraph"><p>Status image switcher will switch between images based on LinuxCNC states.<br>
 <em>watch spindle</em> would toggle between 3 images ( stop, fwd, revs)<br>
 <em>watch axis homed</em> would toggle between 2 images ( axis not homed, axis homed)<br>
 <em>watch all homed</em> would toggle between 2 images ( not all homed, all homed)<br>
@@ -895,7 +895,7 @@ This is for test display only and will be ignored outside of Designer.<br></p></
 </div>
 <div class="sect2">
 <h3 id="_statusstacked">2.12. StatusStacked</h3>
-<div class="paragraph"><p>This widget displays one of three panels based on linuxcnc's mode.<br>
+<div class="paragraph"><p>This widget displays one of three panels based on LinuxCNC's mode.<br>
 This allows you to automatically display different widgets on Manual, MDI and Auto modes.<br></p></div>
 <div class="paragraph"><p>todo<br>
 It is based on pyQT's QStacked widget.</p></div>
@@ -930,7 +930,7 @@ catching the close event to pop up a <em>are you sure</em> prompt
 <li>
 <p>
 <em>catch_error_option</em>:
-monitoring the linuxcnc error channel. This also sends the message<br>
+monitoring the LinuxCNC error channel. This also sends the message<br>
 through  STATUS to anything that registers
 </p>
 </li>
@@ -1038,7 +1038,7 @@ sets up a dialog to display logs from the machine and qtvcp
 </div>
 <div class="sect2">
 <h3 id="_statusslider_widget">2.15. StatusSlider Widget</h3>
-<div class="paragraph"><p>This widget allow the user to adjust linuxcnc setting via a slide.<br></p></div>
+<div class="paragraph"><p>This widget allow the user to adjust LinuxCNC setting via a slide.<br></p></div>
 <div class="ulist"><div class="title">The widget can adjust:</div><ul>
 <li>
 <p>
@@ -1070,7 +1070,7 @@ Rapid override rate
 </div>
 <div class="sect2">
 <h3 id="_state_led_widget">2.16. State LED Widget</h3>
-<div class="paragraph"><p>This widget gives status on the selected linuxcnc state.<br></p></div>
+<div class="paragraph"><p>This widget gives status on the selected LinuxCNC state.<br></p></div>
 <div class="paragraph"><p>The state options are:<br></p></div>
 <div class="ulist"><ul>
 <li>
@@ -1173,7 +1173,7 @@ halpin_option - Adds an output pin that reflects selected state
 </li>
 <li>
 <p>
-invert_state_status - Invert the LED state compared to the linuxcnc state.
+invert_state_status - Invert the LED state compared to the LinuxCNC state.
 </p>
 </li>
 <li>
@@ -1513,13 +1513,13 @@ gcode programs.<br></p></div>
 <div class="sect2">
 <h3 id="_originoffsetview_widget">2.23. OriginOffsetView Widget</h3>
 <div class="paragraph"><p>This widget allows one to modify User System origin offsets directly<br>
-It will update the table for changes made internally by linuxcnc.<br>
+It will update the table for changes made internally by LinuxCNC.<br>
 It is based on pyQT's</p></div>
 </div>
 <div class="sect2">
 <h3 id="_state_enable_gridlayout_widgets">2.24. State Enable Gridlayout Widgets</h3>
 <div class="paragraph"><p>This is a container that other widgets can be placed in.<br>
-It will <em>grey-out</em> (disable) the widgets inside it depending on linuxcnc's current state.<br>
+It will <em>grey-out</em> (disable) the widgets inside it depending on LinuxCNC's current state.<br>
 It can selectably react to:<br></p></div>
 <div class="ulist"><ul>
 <li>
@@ -1555,7 +1555,7 @@ all-homed
 </div>
 <div class="sect2">
 <h3 id="_statusimageswitcher">2.27. StatusImageSwitcher</h3>
-<div class="paragraph"><p>This widget will display images based on linuxcnc status.<br>
+<div class="paragraph"><p>This widget will display images based on LinuxCNC status.<br>
 You can watch:<br></p></div>
 <div class="ulist"><ul>
 <li>
@@ -1917,7 +1917,7 @@ It is based on pyQT's QDialog</p></div>
 <div class="title">Figure 17. Nurbs Editor</div>
 </div>
 <div class="paragraph"><p>The Nurbs editor allows you to manipulate a nurbs based geometry on screen and then<br>
-convert this to gcode. you can edit the gcode on screen and then send it to linuxcnc.</p></div>
+convert this to gcode. you can edit the gcode on screen and then send it to LinuxCNC.</p></div>
 </div>
 </div>
 </div>

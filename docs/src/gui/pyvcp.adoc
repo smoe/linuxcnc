@@ -411,9 +411,9 @@ will be on_color when the halpin is true, and off_color otherwise.
 * '<halpin>__name__</halpin>' - _name_ of the pin, default is 'led.__n__', where _n_ is an integer that is incremented for each LED.
 * '<size>__n__</size>' - _n_ is the size of the led in pixels, default is 20.
 * '<on_color>__color__</on_color>' - sets the color of the LED to _color_ when the pin is true.
-  default is 'green'. See section on <<pyvcp:colors,colors>> for more info.
-* '<off_color>__color__</off_color>' - sets the color of the LED to _color_ when the pin is
-  false. default is 'red'
+  Default is 'green'. See section on <<pyvcp:colors,colors>> for more info.
+* '<off_color>__color__</off_color>' - sets the color of the LED to _color_ when the pin is false.
+  Default is 'red'.
 * '<height>__n__</height>' - sets the height of the LED in pixels.
 * '<width>__n__</width>' - sets the width of the LED in pixels.
 * '<disable_pin>false</disable_pin>' - when true adds a disable pin to the led.

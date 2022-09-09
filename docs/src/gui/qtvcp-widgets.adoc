@@ -1031,11 +1031,11 @@ These states are selectable:
 
 * 'actual_spindle_speed_status' +
   Used to display the actual spindle speed as reported from the HAL pin
-  spindle.0.speed-i
-  It's converted to RPM. Typically would use a textTemplate of %d
+  spindle.0.speed-i.
+  It's converted to RPM. Typically would use a textTemplate of %d.
 * 'actual surface speed_status' +
-  Used to display the actual cutting surface speed on a lathe based on X
-  axis and spindle speed.
+  Used to display the actual cutting surface speed on a lathe based on
+  X axis and spindle speed.
   It's converted to distance per minute.
   Typically would use a textTemplate of %4.1f (feet per minute)
   and altTextTemplate of %d (meters per minute)
@@ -1085,7 +1085,7 @@ These states are selectable:
 * 'timestamp_status' +
   Shows the time based on the system settings. +
   An example of a useful textTemplate setting: '%I:%M:%S %p' see the
-  Python time module for more info
+  Python time module for more info.
 * 'tool comment_status' +
   returns the comment text from the current loaded tool
 * 'tool diameter_status' +
