@@ -44,7 +44,7 @@ These pins and parameters are created by the realtime \fBmotmod\fR module. This 
 The optional \fBnum_extrajoints\fR parameter specifies a quantity of joints
 that participate in homing but are not used by kinematics transformations.
 After homing, control of an 'extra' joint is transferred to a posthome command
-HAL pin (joint.N.posthome-cmd) and the motor feedback value is ignored.  'Extra'
+HAL pin (joint.\fIN\fR.posthome-cmd) and the motor feedback value is ignored.  'Extra'
 joints must be managed by independent motion planners/controllers (typically
 using limit3 HAL components).  Extra joints maybe unhomed only when motion is
 disabled.
@@ -301,16 +301,16 @@ Motion mode is teleop (axis coordinate jogging available).
 .br
 .ns
 .TP
-\fBmotion.tooloffset.L\fR OUT FLOAT
+\fBmotion.tooloffset.\fIL\fB\fR OUT FLOAT
 Current tool offset for each axis where
-(\fBL\fR is the axis letter, one of: \fBx y z a b c u v w\fR)
+(\fB\fIL\fR is the axis letter, one of: \fBx y z a b c u v w\fR)
 
 .TP
 \fBmotion.tp\-reverse\fR OUT BIT
 Trajectory planning is reversed (reverse run)
 
 .SH  AXIS PINS
-(\fBL\fR is the axis letter, one of: \fBx y z a b c u v w\fR)
+(\fB\fIL\fR is the axis letter, one of: \fBx y z a b c u v w\fR)
 
 .TP
 \fBaxis.\fIL\fB.eoffset\fR OUT FLOAT
@@ -392,7 +392,7 @@ The velocity limit for the teleop planner
 \fBaxis.\fIL\fB.wheel\-jog\-active\fR OUT BIT
 
 .SH JOINT PINS
-\fBN\fR is the joint number (\fB0\fR ... \fBnum_joints\-1\fR))
+\fB\fIN\fB\fR is the joint number (\fB0\fR ... \fBnum_joints\-1\fR))
 .TP
 (\fBNote:\fR pins marked \fB(DEBUG)\fR serve as debugging aids
 and are subject to change or removal at any time.)
@@ -486,7 +486,7 @@ Should be attached to the index\-enable pin of the joint's encoder to enable hom
 .br
 .ns
 .TP
-\fBjoint.N.is\-unlocked\fR IN BIT
+\fBjoint.\fIN\fB.is\-unlocked\fR IN BIT
 Indicates joint is unlocked (see JOINT UNLOCK PINS).
 
 .TP
@@ -564,13 +564,13 @@ The joint's commanded velocity
 
 .SH JOINT posthome pins
 Each joint designated as an 'extra' joint is provided with a HAL pin
-\fBjoint.N.posthome-cmd\fR.  The pin value is ignored prior to homing.
+\fBjoint.\fIN\fB.posthome-cmd\fR.  The pin value is ignored prior to homing.
 After homing, the pin value is augmented by the motor offset value
-and routed to the \fBjoint.N.motor-pos-cmd\fR.
+and routed to the \fBjoint.\fIN\fB.motor-pos-cmd\fR.
 
 .SH JOINT unlock pins
 The joint pins used for unlocking a joint
-(\fBjoint.N.unlock\fR, \fBjoint.N.is-unlocked\fR),
+(\fBjoint.\fIN\fB.unlock\fR, \fBjoint.\fIN\fB.is-unlocked\fR),
 are created according to the \fBunlock_joints_mask=\fRjointmask parameter for motmod.  These pins may be required for locking indexers (typically a rotary joint)
 
 The jointmask bits are: (lsb)0:joint0, 1:joint1, 2:joint2, ...
@@ -581,95 +581,95 @@ The jointmask bits are: (lsb)0:joint0, 1:joint1, 2:joint2, ...
 Example: loadrt motmod ... \fBunlock_joints_mask=\fR0x38 creates unlock pins for joints 3,4,5
 
 .SH  SPINDLE PINS
-(\fBM\fR is the spindle number (\fB0\fR ... \fBnum_spindles\-1\fR))
+(\fB\fIM\fR is the spindle number (\fB0\fR ... \fBnum_spindles\-1\fR))
 
 .TP
-\fBspindle.M\fB.amp\-fault\-in\fR IN BIT
+\fBspindle.\fIM\fB.amp\-fault\-in\fR IN BIT
 Should be driven TRUE if an external fault is detected with the amplifier for this spindle
 
 .TP
-\fBspindle.M.at\-speed\fR IN BIT
+\fBspindle.\fIM\fB.at\-speed\fR IN BIT
 Motion will pause until this pin is TRUE, under the following conditions: before the
 first feed move after each spindle start or speed change; before the start of every
 chain of spindle\-synchronized moves; and if in CSS mode, at every rapid\->feed transition.
 
 .TP
-\fBspindle.M.brake\fR OUT BIT
+\fBspindle.\fM\fB.brake\fR OUT BIT
 TRUE when the spindle brake should be applied
 
 .TP
-\fBspindle.M.forward\fR OUT BIT
+\fBspindle.\fM\fB.forward\fR OUT BIT
 TRUE when the spindle should rotate forward
 
 .TP
-\fBspindle.M.index\-enable\fR I/O BIT
+\fBspindle.\fIM\fB.index\-enable\fR I/O BIT
 For correct operation of spindle synchronized moves, this signal must be hooked to the index\-enable pin of the spindle encoder.
 
 .TP
-\fBspindle.M.inhibit\fR IN BIT
+\fBspindle.\fIM\fB.inhibit\fR IN BIT
 When TRUE, the spindle speed is set and held to 0.
 
 .TP
-\fBspindle.M.is\-oriented\fR IN BIT
+\fBspindle.\fIM\fB.is\-oriented\fR IN BIT
 Acknowledge pin for spindle\-orient. Completes orient cycle. If spindle\-orient was true when spindle\-is\-oriented
 was asserted, the spindle\-orient pin is cleared and the spindle\-locked pin is asserted. Also, the spindle\-brake pin is asserted.
 
 .TP
-\fBspindle.M.locked\fR OUT BIT
+\fBspindle.\fIM\fB.locked\fR OUT BIT
 Spindle orient complete pin. Cleared by any of M3,M4,M5.
 
 .TP
-\fBspindle.M.on\fR OUT BIT
+\fBspindle.\fIM\fB.on\fR OUT BIT
 TRUE when spindle should rotate
 
 .TP
-\fBspindle.M.orient\fR OUT BIT
+\fBspindle.\fIM\fB.orient\fR OUT BIT
 Indicates start of spindle orient cycle. Set by M19. Cleared by any of M3,M4,M5.
 
 If spindle\-orient\-fault is not zero during spindle\-orient true, the M19 command fails with an error message.
 
 .TP
-\fBspindle.M.orient\-angle\fR OUT FLOAT
+\fBspindle.\fIM\fB.orient\-angle\fR OUT FLOAT
 Desired spindle orientation for M19. Value of the M19 R word parameter plus the value of the [RS274NGC]ORIENT_OFFSET INI parameter.
 
 .TP
-\fBspindle.M.orient\-fault\fR IN S32
+\fBspindle.\fIM\fB.orient\-fault\fR IN S32
 Fault code input for orient cycle. Any value other than zero will cause the orient cycle to abort.
 
 .TP
-\fBspindle.M.orient\-mode\fR OUT BIT
+\fBspindle.\fIM\fB.orient\-mode\fR OUT BIT
 Desired spindle rotation mode. Reflects M19 P parameter word.
 
 .TP
-\fBspindle.M.reverse\fR OUT BIT
+\fBspindle.\fIM\fB.reverse\fR OUT BIT
 TRUE when the spindle should rotate backward
 
 .TP
-\fBspindle.M.revs\fR IN FLOAT
+\fBspindle.\fIM\fB.revs\fR IN FLOAT
 For correct operation of spindle synchronized moves, this signal must be hooked to the position pin of the spindle encoder.
 
 .TP
-\fBspindle.M.speed\-cmd\-rps\fR FLOAT OUT
+\fBspindle.\fIM\fB.speed\-cmd\-rps\fR FLOAT OUT
 Commanded spindle speed in units of revolutions per second
 
 .TP
-\fBspindle.M.speed\-in\fR IN FLOAT
+\fBspindle.\fIM\fB.speed\-in\fR IN FLOAT
 Actual spindle speed feedback in revolutions per second; used for G96 (constant surface speed) and G95 (feed per revolution) modes.
 
 .TP
-\fBspindle.M.speed\-out\fR OUT FLOAT
+\fBspindle.\fIM\fB.speed\-out\fR OUT FLOAT
 Desired spindle speed in rotations per minute
 
 .TP
-\fBspindle.M.speed\-out\-abs\fR OUT FLOAT
+\fBspindle.\fIM\fB.speed\-out\-abs\fR OUT FLOAT
 Desired spindle speed in rotations per minute, always positive regardless of spindle direction.
 
 .TP
-\fBspindle.M.speed\-out\-rps\fR OUT FLOAT
+\fBspindle.\fIM\fB.speed\-out\-rps\fR OUT FLOAT
 Desired spindle speed in rotations per second
 
 .TP
-\fBspindle.M.speed\-out\-rps\-abs\fR OUT FLOAT
+\fBspindle.\fIM\fB.speed\-out\-rps\-abs\fR OUT FLOAT
 Desired spindle speed in rotations per second, always positive regardless of spindle direction.
 
 .SH MOTION PARAMETERS
