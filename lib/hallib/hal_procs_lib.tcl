@@ -1,5 +1,5 @@
 # hal_procs_lib.tcl
-package require Hal ;# provides hal commands
+package require Hal ;# provides HAL commands
 
 proc pin_exists {name} {
   # return 1 if pin exists
@@ -164,7 +164,7 @@ proc get_netlist {inpins_name outpin_name iopins_name signame} {
 } ;# get_netlist
 
 proc find_file_in_hallib_path {filename {inifile .}} {
-  # find halfile using path HALLIB_PATH=.:HALLIB_DIR (see scripts/linuxcnc.in)
+  # find HAL file using path HALLIB_PATH=.:HALLIB_DIR (see scripts/linuxcnc.in)
   set libtag LIB: ;# special prefix for explicit use of hallib file
   set halname [lindex $filename end]
   if {[string first "$libtag" $halname] == 0} {
@@ -175,7 +175,7 @@ proc find_file_in_hallib_path {filename {inifile .}} {
     if {[file pathtype $filename] == "absolute"} {
       set usehalname $filename
     } else {
-      # relative file specifier (relative to ini file directory)
+      # relative file specifier (relative to INI file directory)
       set usehalname [file join [file dirname $inifile] $halname]
       if ![file readable $usehalname] {
         # use ::env(HALLIB_DIR)

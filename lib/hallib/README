@@ -1,20 +1,20 @@
-This directory contains halfiles (*.hal and *.tcl) that are available
-using the LinuxCNC halfile search path or by an explicit directive.
+This directory contains HAL files (*.hal and *.tcl) that are available
+using the LinuxCNC HAL files search path or by an explicit directive.
 
 The HALLIB_PATH is '.:HALLIB_DIR'
    The '.' specifies the directory containing the ini file.
    HALIB_DIR specifies this directory.
 
-The explicit directive uses a prefix (LIB:) to identify halfiles:
+The explicit directive uses a prefix (LIB:) to identify HAL files:
   [HAL]
   HALFILE = LIB:filename.[hal|tcl]
 
-The LinuxCNC startup script (linuxcnc) finds each halfile using the
+The LinuxCNC startup script (linuxcnc) finds each HAL file using the
 HALLIB_PATH unless the explicit directive is used.
 
 Also included in this directory are files associated with included
-system halfiles.  For example, the button layout files
-(xhc-hb04-layout*.cfg) that are used with the halfile xhc-hb04.tcl.
+system HAL files.  For example, the button layout files
+(xhc-hb04-layout*.cfg) that are used with the HAL file xhc-hb04.tcl.
 ------------------------------------------------------------------------
 
 

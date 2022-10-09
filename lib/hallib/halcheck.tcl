@@ -1,9 +1,9 @@
-# halcheck.tcl: a halfile to report:
+# halcheck.tcl: a HAL file to report:
 #  1) functions with no addf   (usually an error)
 #  2) signals   with no inputs (not an error)
 #  3) signals   with no output (not an error)
 #
-# Usage in ini file (must be the last HALFILE):
+# Usage in INI file (must be the last HALFILE):
 # [HAL]
 # ...
 # HALFILE = LIB:halcheck.tcl
@@ -18,7 +18,7 @@ set ::bigfont {Helvetica 12 bold} ;# {Family size weight}
 #----------------------------------------------------------------------
 set ::prog halcheck
 
-# test for ::argv items on halfile line (requires 2.7)
+# test for ::argv items on HAL file line (requires 2.7)
 if [info exists ::argv] {
   if {[lsearch $::argv nopopup] >= 0} {
     set ::popup 0 ;# disable popup

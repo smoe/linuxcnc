@@ -1,5 +1,5 @@
 # check_config.tcl
-# Usage: tclsh path_to_this_file inifilename
+# Usage: tclsh path_to_this_file INI_file
 # if a check fails, print message and exit 1
 #
 # checks:

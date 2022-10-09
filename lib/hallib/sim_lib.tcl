@@ -4,7 +4,7 @@
 # Notes (Joints-Axes):
 #   1) if  ::KINS(KINEMATICS) exists:
 #        loadrt the kins using any included parameters
-#        example: for inifile item:
+#        example: for INI file item:
 #           [KINS]KINEMATICS = trivkins coordinates=XZ kinstype=BOTH
 #        use:
 #           loadrt trivkins coordinates=xz kinstype=BOTH
@@ -44,7 +44,7 @@ proc check_ini_items {} {
                           TRAJ COORDINATES
                          } {
     if ![info exists ::${section}($item)] {
-      return -code error "Missing inifile item: \[$section\]$item"
+      return -code error "Missing INI file item: \[$section\]$item"
     }
   }
 
@@ -421,16 +421,16 @@ proc save_hal_cmds {savefilename {options ""} } {
   set fd [open $savefilename w] ;# overwrite any existing file
   puts $fd "# $date
 #
-# This file:    $savefilename
-# Created by:   $script
-# With options: $::argv
-# From inifile: $::env(INI_FILE_NAME)
-# Halfiles:     $::HAL(HALFILE)
+# This file:     $savefilename
+# Created by:    $script
+# With options:  $::argv
+# From INI file: $::env(INI_FILE_NAME)
+# HAL files:     $::HAL(HALFILE)
 #
-# This file contains the hal commands produced by [file tail $script]
-# (and any hal commands executed prior to its execution).
+# This file contains the HAL commands produced by [file tail $script]
+# (and any HAL commands executed prior to its execution).
 # ------------------------------------------------------------------
-# To use $savefilename in the original inifile (or a copy of it),
+# To use $savefilename in the original INI file (or a copy of it),
 # edit to change:
 #     \[HAL\]
 #     HALFILE = LIB:basic_sim.tcl parameters
@@ -439,9 +439,9 @@ proc save_hal_cmds {savefilename {options ""} } {
 #     HALFILE = $savefilename
 #
 # Notes:
-#  1) Inifile Variables substitutions specified in the inifile
+#  1) Inifile Variables substitutions specified in the INI file
 #     and interpreted by halcmd are automatically substituted
-#     in the created halfile ($savefilename).
+#     in the created HAL file ($savefilename).
 #  2) Input pins connected to a signal with no writer are
 #     not included in the setp listings herein so must be added
 #     manually
