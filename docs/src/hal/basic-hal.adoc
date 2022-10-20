@@ -44,20 +44,21 @@ loadrt mux4 count=1
 [[sub:hal-addf]]
 === addf(((HAL addf,addf)))
 
-The `addf` command adds a function to a real-time thread. If
-the StepConf wizard was used to create the configuration, two
-threads have been created (``base-thread`` and ``servo-thread``).
+The `addf` command adds a function to a real-time thread.
+If the StepConf wizard was used to create the configuration,
+two threads have been created (``base-thread`` and ``servo-thread``).
 
-`addf` adds function 'functname' to thread 'threadname'. Default is to add the function
-in the order they are in the file. If 'position' is specified, adds the function
-to that spot in the thread. Negative 'position' means position with respect to
-the end of the thread. For example '1' is start of thread, '-1' is the end of
-the thread, '-3' is third from the end.
+`addf` adds function 'functname' to thread 'threadname'.
+Default is to add the function in the order they are in the file.
+If 'position' is specified, adds the function to that spot in the thread.
+Negative 'position' means position with respect to the end of the thread.
+For example '1' is start of thread, '-1' is the end of the thread, '-3' is third from the end.
 
-For some functions it is important to load them in a certain order, like the parport
-read and write functions. The function name is usually the component name
-plus a number. In the following example the component 'or2' is loaded and 'show
-function' shows the name of the or2 function
+For some functions it is important to load them in a certain order,
+like the parport read and write functions.
+The function name is usually the component name plus a number.
+In the following example the component 'or2' is loaded and 'show function'
+shows the name of the or2 function
 
 ----
 $ halrun
@@ -71,9 +72,10 @@ Owner   CodeAddr  Arg       FP   Users  Name
 You have to add a function from a HAL real time component to a thread
 to get the function to update at the rate of the thread.
 
-Usually there are two threads as shown in this example. Some components use
-floating point math and must be added to a thread that supports floating point
-math. The 'FP' indicates if floating point math is supported in that thread.
+Usually there are two threads as shown in this example.
+Some components use floating point math and must be added to a thread
+that supports floating point math.
+The 'FP' indicates if floating point math is supported in that thread.
 
 ----
 $ halrun
@@ -173,10 +175,10 @@ additional pins, as long as the rules above are obeyed.
 image::images/signal-direction.png["Signal Direction",align="center"]
 
 This example shows the signal xStep with the source being
-stepgen.0.out and with two readers, parport.0.pin-02-out and
-parport.0.pin-08-out. Basically the value of stepgen.0.out is sent to
-the signal xStep and that value is then sent to parport.0.pin-02-out
-and parport.0.pin-08-out.
+`stepgen.0.out` and with two readers, `parport.0.pin-02-out` and
+`parport.0.pin-08-out`. Basically the value of `stepgen.0.out` is sent to
+the signal xStep and that value is then sent to `parport.0.pin-02-out`
+and `parport.0.pin-08-out`.
 
 [source,{hal}]
 ----
@@ -184,10 +186,9 @@ and parport.0.pin-08-out.
 net xStep stepgen.0.out => parport.0.pin-02-out parport.0.pin-08-out
 ----
 
-Since the signal xStep contains the value of stepgen.0.out (the
+Since the signal xStep contains the value of `stepgen.0.out` (the
 source) you can use the same signal again to send the value to another
-reader. To do this just use the signal with the readers on another
-line.
+reader. To do this just use the signal with the readers on another line.
 
 [source,{hal}]
 ----
@@ -196,18 +197,18 @@ net xStep => parport.0.pin-06-out
 ----
 
 .I/O pins
-An I/O pin like encoder.N.index-enable can be read or set as allowed by the component.
+An I/O pin like `encoder.N.index-enable` can be read or set as allowed by the component.
 
 [[sub:hal-setp]]
 === setp(((HAL setp,setp)))
 
-The command 'setp' sets the value of a pin or parameter. The valid
-values will depend on the type of the pin or parameter. It is an error
-if the data types do not match.
+The command 'setp' sets the value of a pin or parameter.
+The valid values will depend on the type of the pin or parameter.
+It is an error if the data types do not match.
 
 Some components have parameters that need to be set before use.
-Parameters can be set before use or while running as needed. You cannot
-use setp on a pin that is connected to a signal.
+Parameters can be set before use or while running as needed.
+You cannot use setp on a pin that is connected to a signal.
 
 .setp Syntax and Example
 [source,{hal}]
@@ -238,9 +239,9 @@ It is an error if:
 [[sub:hal-inlinkp]]
 === unlinkp(((HAL unlinkp,unlinkp)))
 
-The command 'unlinkp' unlinks a pin from the connected signal. If no
-signal was connected to the pin prior running the command, nothing
-happens. The 'unlinkp' command is useful for trouble shooting.
+The command 'unlinkp' unlinks a pin from the connected signal.
+If no signal was connected to the pin prior running the command, nothing happens.
+The 'unlinkp' command is useful for trouble shooting.
 
 .unlinkp syntax and Example
 [source,{hal}]
