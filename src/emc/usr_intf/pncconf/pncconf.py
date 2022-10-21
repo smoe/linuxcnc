@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- encoding: utf-8 -*-
-#    This is pncconf, a graphical configuration editor for LinuxCNC
+#    This is PnCconf, a graphical configuration editor for LinuxCNC
 #    Chris Morley copyright 2009
 #    This is based from stepconf, a graphical configuration editor for linuxcnc
 #    Copyright 2007 Jeff Epler <jepler@unpythonic.net>
@@ -383,7 +383,7 @@ class App:
 
     def get_board_meta(self, name, num):
         name = name.lower()
-        # 7i80hd and 7i80db don't use the HD or DB in the Hal name
+        # 7I80hd and 7I80db don't use the HD or DB in the Hal name
         # store the original name here for getting the board meta
         if name != '7i80':
             self.origname[num] = name
@@ -578,7 +578,7 @@ class App:
         else:
             #TODO what if there are no external firmware is this enough?
             self.warning_dialog(_("You have no hostmot2 firmware downloaded in folder:\n%s\n\
-PNCconf will use internal firmware data"%self._p.FIRMDIR),True)
+PnCconf will use internal firmware data"%self._p.FIRMDIR),True)
         for firmware in self._p.MESA_INTERNAL_FIRMWAREDATA:
             if 'internal' in firmware[0].lower():
                 if firmware[0] in self._p.MESA_BOARDNAMES:
@@ -899,7 +899,7 @@ PNCconf will use internal firmware data"%self._p.FIRMDIR),True)
     def load_config(self):
         filter = Gtk.FileFilter()
         filter.add_pattern("*.pncconf")
-        filter.set_name(_("LinuxCNC 'PNCconf' configuration files"))
+        filter.set_name(_("LinuxCNC 'PnCconf' configuration files"))
         dialog = Gtk.FileChooserDialog(
             title=_("Modify Existing Configuration"),
             parent=self.widgets.window1,
@@ -932,7 +932,7 @@ PNCconf will use internal firmware data"%self._p.FIRMDIR),True)
                             raise UserWarning
             except :
                 print(i,j,boardnum)
-                self.warning_dialog(_("It seems data in this file is from too old of a version of PNCConf to continue."),True)
+                self.warning_dialog(_("It seems data in this file is from too old of a version of PnCconf to continue."),True)
                 return True
         else:
             dialog.destroy()
@@ -1112,7 +1112,7 @@ PNCconf will use internal firmware data"%self._p.FIRMDIR),True)
                 elif "(OUT" in tempfunc:
                     tempfunc = tempfunc.rstrip(" (OUT)")
                 convertedname = "Not Converted"
-                # this converts the XML file componennt names to pncconf's names
+                # this converts the XML file componennt names to PnCconf's names
 
                 try:
                     secmodname = pins[i].find("secondarymodulename")
@@ -1201,7 +1201,7 @@ PNCconf will use internal firmware data"%self._p.FIRMDIR),True)
                     exc_type, exc_value, exc_traceback = sys.exc_info()
                     formatted_lines = traceback.format_exc().splitlines()
                     print()
-                    print("****pncconf verbose XML parse debugging:",formatted_lines[0])
+                    print("****PnCconf verbose XML parse debugging:",formatted_lines[0])
                     traceback.print_tb(exc_traceback, limit=1, file=sys.stdout)
                     print(formatted_lines[-1])
 
@@ -1209,7 +1209,7 @@ PNCconf will use internal firmware data"%self._p.FIRMDIR),True)
                     # must be GPIO if there is no secondary module name
                     # or if pinconvert fails eg. StepTable instance defaults to GPIO
                     temppinunit.append(_PD.GPIOI)
-                    temppinunit.append(0) # 0 signals to pncconf that GPIO can changed to be input or output
+                    temppinunit.append(0) # 0 signals to PnCconf that GPIO can changed to be input or output
                 elif iocode and iocode >= 100:
                     if modulename in ('ssr','SSR'):
                         temppinunit.append(_PD.SSR0)
@@ -1217,12 +1217,12 @@ PNCconf will use internal firmware data"%self._p.FIRMDIR),True)
                         temppinunit.append(_PD.OUTM0)
                     if modulename in ('inm','INM'):
                         temppinunit.append(_PD.INM0)
-                    temppinunit.append(iocode) # >= 100 signals to pncconf that SSR, OUTM, and INM can not be changed
+                    temppinunit.append(iocode) # >= 100 signals to PnCconf that SSR, OUTM, and INM can not be changed
                 else:
                     instance_num = int(pins[i].find("secondaryinstance").text)
                     # this is a workaround for the 7i77_7i776 firmware. it uses a mux encoder for the 7i76 but only uses half of it
                     # this is because of a limitation of hostmot2 - it can't have mux encoders and regular encoders
-                    # so in pncconf we look for this and change it to a regular encoder.
+                    # so in PnCconf we look for this and change it to a regular encoder.
                     if boardname == "5i25" and firmname == "7i77_7i76":
                         if modulename in ("MuxedQCount","MUXEDQCOUNT") and  instance_num == 3:
                             instance_num = 6
@@ -1294,9 +1294,7 @@ PNCconf will use internal firmware data"%self._p.FIRMDIR),True)
                         True)
             if not info:
                 text = [_('PIN file is empty:\n')]
-                text.append(_('To use PIN file discovery mode, the contents of the'))
-                text.append(_('cards PIN file needs to be pasted into the Input tab'))
-                text.append(_('of the Help window before clicking Board Discovery'))
+                text.append(_('To use PIN file discovery mode, the contents of the cards PIN file needs to be pasted into the Input tab of the Help window before clicking Board Discovery'))
                 self.warning_dialog("\n".join(text),True)
                 return None
             info = info + "\n {}".format(inter)
@@ -1342,7 +1340,7 @@ PNCconf will use internal firmware data"%self._p.FIRMDIR),True)
         textbuffer = self.widgets.textoutput.get_buffer()
         print('DEVICE NAME SPECIFIED',devicename, interface, address)
 
-        # 7i43 needs it's firmware loaded before it can be 'discovered'
+        # 7I43 needs it's firmware loaded before it can be 'discovered'
         if '7i43' in devicename.lower():
             halrun = os.popen("halrun -Is > /dev/null", "w")
             halrun.write("echo\n")
@@ -2028,7 +2026,7 @@ Clicking 'existing custom program' will avoid this warning. "),False):
         # record the signal ID numbers so we can block the signals later in the mesa routines
         # have to do it here manually (instead of autoconnect) because glade doesn't handle added
         # user info (board/connector/pin number designations) and doesn't record the signal ID numbers
-        # none of this is done if mesa is not checked off in pncconf
+        # none of this is done if mesa is not checked off in PnCconf
         # TODO we should check to see if signals are already present as each time user goes though this page
         # the signals get added again causing multiple calls to the functions.
     def init_mesa_signals(self,boardnum):
@@ -2273,7 +2271,7 @@ Clicking 'existing custom program' will avoid this warning. "),False):
                     self.widgets["mesa%d_parporttext"% boardnum].hide()
                 break
 
-    # This method converts data from the GUI page to signal names for pncconf's mesa data variables
+    # This method converts data from the GUI page to signal names for PnCconf's mesa data variables
     # It starts by checking pin type to set up the proper lists to search
     # then depending on the pin type widget data is converted to signal names.
     # if the signal name is not in the list add it to Human_names, signal_names
@@ -2766,14 +2764,14 @@ Clicking 'existing custom program' will avoid this warning. "),False):
                                 self.widgets[p].set_model(self.d._encodersignaltree)
                             # we only add every 4th human name so the user can only select
                             # the encoder's 'A' signal name. If its the other signals
-                            # we can add them all because pncconf controls what the user sees
+                            # we can add them all because PnCconf controls what the user sees
                             if firmptype == _PD.ENCA:
                                 self.widgets[complabel].set_text("%d:"%compnum)
                                 self.widgets[p].set_active(0)
                                 self.widgets[p].set_sensitive(1)
                                 self.widgets[ptype].set_sensitive(0)
                                 self.widgets[ptype].set_active(0)
-                            # pncconf control what the user sees with these ones:
+                            # PnCconf control what the user sees with these ones:
                             elif firmptype in(_PD.ENCB,_PD.ENCI,_PD.ENCM):
                                 self.widgets[complabel].set_text("")
                                 self.widgets[p].set_active(0)
@@ -3727,7 +3725,7 @@ Clicking 'existing custom program' will avoid this warning. "),False):
                                     self.p.set_buttons_sensitive(1,1)
                                     return
                                 # set sserial tab names to correspond to connector numbers so users have a clue
-                                # first we have to find the daughter board in pncconf's internal list
+                                # first we have to find the daughter board in PnCconf's internal list
                                 # TODO here we search the list- this should be done for the table names see above todo
                                 subfirmname = self.d[BASE+"subboard"]
                                 for subnum,temp in enumerate(self._p.MESA_DAUGHTERDATA):
@@ -3746,7 +3744,7 @@ Clicking 'existing custom program' will avoid this warning. "),False):
                     self.p.set_buttons_sensitive(1,1)
                     return
                 else:
-                    print("**** INFO: pncconf on_general_pin_changed:  pintype not found:%s\n"% widgetptype)
+                    print("**** INFO: PnCconf on_general_pin_changed:  pintype not found:%s\n"% widgetptype)
                     self.p.set_buttons_sensitive(1,1)
                     return
                 # *** change the related pin's signal names ***
