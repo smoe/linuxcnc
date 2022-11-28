@@ -3,22 +3,17 @@ component eoffset_per_angle "Compute External Offset Per Angle";
 description
 """
 
-An offset is computed (from one of several functions) based on
-an input angle in degrees.  The angle could be a rotary
-coordinate value or a spindle angle.
+An offset is computed (from one of several functions) based on an input angle in degrees.
+The angle could be a rotary coordinate value or a spindle angle.
 
-The computed offset is represented as an s32 \\fBkcounts\\fR output
-pin that is a compatible input to external offset pins like
-\\fBaxis.L.eoffset-counts\\fR where \\fBL\\fR is the coordinate
-letter.  Scaling of the s32 \\fBkcounts\\fR is controlled by the
-input (\\fBk\\fR) -- its reciprocal value is presented on an output pin
-(\\fBkreciprocal\\fR) for connection to \\fBaxis.L.eoffset-scale\\fR.
+The computed offset is represented as an s32 \\fBkcounts\\fR output pin
+that is a compatible input to external offset pins like \\fBaxis.L.eoffset-counts\\fR
+where \\fBL\\fR is the coordinate letter.
+Scaling of the s32 \\fBkcounts\\fR is controlled by the input (\\fBk\\fR) -- its reciprocal value is presented on an output pin (\\fBkreciprocal\\fR) for connection to \\fBaxis.L.eoffset-scale\\fR.
 The default value for \\fBk\\fR should be suitable for most uses.
 
-The built-in functions use pins \\fBfmult\\fR and \\fBrfraction\\fR
-to control the output frequency (or number of polygon sides)
-and amplitude respectively.  The  \\fBrfraction\\fR pin controls
-the offset amplitude as a fraction of the \\fBradius-ref\\fR pin.
+The built-in functions use pins \\fBfmult\\fR and \\fBrfraction\\fR to control the output frequency (or number of polygon sides) and amplitude respectively.
+The  \\fBrfraction\\fR pin controls the offset amplitude as a fraction of the \\fBradius-ref\\fR pin.
 
 One of the four built-in functions is specified by the \\fBfnum\\fR pin:
   \\fB0\\fR: f0 inside  polygon  (requires \\fBfmult\\fR == nsides >= 3)
@@ -31,32 +26,22 @@ Unsupported \\fBfnum\\fR values default to use function f0.
 
 notes """
 \\fBradius-ref\\fR:
-The computed offsets are based on the \\fBradius-ref\\fR pin
-value.  This pin may be set to a constant radius value or
-controlled by a user interface or by g code program (using
-\\fBM68\\fR and a \\fBmotion.analog-out-NN pin for instance).
+The computed offsets are based on the \\fBradius-ref\\fR pin value.
+This pin may be set to a constant radius value or controlled by a user interface or by g code program (using \\fBM68\\fR and a \\fBmotion.analog-out-NN pin for instance).
 
 \\fBStopping\\fR:
-When the \\fBenable-in\\fR pin is deasserted, the offset is
-returned to zero respecting the allocated acceleration
-and velocity limits.  The allocations for coordinate \\fBL\\fR
-are typically controlled by an ini file setting:
+When the \\fBenable-in\\fR pin is deasserted, the offset is returned to zero respecting the allocated acceleration and velocity limits.
+The allocations for coordinate \\fBL\\fR are typically controlled by an INI file setting:
 \\fB[AXIS_L]OFFSET_AV_RATIO\\fR.
 
-If unsupported parameters are supplied to a function (for instance
-a polygon with fewer than three sides), the current offset
-will be returned to zero (respecting velocity and acceleration
-constraints).  After correcting the offending parameter, the
-\\fBenable-in\\fR pin must be toggled to resume offset
-computations.
+If unsupported parameters are supplied to a function (for instance a polygon with fewer than three sides),
+the current offset will be returned to zero (respecting velocity and acceleration constraints).
+After correcting the offending parameter, the \\fBenable-in\\fR pin must be toggled to resume offset computations.
 """;
 
 examples """
-An example simulation configuration is provided at:
-\\fBconfigs/sim/axis/external_offsets/opa.ini\\fR.  A
-simulated XZC machine uses the \\fBC\\fR coordinate angle to
-offset the transverse \\fBX\\fR coordinate according to
-the selected \\fBfnum\\fR function.
+An example simulation configuration is provided at: \\fBconfigs/sim/axis/external_offsets/opa.ini\\fR.
+A simulated XZC machine uses the \\fBC\\fR coordinate angle to offset the transverse \\fBX\\fR coordinate according to the selected \\fBfnum\\fR function.
 """;
 
 //" quote char for vim highlighting
