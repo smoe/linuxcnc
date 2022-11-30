@@ -322,9 +322,12 @@ The following heights diagram will help the user visualize the different heights
 
 image::images/qtplasmac_heights_diagram.png[width=800,align="center"]
 
-Click on the <<qt_parameters-tab,Parameters Tab>> to view the *CONFIGURATION* section which shows the user settable parameters. It is necessary to ensure every one of these settings is tailored to the machine.
+Click on the <<qt_parameters-tab,Parameters Tab>> to view the *CONFIGURATION* section which shows the user settable parameters.
+It is necessary to ensure every one of these settings is tailored to the machine.
 
-To set the Z axis DRO relative to the Z axis MINIMUM_LIMIT, the user should perform the following steps. It is important to understand that in QtPlasmaC, touching off the Z axis DRO has no effect on the Z axis position while running a G-code program. These steps simply allow the user to more easily set the probe height as after performing the steps, the displayed Z axis DRO value will be relative to Z axis MINIMUM_LIMIT.
+To set the Z axis DRO relative to the Z axis MINIMUM_LIMIT, the user should perform the following steps.
+It is important to understand that in QtPlasmaC, touching off the Z axis DRO has no effect on the Z axis position while running a G-code program.
+These steps simply allow the user to more easily set the probe height as after performing the steps, the displayed Z axis DRO value will be relative to Z axis MINIMUM_LIMIT.
 
 . The user should be familiar with the recommended <<qt_z-settings, Z Axis Settings>>.
 . Home the Z axis.
@@ -363,7 +366,9 @@ If there are Qt dependency errors, the user should run the <<qt-dependency,QtVCP
 
 === Quick Method
 
-A quick method to move to QtPlasmaC from PlasmaC (loaded on top of either Axis or Gmoccapy) is to use the plasmac2qt conversion program which will attempt to create a new QtPlasmaC configuration from an existing PlasmaC INI file. This program will convert the user's parameters, settings, and materials from the previous PlasmaC configuration and create a new QtPlasmaC configuration directory in the ~/linuxcnc/configs directory.
+A quick method to move to QtPlasmaC from PlasmaC (loaded on top of either AXIS or GMOCCAPY) is to use the `plasmac2qt` conversion program which will attempt to create a new QtPlasmaC configuration from an existing PlasmaC INI file.
+This program will convert the user's parameters, settings, and materials from the previous PlasmaC configuration
+and create a new QtPlasmaC configuration directory in the ~/linuxcnc/configs directory.
 
 This methods will keep the original PlasmaC config as a backup with _plasmac and a time stamp appended to the directory name.
 
