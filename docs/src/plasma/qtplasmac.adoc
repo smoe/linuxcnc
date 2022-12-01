@@ -414,27 +414,34 @@ Leave this blank if it is not used/required.
 |===
 |Field |Description |Examples
 |Laser On HAL Pin |Power on a laser crosshair for sheet alignment.|*Parallel Port Example:* parport.0.pin-16-out +
-    *Mesa 7i96 Example:* hm2_7i96.0.ssr.00.out-00
+*Mesa 7I96 Example:* hm2_7i96.0.ssr.00.out-00
 |===
 
 After filling in the appropriate entries, press *CONVERT*.
 
 [NOTE]
-This method will not change any existing debounce components to the new dbounce component. If the user wishes to change to the new dbounce component then the New Base Config method should be used for migration.
+This method will not change any existing debounce components to the new dbounce component.
+If the user wishes to change to the new dbounce component then the New Base Config method should be used for migration.
 
 === New Base Config Method
 
-This method to move to QtPlasmaC from PlasmaC (loaded on top of either Axis or Gmoccapy) is to use a <<configuring, configuration wizard>> to create a new configuration. This method then allows changing of the base machine configuration at a later date via the configuration wizard provided that the base INI and base HAL files have not been edited.
+This method to move to QtPlasmaC from PlasmaC (loaded on top of either Axis or Gmoccapy) is to use a <<configuring, configuration wizard>> to create a new configuration.
+This method then allows changing of the base machine configuration at a later date via the configuration wizard provided that the base INI and base HAL files have not been edited.
 
-This method requires that the user take note of all HAL pins used in the existing config so they can be entered into the configuration wizard. Any custom HAL commands will also need to be noted and added manually to either the custom.hal file or the custom_postgui.hal file which will be created by the configuration wizard.
+This method requires that the user take note of all HAL pins used in the existing config so they can be entered into the configuration wizard.
+Any custom HAL commands will also need to be noted and added manually to either the custom.hal file or the custom_postgui.hal file which will be created by the configuration wizard.
 
-After using the wizard, the user can then run a conversion program (cfg2prefs) to convert the parameters, settings, and materials from the previous PlasmaC configuration to the new QtPlasmaC configuration. This tool should be used immediately after the user has created a new QtPlasmaC configuration.
+After using the wizard, the user can then run a conversion program (cfg2prefs)
+to convert the parameters, settings, and materials from the previous PlasmaC configuration to the new QtPlasmaC configuration.
+This tool should be used immediately after the user has created a new QtPlasmaC configuration.
 
-Prior to running this conversion program, it is mandatory that the user have both an existing PlasmaC configuration and a new QtPlasmaC configuration. This program WILL overwrite the existing QtPlasmaC preferences and materials files, and should be used with caution if it is not being run on a new QtPlasmaC configuration.
+Prior to running this conversion program, it is mandatory that the user have both an existing PlasmaC configuration and a new QtPlasmaC configuration.
+This program WILL overwrite the existing QtPlasmaC preferences and materials files, and should be used with caution if it is not being run on a new QtPlasmaC configuration.
 
 The program will create a time stamped backup of the original preferences file and the existing materials file (if it exists).
 
-It will read the existing <machine_name>_config.cfg, <machine_name>_run.cfg, <machine_name>_wizards.cfg, and plasmac_stats.var files and write them to an existing _<machine_name>_.prefs file. It will also copy the <machine_name>_material.cfg file to the existing QtPlasmaC configuration.
+It will read the existing <machine_name>_config.cfg, <machine_name>_run.cfg, <machine_name>_wizards.cfg, and plasmac_stats.var files and write them to an existing _<machine_name>_.prefs file.
+It will also copy the <machine_name>_material.cfg file to the existing QtPlasmaC configuration.
 
 To run the cfg2prefs conversion program, use the following instructions:
 
@@ -460,9 +467,12 @@ Select the INI file of the old PlasmaC configuration, select the INI file of the
 [[qt_lowpass]]
 === Lowpass Filter
 
-The plasmac HAL component has a built in lowpass filter that if used is applied to the *plasmac.arc-voltage-in* input pin to filter any noise that could cause erroneous voltage readings. The lowpass filter should only be used after using Halscope to determine the required frequency and whether the amplitude of the noise is large enough to cause any issues. For most plasma machines lowpass is not required and should not be used unless it is required.
+The plasmac HAL component has a built in lowpass filter that if used is applied to the *plasmac.arc-voltage-in* input pin to filter any noise that could cause erroneous voltage readings.
+The lowpass filter should only be used after using Halscope to determine the required frequency and whether the amplitude of the noise is large enough to cause any issues.
+For most plasma machines lowpass is not required and should not be used unless it is required.
 
-The HAL pin assigned to this filter is *plasmac.lowpass-frequency* and is set to 0 (disabled) by default. To apply a lowpass filter to the arc-voltage, the user would edit the following entry in the custom.hal file in the machine's configuration directory to add the appropriate cutoff frequency as measured in Hertz (Hz).
+The HAL pin assigned to this filter is *plasmac.lowpass-frequency* and is set to 0 (disabled) by default.
+To apply a lowpass filter to the arc-voltage, the user would edit the following entry in the custom.hal file in the machine's configuration directory to add the appropriate cutoff frequency as measured in Hertz (Hz).
 
 For example:
 
@@ -486,24 +496,30 @@ Due to the fact that the software is capable of sampling rates faster than the c
 
 Debounce delay periods can be changed by editing the appropriate debounce value in the custom.hal file in the <machine_name> config directory.
 
-Each increment of delay adds one servo thread cycle to the debounce time. For example: given a servo thread period of 1000000 (measured in nano seconds), a debounce delay of 5 would equate to 5000000ns, or 5ms.
+Each increment of delay adds one servo thread cycle to the debounce time.
+For example: given a servo thread period of 1000000 (measured in nano seconds), a debounce delay of 5 would equate to 5000000ns, or 5ms.
 
 For the Float and Ohmic switches this equates to a 0.001mm (0.00004") increase in the probed height result.
 
-It is recommended to keep the debounce values as low as possible while still achieving consistent results. Using link:../hal/tutorial.html#sec:tutorial-halscope[Halscope] to plot the inputs is a good way to establish the correct value.
+It is recommended to keep the debounce values as low as possible while still achieving consistent results.
+Using link:../hal/tutorial.html#sec:tutorial-halscope[Halscope] to plot the inputs is a good way to establish the correct value.
 
-For QtPlasmaC installations, debounce is achieved by using the HAL link:../man/man9/dbounce.9.html[dbounce component] which is a later alternative to the original debounce component. This new version allows for the loading and naming of individual debounce instances and is compatible with Twopass HAL file processing.
+For QtPlasmaC installations, debounce is achieved by using the HAL link:../man/man9/dbounce.9.html[dbounce component] which is a later alternative to the original debounce component.
+This new version allows for the loading and naming of individual debounce instances and is compatible with Twopass HAL file processing.
 
-All four signals above have an individual debounce component so the debounce periods can be catered individually to each input. Any changes made to these values in the custom.hal file will not be overwritten by later updates of QtPlasmaC.
+All four signals above have an individual debounce component so the debounce periods can be catered individually to each input.
+Any changes made to these values in the custom.hal file will not be overwritten by later updates of QtPlasmaC.
 
-The default delay for all four inputs is five servo thread periods. In most cases this value will work quite well. If any of the inputs do not use mechanical switches, it may be possible to either reduce or remove the delay for those inputs.
+The default delay for all four inputs is five servo thread periods. In most cases this value will work quite well.
+If any of the inputs do not use mechanical switches, it may be possible to either reduce or remove the delay for those inputs.
 
 If debounce is required for other equipment like home or limit switches etc. then more dbounce components may added in any of the HAL files without any regard to the signals listed here.
 
 [[qt-contact-load]]
 === Contact Load
 
-Mechanical relays and switches usually require a minimum current passing through the contacts for reliable operation. This current varies with the material that the contacts in the device are made from.
+Mechanical relays and switches usually require a minimum current passing through the contacts for reliable operation.
+This current varies with the material that the contacts in the device are made from.
 
 Depending on the specified minimum contact current and the current drawn by the input device there may be a need to provide a method to increase the current through the contacts.
 
@@ -520,7 +536,7 @@ More information on contact switching load can be seen on page III of link:https
 
 [underline]*Calculations:*
 
-If using a Mesa card, the input resistance of a 7i96 is 4700 Ω (always consult the product manual associated with the revision being used as these values sometimes vary between revisions), giving a contact current of 5.1 mA assuming a supply voltage of 24 V (I = V/R).
+If using a Mesa card, the input resistance of a 7I96 is 4700 Ω (always consult the product manual associated with the revision being used as these values sometimes vary between revisions), giving a contact current of 5.1 mA assuming a supply voltage of 24 V (I = V/R).
 
 As an example, the typical relay used in a Hypertherm Powermax 65 plasma cutter (link:https://www.te.com/commerce/DocumentDelivery/DDEController?Action=showdoc&DocId=Data+Sheet%7F1308242_T77%7F1011%7Fpdf%7FEnglish%7FENG_DS_1308242_T77_1011.pdf%7F1-1393194-0[TE T77S1D10-24]) requires a minimum contact load of 100 mA @ 5 VDC which will dissipate 0.5 W (P = I * V).
 If using a 24 VDC power supply this would then equate to a minimum current of 20.8 mA.
@@ -533,7 +549,7 @@ The resistance can be calculated using R = U~s~ / (I~m~ - I~i~) where:
 - I~m~ = minimum current required
 - I~i~ = input current
 
-Using a 7i96 with an input current of 5.1 mA gives a calculated value of 1529 Ω ( = 24 V / (.0208 - .0051) A).
+Using a 7I96 with an input current of 5.1 mA gives a calculated value of 1529 Ω ( = 24 V / (.0208 - .0051) A).
 This could then be rounded down to a commonly available 1500 Ω resistor, giving a small safety margin.
 
 The power dissipation can by calculated using P = U~s~^2^ / R~s~ where:
@@ -546,7 +562,9 @@ This gives a value of 0.38 W. This could then be rounded up to 1 W, giving a
 
 === Desktop Launcher
 
-If a link to the launch the configuration was not created when creating the config, the user could create a desktop launcher to the config by right clicking on the desktop and selecting Create Launcher or similar. This will bring up a dialog box to create a launcher. Give the icon a nice short name, enter anything for the command and click OK.
+If a link to the launch the configuration was not created when creating the config,
+the user could create a desktop launcher to the config by right clicking on the desktop and selecting Create Launcher or similar.
+This will bring up a dialog box to create a launcher. Give the icon a nice short name, enter anything for the command and click OK.
 
 After the launcher appears on the desktop, right click on it and then edit it with the user's editor of choice. Edit the file so it looks similar to:
 
@@ -1315,15 +1333,22 @@ For reliable use of QtPlasmaC the user should *NOT* use any Z axis offsets other
 
 QtPlasmaC will automatically add a line of G-code to move the Z axis to the correct height at the beginning of every G-code program.
 
-*Version Information* - QtPlasmaC will display versioning information in the title of the main window. The information will be displayed as followed "QtPlasmaC vN.XXX.YYY - powered by QtVCP on LinuxCNC vZ.Z.Z" where N is the version of QtPlasmaC, XXX is the version of the HAL component (PlasmaC.comp), YYY is the GUI version, and Z.Z.Z is the version of LinuxCNC.
+*Version Information* - QtPlasmaC will display versioning information in the title of the main window.
+The information will be displayed as followed "QtPlasmaC vN.XXX.YYY - powered by QtVCP on LinuxCNC vZ.Z.Z" where N is the version of QtPlasmaC, XXX is the version of the HAL component (PlasmaC.comp), YYY is the GUI version, and Z.Z.Z is the version of LinuxCNC.
 
 === Units Systems
 
 All settings and parameters in QtPlasmaC are required to be in the same units as specified in the INI file, being either metric or imperial.
 
-If the user is attempting to run a G-code file that is in the "other" units system then all parameters including the material file parameters are still required to be in the native machines units. Any further conversions necessary to run the G-code file will be handled automatically by the G-code filter program.
+If the user is attempting to run a G-code file that is in the "other" units system then all parameters including the material file parameters are still required to be in the native machines units.
+Any further conversions necessary to run the G-code file will be handled automatically by the G-code filter program.
 
-For example: if a user had a metric machine and wished to run a G-code file that was set up to cut 1/4" thick material using imperial units (inch - G20) then the user with the metric machine would need to ensure that either the material number in the G-code file was set to the corresponding metric material to be cut, or that a new material is created with the correct metric parameters for the metric material to be cut. If the metric user wanted to cut the G-code file using imperial material, then the new material parameters would need to be converted from imperial units to metric when they are entered.
+For example:
+If a user had a metric machine and wished to run a G-code file that was set up to cut 1/4" thick material using imperial units (inch - G20)
+then the user with the metric machine would need to ensure that either the material number in the G-code file was set to the corresponding metric material to be cut,
+or that a new material is created with the correct metric parameters for the metric material to be cut.
+If the metric user wanted to cut the G-code file using imperial material,
+then the new material parameters would need to be converted from imperial units to metric when they are entered.
 
 === Preamble and Postamble Codes
 
@@ -1349,21 +1374,25 @@ Note that throughout this user guide there are several additional recommendation
 
 Aside from the preamble code, postamble code, and X/Y motion code, the only mandatory G-code syntax for QtPlasmaC to run a G-code program using a torch for cutting is *M3 $0 S1* to begin a cut and *M5 $0* to end a cut.
 
-For backwards compatibility it is permissible to use *M3 S1* in lieu of *M3 $0 S1* to begin a cutting job and *M5* in lieu of *M5 $0* to end a cutting job. Note that this applies to cutting jobs only, for scribe and spotting jobs the *$_n_* tool identifier is mandatory.
+For backwards compatibility it is permissible to use *M3 S1* in lieu of *M3 $0 S1* to begin a cutting job and *M5* in lieu of *M5 $0* to end a cutting job.
+Note that this applies to cutting jobs only, for scribe and spotting jobs the *$_n_* tool identifier is mandatory.
 
 === Coordinates
 
 See <<qt_z-settings,recommended Z axis>> settings.
 
-Each time LinuxCNC (QtPlasmaC) is started Joint homing is required. This allows LinuxCNC (QtPlasmaC) to establish the known coordinates of each axis and set the soft limits to the values specified in the _<machine_name>_.ini file in order to prevent the machine from crashing into a hard stop during normal use.
+Each time LinuxCNC (QtPlasmaC) is started Joint homing is required.
+This allows LinuxCNC (QtPlasmaC) to establish the known coordinates of each axis and set the soft limits to the values specified in the _<machine_name>_.ini file in order to prevent the machine from crashing into a hard stop during normal use.
 
 If the machine does not have home switches then the user needs to ensure that all axes are at the home coordinates specified in the _<machine_name>_.ini file before homing.
 
 If the machine has home switches then it will move to the specified home coordinates when the Joints are homed.
 
-Depending on the machine's configuration there will either be a *Home All* button or each axis will need to be homed individually. Use the appropriate button/buttons to home the machine.
+Depending on the machine's configuration there will either be a *Home All* button or each axis will need to be homed individually.
+Use the appropriate button/buttons to home the machine.
 
-As mentioned in the <<qt_initial-setup,Initial Setup>> section, it is recommended that the first time QtPlasmaC is used that the user ensure there is nothing below the torch then jog the Z axis down until it stops at the Z axis MINIMUM_LIMIT then click the 0 next to the Z axis DRO to *Touch Off* with the Z axis selected to set the Z axis at zero offset. This should not need to be done again.
+As mentioned in the <<qt_initial-setup,Initial Setup>> section, it is recommended that the first time QtPlasmaC is used that the user ensure there is nothing below the torch then jog the Z axis down until it stops at the Z axis MINIMUM_LIMIT then click the 0 next to the Z axis DRO to *Touch Off* with the Z axis selected to set the Z axis at zero offset.
+This should not need to be done again.
 
 If the user intends to place the material in the exact same place on the table every time, the user could jog the X and Y axes to the machine to the corresponding X0 Y0 position as established by the CAM software and then *Touch Off* both axes with a zero offset.
 
@@ -1371,7 +1400,8 @@ If the user intends to place the material randomly on the table then the user mu
 
 === Cut Feed Rate
 
-QtPlasmaC is able to read a material file to load all the required cut parameters. To enable to G-code file to use the cut feed rate setting from the cut parameters use the following code in the G-code file:
+QtPlasmaC is able to read a material file to load all the required cut parameters.
+To enable to G-code file to use the cut feed rate setting from the cut parameters use the following code in the G-code file:
 
 
 [source,{ngc}]
@@ -1391,9 +1421,11 @@ If the *F* word is used and the *F* word value does not match the cut feed rate 
 [[qt_material-handling]]
 === Material File
 
-Material handling uses a material file that was created for the machine configuration when the configuration wizard was ran and allows the user to conveniently store known material settings for easy recall either manually or automatically via G-code. The resulting <<qt_material-file, material file>> is named *<machine_name>_material.cfg*.
+Material handling uses a material file that was created for the machine configuration when the configuration wizard was ran and allows the user to conveniently store known material settings for easy recall either manually or automatically via G-code.
+The resulting <<qt_material-file, material file>> is named *<machine_name>_material.cfg*.
 
-QtPlasmaC does not require the use of a material file. Instead, the user could change the cut parameters manually from the MATERIAL section of the <<qt_parameters-tab,PARAMETERS Tab>>.
+QtPlasmaC does not require the use of a material file.
+Instead, the user could change the cut parameters manually from the MATERIAL section of the <<qt_parameters-tab,PARAMETERS Tab>>.
 It is also not required to use the automatic material changes.
 If the user does not wish to use this feature they can simply omit the material change codes from the G-code file.
 
@@ -1409,7 +1441,8 @@ The following variables are mandatory and an error message will appear if any ar
 * CUT_HEIGHT
 * CUT_SPEED
 
-The following variables are optional. If they are not detected or have no value assigned, they will be assigned a value of 0 and no error message will appear.
+The following variables are optional.
+If they are not detected or have no value assigned, they will be assigned a value of 0 and no error message will appear.
 
 * NAME
 * KERF_WIDTH
@@ -1448,9 +1481,11 @@ GAS_PRESSURE        = value (only used for PowerMax communications)
 CUT_MODE            = value (only used for PowerMax communications)
 ----
 
-It is possible to add new material, delete material, or edit existing material from the <<qt_parameters-tab,PARAMETERS tab.>> It is also possible to achieve this by using <<qt_magic-comments,magic comments>> in a g-Code file.
+It is possible to add new material, delete material, or edit existing material from the <<qt_parameters-tab,PARAMETERS tab.>>.
+It is also possible to achieve this by using <<qt_magic-comments,magic comments>> in a G-code file.
 
-The material file may be edited with a text editor while LinuxCNC is running. After any changes have been saved, press *Reload* in the MATERIAL section of the <<qt_parameters-tab, PARAMETERS Tab>> to reload the material file.
+The material file may be edited with a text editor while LinuxCNC is running.
+After any changes have been saved, press *Reload* in the MATERIAL section of the <<qt_parameters-tab, PARAMETERS Tab>> to reload the material file.
 
 === Manual Material Handling
 
@@ -2290,19 +2325,25 @@ Both *Mesh Mode* and *Ignore Arc OK* can be enabled/disabled at any time during 
 
 image::images/qtplasmac_cut_recovery.png[width=250,align="center"]
 
-This feature will produce a CUT RECOVERY panel that will allow the torch to be moved away from the cut path during a <<qt_paused-motion,paused motion>> event in order to position the torch over a scrap portion of the material being cut so that the cut restarts with a minimized arc-divot. The CUT RECOVERY panel will display automatically over top of the JOGGING panel when motion is paused.
+This feature will produce a CUT RECOVERY panel that will allow the torch to be moved away from the cut path during a <<qt_paused-motion,paused motion>> event in order to position the torch over a scrap portion of the material being cut so that the cut restarts with a minimized arc-divot.
+The CUT RECOVERY panel will display automatically over top of the JOGGING panel when motion is paused.
 
-It is preferable to make torch position adjustments from the point at which paused motion occurred, however if moving along the cut path is necessary prior to setting the new start point, the user may use the paused motion controls (*REV*, *FWD*, and a *JOG-SPEED* slider) at the top of the CUT RECOVERY panel. Once the user is satisfied with the positioning of the torch along the cut path, moving off the cut path is achieved by pressing the *DIRECTION* buttons. Each press of the *DIRECTION* button will move the torch a distance equivalent to the *Kerf Width* parameter of the currently selected material.
+It is preferable to make torch position adjustments from the point at which paused motion occurred, however if moving along the cut path is necessary prior to setting the new start point, the user may use the paused motion controls (*REV*, *FWD*, and a *JOG-SPEED* slider) at the top of the CUT RECOVERY panel.
+Once the user is satisfied with the positioning of the torch along the cut path, moving off the cut path is achieved by pressing the *DIRECTION* buttons. Each press of the *DIRECTION* button will move the torch a distance equivalent to the *Kerf Width* parameter of the currently selected material.
 
 The moment the torch has been moved off the cut path, the paused motion controls (*REV*, *FWD*, and a *JOG-SPEED* slider) at the top of the CUT RECOVERY panel will become disabled.
 
-Once the torch position is satisfactory, press *CYCLE RESUME* and the cut will resume from the new position and travel the shortest distance to the original paused motion location. The CUT RECOVERY panel will close and the JOGGING panel will display when the torch returns to the original paused motion location.
+Once the torch position is satisfactory, press *CYCLE RESUME* and the cut will resume from the new position and travel the shortest distance to the original paused motion location.
+The CUT RECOVERY panel will close and the JOGGING panel will display when the torch returns to the original paused motion location.
 
-Pressing *CANCEL MOVE* will cause the torch to move back to where it was positioned before the direction keys were used to offset the torch. It will not reset any *REV* or *FWD* motion.
+Pressing *CANCEL MOVE* will cause the torch to move back to where it was positioned before the direction keys were used to offset the torch.
+It will not reset any *REV* or *FWD* motion.
 
-Pressing *CYCLE STOP* will cause the torch to move back to where it was positioned before the direction keys were used to offset the torch and the CUT RECOVERY panel overlay will return to the JOGGING panel. It will not reset any *REV* or *FWD* motion.
+Pressing *CYCLE STOP* will cause the torch to move back to where it was positioned before the direction keys were used to offset the torch and the CUT RECOVERY panel overlay will return to the JOGGING panel.
+It will not reset any *REV* or *FWD* motion.
 
-If an alignment laser has been set up then it is possible to use the laser during cut recovery for very accurate positioning of the new start coordinates. If either the X axis offset or Y axis offset for the laser would cause the machine to move out of bounds then an error message will be displayed.
+If an alignment laser has been set up then it is possible to use the laser during cut recovery for very accurate positioning of the new start coordinates.
+If either the X axis offset or Y axis offset for the laser would cause the machine to move out of bounds then an error message will be displayed.
 
 *To use a laser for cut recovery when paused during a cut:*
 
@@ -2320,20 +2361,24 @@ IMPORTANT: PUDDLE JUMP IS DISABLED DURING CUT RECOVERY
 [[qt_run-from-line]]
 === Run From Line
 
-If the user has the Run From Line option enabled in the GUI SETTINGS section of the <<qt_settings-tab, SETTINGS Tab>> they will have the ability to start from any line in a G-code program via the following methods:
+If the user has the Run From Line option enabled in the GUI SETTINGS section of the <<qt_settings-tab,SETTINGS Tab>> they will have the ability to start from any line in a G-code program via the following methods:
 
 . Clicking any line in the Preview Window
 . Clicking any line in the G-code Window
 
 Note that the Run From Line function will run from the beginning of the selected line.
 
-It is important to note that G-code programs can be run from any selected line using this method, however a leadin may not be possible depending on the line selected. In this case, an error message will be displayed to let the user know the leadin calculation was not possible.
+It is important to note that G-code programs can be run from any selected line using this method, however a leadin may not be possible depending on the line selected.
+In this case, an error message will be displayed to let the user know the leadin calculation was not possible.
 
-Once the user has selected the starting place, the *CYCLE START* button will blink *"SELECTED nn"* where nn is the corresponding line number selected. Clicking this button will bring up the following Run From Line dialog box:
+Once the user has selected the starting place, the *CYCLE START* button will blink *"SELECTED nn"* where nn is the corresponding line number selected.
+Clicking this button will bring up the following Run From Line dialog box:
 
-It is not possible to use Run From Line from within a subroutine. If the user selects a line within a subroutine and clicks *"SELECTED nn"* then an error message will be displayed that includes the O-Code name of the subroutine.
+It is not possible to use Run From Line from within a subroutine.
+If the user selects a line within a subroutine and clicks *"SELECTED nn"* then an error message will be displayed that includes the O-Code name of the subroutine.
 
-It is not possible to use Run From Line if previous G-code has set cutter compensation active. If the user selects a line while cutter compensation is active and clicks *"SELECTED nn"* then an error message will be displayed.
+It is not possible to use Run From Line if previous G-code has set cutter compensation active.
+If the user selects a line while cutter compensation is active and clicks *"SELECTED nn"* then an error message will be displayed.
 
 It is possible to select a new line while Run From Line is active.
 
@@ -2370,9 +2415,14 @@ After pressing *LOAD*, the blinking "SELECTED nn" button will change to *RUN FRO
 
 A scribe may be operated by QtPlasmaC in addition to the plasma torch.
 
-Using a scribe requires the use of the LinuxCNC tool table. Tool 0 is assigned to the plasma torch and Tool 1 is assigned to the scribe. The scribe X and Y axes offsets from the plasma torch need to be entered into the LinuxCNC tool table. This is done by editing the tool table via the main GUI, or by editing the *tool.tbl* file in the *<machine_name>* configuration directory. This will be done after the scribe can move to the work piece to help determine the appropriate offset.
+Using a scribe requires the use of the LinuxCNC tool table.
+Tool 0 is assigned to the plasma torch and Tool 1 is assigned to the scribe.
+The scribe X and Y axes offsets from the plasma torch need to be entered into the LinuxCNC tool table.
+This is done by editing the tool table via the main GUI, or by editing the *tool.tbl* file in the *<machine_name>* configuration directory.
+This will be done after the scribe can move to the work piece to help determine the appropriate offset.
 
-The plasma torch offsets for X and Y will always be zero. The tools are selected by the *T__n__ M6* command followed by a *G43 H0* command which is required to apply the offsets.
+The plasma torch offsets for X and Y will always be zero.
+The tools are selected by the *T__n__ M6* command followed by a *G43 H0* command which is required to apply the offsets.
 The tool is then started with a *M3 $_n_ S1* command. For _n_, use 0 for torch cutting or 1 for scribing.
 
 To stop the scribe, use the G-code command *M5 $1*.
@@ -2394,7 +2444,8 @@ The final step is to set the <<qt_scribe-config,scribe delays>> required:
 
 Save the parameters in the Config tab.
 
-After the above directions are completed, the scribe may be tested manually by issuing a *M3 $1 S1* command in the MDI input. The user may find it helpful to use this method to scribe a small divot and then try to pulse the torch in the same location to align the offsets between the scribe and the torch.
+After the above directions are completed, the scribe may be tested manually by issuing a *M3 $1 S1* command in the MDI input.
+The user may find it helpful to use this method to scribe a small divot and then try to pulse the torch in the same location to align the offsets between the scribe and the torch.
 
 To use the scribe from G-code:
 
@@ -2419,7 +2470,8 @@ It is a good idea to switch back to the torch at the end of the program before t
 
 The user can switch between the torch and the scribe any number of times during a program by using the appropriate G-codes.
 
-Issuing *M3 S1* (without $_n_) will cause the machine to behave as if an *M3 $0 S1* had been issued and issuing *M5* (without $_n_) will cause the machine to behave as if an *M5 $0* had been issued. This will control the torch firing by default in order to provide backward compatibility for previous G-code files.
+Issuing *M3 S1* (without $_n_) will cause the machine to behave as if an *M3 $0 S1* had been issued and issuing *M5* (without $_n_) will cause the machine to behave as if an *M5 $0* had been issued.
+This will control the torch firing by default in order to provide backward compatibility for previous G-code files.
 
 WARNING: If there is an existing manual tool change parameter set in the _<machine_name>_.hal file then QtPlasmaC will convert it to an automatic tool change.
 
@@ -2555,7 +2607,8 @@ This feature is found on the <<qt_conversational-tab,CONVERSATIONAL Tab>>.
 [NOTE]
 The Conversational Library is not meant to be a CAD/CAM replacement as there are limitations to what can be achieved.
 
-Blank entries in the shape input boxes will use the current setting at the time the G-code was generated. For example, if *X start* was left blank then the current X axis position would be used.
+Blank entries in the shape input boxes will use the current setting at the time the G-code was generated.
+For example, if *X start* was left blank then the current X axis position would be used.
 
 All leadins and leadouts are arcs except for *Circles* and *Stars*:
 
@@ -2625,7 +2678,8 @@ This will display all of the available settings parameters that are used for G-c
 * *Small hole speed*
 * *Preview Window Grid Size*
 
-Any internal circle that has a diameter less than *Small hole diameter* is classified as a small hole and will have a straight leadin with a length that is the lesser of either the radius of the hole or the specified leadin length. It will also have its feed rate set to *Small hole speed*.
+Any internal circle that has a diameter less than *Small hole diameter* is classified as a small hole and will have a straight leadin with a length that is the lesser of either the radius of the hole or the specified leadin length.
+It will also have its feed rate set to *Small hole speed*.
 
 Preamble and Postamble may be entered as a string of G-Codes and M-Codes separate by spaces.
 If the user wishes for the generated G-code to have each code on an individual line then this is made possible by separating the codes with *\n*.
@@ -2676,7 +2730,8 @@ To use lines and arcs:
 . Change the line or arc type if needed and continue this procedure until the shape is complete.
 . Press *SEND* to send the G-code file to LinuxCNC (QtPlasmaC) for cutting.
 
-If the user wishes to create a closed shape, they will need to create any required leadin as the first segment of the shape. If a leadout is required it will need to be the last segment of the shape.
+If the user wishes to create a closed shape, they will need to create any required leadin as the first segment of the shape.
+If a leadout is required it will need to be the last segment of the shape.
 
 [NOTE]
 At this stage there is no automatic option for a leadin/leadout creation if the shape is closed.
