@@ -149,9 +149,8 @@ DEFAULT_LINEAR_VELOCITY = 50.0
 === User message dialog system
 Optional popup custom message dialogs, controlled by HAL pins.
 MESSAGE_TYPE can be 'okdialog' or 'yesnodialog'.
-See qtvcp/library/messages for more information
-This example shows how to make a dialog that requires the user to select
- 'ok' to acknowledge and hide.
+See qtvcp/library/messages for more information.
+This example shows how to make a dialog that requires the user to select 'ok' to acknowledge and hide.
 
 [source,{ini}]
 ----
@@ -255,8 +254,8 @@ Y = -16.85
 QtDragon has two optional probing tab screens available.
 Comment/uncomment which ever you prefer.
 
-'Versa probe' is a Qtvcp ported version of a popular Gladevcp probing panel.
-'Basic Probe' is a Qtvcp ported version based on the third party basic probe 
+'Versa probe' is a QtVCP ported version of a popular GladeVCP probing panel.
+'Basic Probe' is a QtVCP ported version based on the third party basic probe 
 screen.
 Both do similar probing routines. 
 

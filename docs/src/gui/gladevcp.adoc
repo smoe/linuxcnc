@@ -237,7 +237,7 @@ Older versions will not work, you will get a Python error.
 === Running Glade to create a new user interface
 
 This section just outlines the initial LinuxCNC-specific steps. For more
-information and a tutorial on Glade, see http://glade.gnome.org. Some
+information and a tutorial on Glade, see https://glade.gnome.org. Some
 Glade tips & tricks may also be found on
 https://www.youtube.com[youtube].
 
@@ -1332,12 +1332,10 @@ This widget is for plotting values over time.
 === Gremlin tool path preview for NGC files
 
 Gremlin is a plot preview widget similar to the AXIS preview window.
-It assumes a running LinuxCNC environment like AXIS or Touchy. To connect to
-it, inspects the INI_FILE_NAME environment variable. Gremlin displays
-the current NGC file - it does monitor for changes and reloads the ngc
-file if the file name in AXIS/Touchy changes. If you run it in a
-GladeVCP application when LinuxCNC is not running, you might get a traceback
-because the Gremlin widget can't find LinuxCNC status, like the current file name.
+It assumes a running LinuxCNC environment like AXIS or Touchy. To connect to it, inspects the INI_FILE_NAME environment variable.
+Gremlin displays the current NGC file - it does monitor for changes and reloads the NGC file if the file name in AXIS/Touchy changes.
+If you run it in a GladeVCP application when LinuxCNC is not running,
+you might get a traceback because the Gremlin widget can't find LinuxCNC status, like the current file name.
 
 ==== Pins
 
@@ -2864,8 +2862,7 @@ To get a callback when this pin's value changes, associate a
 self.example_trigger.connect('value-changed', self._on_example_trigger_change)
 ----
 
-and define a callback method (or function, in this case leave out the
-`self` parameter):
+and define a callback method (or function, in this case leave out the `self` parameter):
 
 [source,python]
 ----
@@ -2876,10 +2873,9 @@ def _on_example_trigger_change(self,pin,userdata=None):
 
 === Adding timers
 
-Since GladeVCP uses Gtk widgets which rely on the
-https://www.pygtk.org/pygtk2reference/gobject-functions.html[GObject]
-base class, the full glib functionally is available. Here is an
-example for a timer callback:
+Since GladeVCP uses Gtk widgets,
+which rely on the https://www.pygtk.org/pygtk2reference/gobject-functions.html[GObject] base class, the full glib functionally is available.
+Here is an example for a timer callback:
 
 [source,python]
 ----
@@ -2896,14 +2892,12 @@ glib.timeout_add_seconds(1, self._on_timer_tick)
 === Setting HAL widget properties programmatically
 
 With Glade, widget properties are typically set fixed while editing.
-You can, however, set widget properties at runtime, for instance from
-INI file values, which  would typically be done in the handler
-initialization code. Setting properties from HAL pin values is
-possible, too.
+You can, however, set widget properties at runtime, for instance from INI file values, which  would typically be done in the handler initialization code.
+Setting properties from HAL pin values is possible, too.
 
-In the following example (assuming a HAL Meter widget called `meter`), the
-meter's min value is set from an INI file parameter at startup, and the max value
-is set via a HAL pin, which causes the widget's scale to readjust dynamically:
+In the following example (assuming a HAL Meter widget called `meter`),
+the meter's min value is set from an INI file parameter at startup,
+and the max value is set via a HAL pin, which causes the widget's scale to readjust dynamically:
 
 [source,python]
 ----
@@ -2994,11 +2988,12 @@ I want to set the background color or text of a HAL_Label widget depending on it
   in an EventBox container, which has a window but is otherwise
   invisible - see the coloredlabel.ui file.
 
+#FIXME: URL https://osdir.com/ml/gtk-app-devel-list/2010-04/msg00129.html is no longer available
 I defined a `hal_spinbutton` widget in Glade, and set a default `value` property in the corresponding adjustment. It comes up with zero?::
   This is due to a bug in the old Gtk version distributed with Ubuntu
   8.04 and 10.04, and is likely to be the case for all widgets using
   adjustment. The workaround mentioned for instance in
-  http://osdir.com/ml/gtk-app-devel-list/2010-04/msg00129.html does
+  https://osdir.com/ml/gtk-app-devel-list/2010-04/msg00129.html does
   not reliably set the HAL pin value, it is better to set it
   explicitly in an `on_realize` signal handler during widget creation.
   See the example in `configs/apps/gladevcp/by-widget/spinbutton.{ui,py}`.
