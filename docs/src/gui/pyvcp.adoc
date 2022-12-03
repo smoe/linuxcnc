@@ -392,8 +392,8 @@ If you have more than one multilabel the pins created would increment the number
 
 === LEDs
 
-A LED is used to indicate the status of a 'bit' halpin.
-The LED color will be on_color when the halpin is true, and off_color otherwise.
+A LED is used to indicate the status of a 'bit' HAL pin.
+The LED color will be on_color when the HAL pin is true, and off_color otherwise.
 
 * '<led></led>' - makes a round LED
 * '<rectled></rectled>' - makes a rectangle LED
@@ -465,8 +465,8 @@ Buttons can use the following optional options.
 
 .Text Button
 
-A text button controls a 'bit' halpin.
-The halpin is false until the button is pressed then it is true.
+A text button controls a 'bit' HAL pin.
+The HAL pin is false until the button is pressed then it is true.
 The button is a momentary button.
 
 The text button has an optional disable pin that is created when you add <disable_pin>True</disable_pin>.
@@ -490,11 +490,11 @@ image::images/pyvcp_button.png[align="center"]
 
 .Checkbutton
 
-A checkbutton controls a bit halpin.
-The halpin will be set True when the button is checked, and false when the button is unchecked.
+A checkbutton controls a bit HAL pin.
+The HAL pin will be set True when the button is checked, and false when the button is unchecked.
 The checkbutton is a toggle type button.
-The checkbuttons may be set initially as TRUE or FALSE the initval field A pin called changepin is also created automatically,
-which can toggle the Checkbutton via HAL, if the value linked is changed, to update the display remotely.
+The checkbuttons may be set initially as TRUE or FALSE the initval field.
+A pin called changepin is also created automatically, which can toggle the Checkbutton via HAL, if the value linked is changed, to update the display remotely.
 
 .Unchecked button
 image::images/pyvcp_checkbutton1.png[align="center"]
@@ -527,7 +527,7 @@ Notice the extra spaces in the "Chips" text to keep the checkbuttons aligned.
 
 .Radiobutton
 
-A radiobutton will set one of the halpins true. The other pins are set false.
+A radiobutton will set one of the HAL pins true. The other pins are set false.
 The initval field may be set to choose the default selection when the panel displays.
 Only one radio button may be set to TRUE (1) or only the highest number pin set TRUE will have that value.
 
@@ -615,8 +615,8 @@ The syntax is the same as 'number' except the name which is <u32>.
 
 .Bar
 A bar widget displays the value of a FLOAT signal both graphically using a bar display and numerically.
-The color of the bar can be set as one color throughout its range (default using fillcolor) orlset to change color,
-dependent upon the value of the halpin (range1, range2 range3 must all be set, if you only want 2 ranges, set 2 of them to the same color).
+The color of the bar can be set as one color throughout its range (default using fillcolor) or set to change color,
+dependent upon the value of the HAL pin (range1, range2 range3 must all be set, if you only want 2 ranges, set 2 of them to the same color).
 
 * `<halpin>"my-bar"</halpin>` (text), derives and sets the pin name: `pyvcp.my-bar`.
 * `<min_>0</min_>` (number), sets the minimum scale.
@@ -792,10 +792,10 @@ up or down as the wheel is turned, either by dragging in a circular
 motion, or by rolling the mouse-wheel.
 
 Optional tags:
-* '<text>"My Text"</text>' displays text
-* '<bgcolor>"grey"</bgcolor> <fillcolor>"green"</fillcolor>' background & active colors
-* '<scale_pin>1</scale_pin>' creates scale text and a `FLOAT.scale` pin to display jog scale
-* '<clear_pin>1</clear_pin>' creates `DRO` and a `BIT.reset` pin to reset DRO.
+* `<text>"My Text"</text>` displays text
+* `<bgcolor>"grey"</bgcolor> <fillcolor>"green"</fillcolor>` background & active colors
+* `<scale_pin>1</scale_pin>` creates scale text and a `FLOAT.scale` pin to display jog scale
+* `<clear_pin>1</clear_pin>` creates `DRO` and a `BIT.reset` pin to reset DRO.
   Needs scale_pin for scaled DRO. Shift+click resets DRO also
 
 [source,xml]
@@ -820,7 +820,7 @@ The images must be in the same directory as your INI file (or in the current dir
 
 .Image Bit
 
-The 'image_bit' toggles between two images by setting the halpin to true or false.
+The 'image_bit' toggles between two images by setting the HAL pin to true or false.
 
 [source,xml]
 ----
@@ -845,7 +845,7 @@ image::images/pyvcp_image02.png[]
 
 The 'image_u32' is the same as 'image_bit',
 except you have essentially an unlimited number of images and
-you 'select' the image by setting the halpin to a integer value with 0 for the first image in the images list and 1 for the second image, etc.
+you 'select' the image by setting the HAL pin to a integer value with 0 for the first image in the images list and 1 for the second image, etc.
 
 [source,xml]
 ----
@@ -862,10 +862,10 @@ The above code produced the following example by adding the stb.gif image.
 .Simple image_u32 Example with halpin=0
 image::images/pyvcp_image_u32_01.png[]
 
-.Simple image_u32 Example withhalpin=1
+.Simple image_u32 Example with halpin=1
 image::images/pyvcp_image01.png[]
 
-.Simple image_u32 Example withhalpin=2
+.Simple image_u32 Example with halpin=2
 image::images/pyvcp_image02.png[]
 
 Notice that the default is the min even though it is set higher than
@@ -925,7 +925,7 @@ image::images/pyvcp_borders.png[]
 
 .Fill
 
-Container fill are specified with the '<boxfill fill=""/>' tag.
+Container fill are specified with the `<boxfill fill=""/>` tag.
 Valid entries are none, x, y and both.
 The x fill is a horizontal fill and the y fill is a vertical fill
 
@@ -934,7 +934,7 @@ The x fill is a horizontal fill and the y fill is a vertical fill
 
 .Anchor
 
-Container anchors are specified with the <boxanchor anchor=""/> tag.
+Container anchors are specified with the `<boxanchor anchor=""/>` tag.
 The anchor specifies where to position each slave in its parcel.
 Valid entries are center, n, s, e, w, for center, north, south, east and west.
 Combinations like sw, se, nw and ne are also valid.
@@ -944,11 +944,11 @@ Combinations like sw, se, nw and ne are also valid.
 
 .Expand
 
-Container expand is specified with the boolean <boxexpand expand=""/> tag.
+Container expand is specified with the boolean `<boxexpand expand=""/>` tag.
 Valid entries are "yes", "no".
 
 `<boxexpand expand="boolean"/>`::
-  Where 'boolean' is either "yes" or "no". Default is yes.
+  Where 'boolean' is either "yes" or "no". Default is "yes".
 
 .Hbox
 
@@ -971,9 +971,9 @@ The above code produced this example:
 .Simple hbox Example
 image::images/pyvcp_hbox.png[]
 
-Inside an Hbox, you can use the '<boxfill fill=""/>', '<boxanchor anchor=""/>',
-and '<boxexpand expand=""/>' tags to choose how items in the box behave when the window is re-sized.
-The default is 'fill="y"', 'anchor="center"', 'expand="yes"' for an Hbox.
+Inside an Hbox, you can use the `<boxfill fill=""/>`, `<boxanchor anchor=""/>`,
+and `<boxexpand expand=""/>` tags to choose how items in the box behave when the window is re-sized.
+The default is `fill="y"`, `anchor="center"`, `expand="yes"` for an Hbox.
 
 .Vbox
 
@@ -996,9 +996,9 @@ The above code produced this example:
 .Simple vbox Example
 image::images/pyvcp_vbox.png[]
 
-Inside a Vbox, you can use the '<boxfill fill=""/>', '<boxanchor anchor=""/>',
-and '<boxexpand expand=""/>' tags to choose how items in the box behave when the window is re-sized.
-The default is 'fill="x"', 'anchor="center"', 'expand="yes"' for a Vbox.
+Inside a Vbox, you can use the `<boxfill fill=""/>`, `<boxanchor anchor=""/>`,
+and `<boxexpand expand=""/>` tags to choose how items in the box behave when the window is re-sized.
+The default is `fill="x"`, `anchor="center"`, `expand="yes"` for a Vbox.
 
 .Labelframe
 
@@ -1026,9 +1026,9 @@ image::images/pyvcp_labelframe.png[]
 
 .Table
 A table is a container that allows layout in a grid of rows and columns.
-Each row is started by a '<tablerow/>' tag.
-A contained widget may span rows or columns through the use of the '<tablespan rows= cols=/>' tag.
-The sides of the cells to which the contained widgets "stick" may be set through the use of the '<tablesticky sticky=/>' tag.
+Each row is started by a `<tablerow/>` tag.
+A contained widget may span rows or columns through the use of the `<tablespan rows= cols=/>` tag.
+The sides of the cells to which the contained widgets "stick" may be set through the use of the `<tablesticky sticky=/>` tag.
 A table expands on its flexible rows and columns.
 
 .Table Code Example
