@@ -173,10 +173,10 @@ Simply install the package in the same way as any other package from the Synapti
 
 === Installing on Debian Bookworm (with the Preempt-RT kernel)
 
-. Install Debian Bookworm (Debian 12), amd64 version.  .
+. Install Debian Bookworm (Debian 12), amd64 version.
 
 . After burning the iso and booting up (preferably with a wired connection to the internet), select 'Install' or 'Graphical Install'. When asked to select a desktop we strongly recommend you use XFCE and don't install the default gnome desktop. This is because Gnome uses Wayland for graphic rendering. Linuxcnc has been developed over many years and was written using Xorg so full Wayland support may not have been achieved.
-.
+
 
 [WARNING]
 Do not enter a root password, if you do sudo is disabled and you won't be able to complete the following steps.
@@ -188,12 +188,12 @@ sudo apt-get update
 sudo apt-get dist-upgrade
 ----
 
-. Install linuxcnc and the Preempt-RT kernel
+. Install linuxcnc and the Preempt-RT kernel:
 +
 ----
 sudo apt-get install linuxcnc-uspace linuxcnc-uspace-dev
 ----
-. Optionally you can install mesaflash if you are using a Mesa card.
+. Optionally you can install mesaflash if you are using a Mesa card:
 +
 ----
 sudo apt install mesaflash
@@ -211,52 +211,63 @@ uname -v
   https://www.raspberrypi.org/documentation/installation/installing-images/README.md[usual way].
 . Boot the Pi. It will  open a text based terminal
 . Login using the root account (which does not have a password yet). Type:
++
 ----
 root
-----
+---- 
 and hit enter
-Add a password to the root user account. Type:
+. Add a password to the root user account. Type:
++
 ----
 passwd
 ----
-and allocate a password you will never forget! Add a new user and allocate a password. I used pi:
+and allocate a password you will never forget! 
+. Add a new user and allocate a password. I used pi:
++
 ----
 adduser pi
 ----
-Add your user to the sudo group. Type:
+. Add your user to the sudo group. Type:
++
 ----
 usermod -aG sudo pi
 ----
-Type the following lines:
+. Type the following lines:
++
 ----
 apt update
 apt upgrade
 apt-install linux-image-rt-arm64 linux-headers-rt-arm64
 ----
-Reboot to boot into the PREEMPT_RT kernel log in with root and the password you set. Type:
+. Reboot to boot into the PREEMPT_RT kernel log in with root and the password you set. Type:
++
 ----
 nano /boot/firmware/cmdline.txt
 ----
 and add this to the line:
++
 ----
 processor.max_cstate=1 isolcpus=2,3
 ----
 Save and exit nano
 
-Install a graphical environment by typing
+. Install a graphical environment by typing
++
 ----
 tasksel
 ----
 Select a desktop environment.  Only Select XFCE. Press Tab to select ok, press enter and  continue. Select a keyboard when prompted and continue. Don’t panic if the screen display appears corrupt, just wait until completed.
 Install linuxcnc. Type:
++
 ----
 apt install linuxcnc-uspace linuxcnc-uspace-dev
 ----
-to start the graphical environment type:
+. To start the graphical environment type:
++
 ----
 startx
 ----
-Reboot. Your graphical envieonment should start normally. Log in with the username and password you created in step 7 (I used pi)
+. Reboot. Your graphical envieonment should start normally. Log in with the username and password you created in step 7 (I used pi)
 
 [[sec:_bookworm_tweaks]]
 == Bookworm Tweaks(((LinuxCNC:Bookworm Tweaks)))(((Installation:Bookworm Tweaks)))
@@ -395,24 +406,27 @@ Save and close geany.
 Reboot to restart the network.
 Ping the mesa card to confirm it's all working 
 ----
-ping 10.10.10.1
+ping 10.10.10.10
 ----
 
 === Installing a later kernel
 Since the release of Debian Bullseye (Linux kernel 5.10), real time performance has been  disappointing. In particular, network latency when communicating with a Mesa ethernet card has  been generating Error Finishing Read Errors. This means that the network latency left insufficient time for the servo thread cycle to complete in time.
-This appears to have been more prevalent with Realtek Network interfaces. Fortunately, each iteration of the Linux kernel has improved results, particularly since the release of 6.x kernels. Debian Bookworm (Debian 12) is using the 6.1 kernel which is quite good. In our testing, we found that latency improved by 265% if we used the 6.3 kernel. We have compiled this version of the kernel for your convenience. Updated to the final 6.3 kernel on 1 May 2023
+
+This appears to have been more prevalent with Realtek Network interfaces. Fortunately, each iteration of the Linux kernel has improved results, particularly since the release of 6.x kernels. Debian Bookworm (Debian 12) is using the 6.1 kernel which is quite good. In our testing, we found that latency improved by 265% if we used the 6.3 kernel. We have compiled this version of the kernel for your convenience. Updated to the final 6.3 kernel on 1 May 2023.
  
 Only try installing it if you have exhausted all options by following the steps below:
+
 . Download the 2 deb files (image, source) from 
 https://drive.google.com/drive/folders/1NzQIHnf9M_cHzuZCqSldVFGschOOxaER?usp=sharing 
 . The link above is to  the latest kernel versions that have been built following the final release of 6.3 kernel and the matching preempt_rt patches.
 
-Navigate to the Downloads folder and open a new Terminal session. Install the debs as follows (pressing tab auto completes the command)
+. Navigate to the Downloads folder and open a new Terminal session. Install the debs as follows (pressing tab auto completes the command)
++
 ----
 dpkg -i linux-source(tab)
 dpkg -i linux-image(tab)
 ----
-- Reboot into the new kernel
+. Reboot into the new kernel
 . Check that uname -v shows the 6.3 kernel is installed
 . If it isn’t, use grub-customizer mentioned earlier to change the kernel boot order and reboot again
 
