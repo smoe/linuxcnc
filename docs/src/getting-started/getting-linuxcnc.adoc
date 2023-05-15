@@ -11,7 +11,7 @@ adventurous.  If you have an existing install that you want to upgrade,
 go to the <<cha:updating-linuxcnc,Updating LinuxCNC>> section instead.
 
 NOTE: LinuxCNC requires a special kernel with real-time extensions.
-There are three possibilities here: preempt-rt, RTAI or Xenomai. Preempt_rt  will eventually become part of the core Linux kernel and is now included as a package in most modern Linux distributions. Linuzxcnc is now included in Debian Bookworm. There are two other versions of LinuxCNC which work with Xenomai and RTAI kernels.
+There are three possibilities here: preempt-rt, RTAI or Xenomai. Preempt_rt  will eventually become part of the core Linux kernel and is now included as a package in most modern Linux distributions. LinuxCNC is now included in Debian Bookworm. There are two other versions of LinuxCNC which work with Xenomai and RTAI kernels.
 See the table below for details.
 [[sec:download_image]]
 == Download the image
@@ -30,9 +30,8 @@ sudo apt install linuxcnc-uspace
 
 The outline of the process looks like this:
 
-. Download the Live/Install Image from linuxcnc.org
-. or Download the Debian Bookworm image from  debian.org
-. Write your chosen image to a USB storage device or DVD.
+. Download the Live/Install Image from linuxcnc.org or Download the Debian Bookworm image from  debian.org
+. Write your image to a USB storage device or DVD.
 . Boot the Live system to test out LinuxCNC if using The Live/Install image.
 . Boot the Installer to install LinuxCNC.
 
@@ -66,13 +65,14 @@ There are many ways to burn an ISO to a USB drive. Some tools include win32diski
 The .iso file will be to big to fit on a CD but if required, it can be burnt to a DVD. Use a suitable DVD burner application on your operating system.
 
 
-.Writing the image to a USB storage device on any Operating systems
+.Writing the image to a USB storage device on any Operating system
 . Open Balena Etcher
 . Select image - your .iso file
 . Select drive - your USB storage device.
 . Click on Flash!
-+
-.Writing the image to a DVD in Linux
+
+== Writing the image to a DVD in Linux
+
 . Insert a blank DVD into your burner. A 'CD/DVD Creator' or 'Choose
   Disc Type' window will pop up. Close this, as we will not be using it.
 . Browse to the downloaded image in the file browser.
@@ -119,7 +119,7 @@ bootup.
 
 == Updates to LinuxCNC(((Updates to LinuxCNC)))
 
-With the normal install the Update Manager will notify you of updates
+With the normal install from the live disk, the Update Manager will notify you of updates
 to LinuxCNC when you go on line and allow you to easily upgrade with no
 Linux knowledge needed.
 It is OK to upgrade everything except the operating system when asked to.
@@ -130,7 +130,7 @@ If you have used the live image, Do not upgrade the operating system if prompted
 [[linuxcnc:install-problems]]
 == Install Problems(((LinuxCNC:Installation Problems)))(((Installation:Problems)))
 
-Most problems booting the installation image are due to uefi hardware. Fortuately, Debian Bookworm has significantly better support for uefi systems than earlier versions of Linux.
+Most problems booting the installation image are due to uefi hardware. Fortunately, Debian Bookworm has significantly better support for uefi systems than earlier versions of Linux.
 
 Sometimes you can tell the BIOS to boot legacy (non-uefi) hardware.
 
@@ -155,8 +155,7 @@ If you wish to use RTAI or Xenomai, please follow the instructions in the Linuxc
 [options="header"]
 |===
 | Distribution   | Architecture  | Kernel     | Package name    | Typical use
-| Debian Bookworm| amd64         | preempt-rt | linuxcnc-uspace | machine control & simulation
-| Debian Bookworm| amd64         | RTAI       | linuxcnc        | machine control (known issues)
+| Debian Bookworm| amd64 & armhf | preempt-rt | linuxcnc-uspace | machine control & simulation
 | Debian Buster  | amd64 & armhf | preempt-rt | linuxcnc-uspace | machine control & simulation
 | Debian Buster  | amd64         | RTAI       | linuxcnc        | machine control (known issues)
 | Debian Jessie  | amd64 & i386  | Stock      | linuxcnc-uspace | simulation only
@@ -167,15 +166,15 @@ If you wish to use RTAI or Xenomai, please follow the instructions in the Linuxc
 
 NOTE: LinuxCNC v2.8 and above is not supported on Ubuntu Lucid or older.
 
-.Preempt-RT kernels
+== Preempt-RT kernels
 The Preempt-rt kernels are available for Debian from the regular debian.org archives. The package is called `linux-image-rt-*`.
 Simply install the package in the same way as any other package from the Synaptic Package manager or with `sudo apt-get install` at the command-line if it is not installed with linuxcnc-uspace.
 
 === Installing on Debian Bookworm (with the Preempt-RT kernel)
 
 . Install Debian Bookworm (Debian 12), amd64 version.
-
-. After burning the iso and booting up (preferably with a wired connection to the internet), select 'Install' or 'Graphical Install'. When asked to select a desktop we strongly recommend you use XFCE and don't install the default gnome desktop. This is because Gnome uses Wayland for graphic rendering. Linuxcnc has been developed over many years and was written using Xorg so full Wayland support may not have been achieved.
+. Make sure you have aonnection (preferably wired) to the internet
+. After burning the iso and booting up , select 'Install' or 'Graphical Install'. When asked to select a desktop we strongly recommend you use XFCE and don't install the default gnome desktop. This is because Gnome uses Wayland for graphic rendering. Linuxcnc has been developed over many years and was written using Xorg so full Wayland support may not have been achieved.
 
 
 [WARNING]
@@ -206,7 +205,7 @@ uname -v
 ----
 
 === Installing on Raspberry Pi using Debian Bookworm
-. FIX_ME - this needs testing.
+FIX_ME - this needs testing.
 . Download a Debian Bookworm  image from https://raspi.debian.net/tested-images/ and burn to an SD card and install in the
   https://www.raspberrypi.org/documentation/installation/installing-images/README.md[usual way].
 . Boot the Pi. It will  open a text based terminal
@@ -237,9 +236,9 @@ usermod -aG sudo pi
 ----
 apt update
 apt upgrade
-apt-install linux-image-rt-arm64 linux-headers-rt-arm64
+apt install linux-image-rt-arm64 linux-headers-rt-arm64
 ----
-. Reboot to boot into the PREEMPT_RT kernel log in with root and the password you set. Type:
+. Reboot into the PREEMPT_RT kernel log in with root and the password you set. Type:
 +
 ----
 nano /boot/firmware/cmdline.txt
@@ -290,7 +289,7 @@ autologin-user-timeout=0
 ----
 === Preempt_rt Tweaks
 isolcpus can make a huge difference to latency on some systems because it isolates specific CPU cores so they are purely used by real time threads (eg the linuxcnc servo thread). The instructions below assume a 4 core CPU eg. Celeron, i3, i5 etc) those with 2 cores or more than 4 cores need different isolcpus settings. Never isolate core 0 as it is used for system threads so it already includes a lot of running threads.
-+ Now we need to isolate 2 cores for better RT performance
++ Now we need to isolate 2 cores for better RT performance on a 4 core machine.
 ----
 sudo grub-customizer
 ----
@@ -336,6 +335,7 @@ ip a
 ----
 Now display the NIC info eg: 
 ----
+sudo apt install ethtool
 ethtool -i enps02
 ----
 If it seems you could benefit from this driver, continue
@@ -354,7 +354,7 @@ Save and close geany. Type:
 ----
 sudo apt update
 ----
-you need to install some utilities. Type:
+you now need to install some utilities. Type:
 ----
 sudo apt install build-essential dkms 
 ----
@@ -412,15 +412,16 @@ ping 10.10.10.10
 === Installing a later kernel
 Since the release of Debian Bullseye (Linux kernel 5.10), real time performance has been  disappointing. In particular, network latency when communicating with a Mesa ethernet card has  been generating Error Finishing Read Errors. This means that the network latency left insufficient time for the servo thread cycle to complete in time.
 
-This appears to have been more prevalent with Realtek Network interfaces. Fortunately, each iteration of the Linux kernel has improved results, particularly since the release of 6.x kernels. Debian Bookworm (Debian 12) is using the 6.1 kernel which is quite good. In our testing, we found that latency improved by 265% if we used the 6.3 kernel. We have compiled this version of the kernel for your convenience. Updated to the final 6.3 kernel on 1 May 2023.
+This appears to have been more prevalent with Realtek Network interfaces. Fortunately, each iteration of the Linux kernel has improved results, particularly since the release of 6.x kernels. Debian Bookworm (Debian 12) is using the 6.1 kernel which is quite good. In our testing, we found that latency improved by 265% if we used the 6.3 kernel. We have compiled this version of the kernel for your convenience. This image was updated to the final 6.3 kernel on 1 May 2023 and may be updated form time to time.
  
 Only try installing it if you have exhausted all options by following the steps below:
 
 . Download the 2 deb files (image, source) from 
+FIX_ME - can these be hosted on a LinuxCNC server?
 https://drive.google.com/drive/folders/1NzQIHnf9M_cHzuZCqSldVFGschOOxaER?usp=sharing 
 . The link above is to  the latest kernel versions that have been built following the final release of 6.3 kernel and the matching preempt_rt patches.
 
-. Navigate to the Downloads folder and open a new Terminal session. Install the debs as follows (pressing tab auto completes the command)
+. Navigate to your Downloads folder and open a new Terminal session. Install the debs as follows (pressing tab auto completes the command)
 +
 ----
 dpkg -i linux-source(tab)
