@@ -365,7 +365,7 @@ sudo apt install linux-headers-$(uname -r)
 You can now install the r8168 or R8125 driver. Depending on your driver 
 Type: 
 ----
-sudo apt install r81F68-dkms 
+sudo apt install r8168-dkms 
 ----
 or type:
 ----
