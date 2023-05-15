@@ -210,59 +210,59 @@ FIX_ME - this needs testing.
   https://www.raspberrypi.org/documentation/installation/installing-images/README.md[usual way].
 . Boot the Pi. It will  open a text based terminal
 . Login using the root account (which does not have a password yet). Type:
-+
+
 ----
 root
 ---- 
 and hit enter
 . Add a password to the root user account. Type:
-+
+
 ----
 passwd
 ----
 and allocate a password you will never forget! 
 . Add a new user and allocate a password. I used pi:
-+
+
 ----
 adduser pi
 ----
 . Add your user to the sudo group. Type:
-+
+
 ----
 usermod -aG sudo pi
 ----
 . Type the following lines:
-+
+
 ----
 apt update
 apt upgrade
 apt install linux-image-rt-arm64 linux-headers-rt-arm64
 ----
 . Reboot into the PREEMPT_RT kernel log in with root and the password you set. Type:
-+
+
 ----
 nano /boot/firmware/cmdline.txt
 ----
 and add this to the line:
-+
+
 ----
 processor.max_cstate=1 isolcpus=2,3
 ----
 Save and exit nano
 
 . Install a graphical environment by typing
-+
+
 ----
 tasksel
 ----
 Select a desktop environment.  Only Select XFCE. Press Tab to select ok, press enter and  continue. Select a keyboard when prompted and continue. Don’t panic if the screen display appears corrupt, just wait until completed.
 Install linuxcnc. Type:
-+
+
 ----
 apt install linuxcnc-uspace linuxcnc-uspace-dev
 ----
 . To start the graphical environment type:
-+
+
 ----
 startx
 ----
@@ -365,7 +365,7 @@ sudo apt install linux-headers-$(uname -r)
 You can now install the r8168 or R8125 driver. Depending on your driver 
 Type: 
 ----
-sudo apt install r8168-dkms 
+sudo apt install r81F68-dkms 
 ----
 or type:
 ----
