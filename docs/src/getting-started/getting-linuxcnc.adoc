@@ -155,8 +155,8 @@ If you wish to use RTAI or Xenomai, please follow the instructions in the Linuxc
 [options="header"]
 |===
 | Distribution   | Architecture  | Kernel     | Package name    | Typical use
-| Debian Bookworm| amd64 & armhf | preempt-rt | linuxcnc-uspace | machine control & simulation
-| Debian Buster  | amd64 & armhf | preempt-rt | linuxcnc-uspace | machine control & simulation
+| Debian Bookworm| amd64 & arm64 | preempt-rt | linuxcnc-uspace | machine control & simulation
+| Debian Buster  | amd64 & arm64 | preempt-rt | linuxcnc-uspace | machine control & simulation
 | Debian Buster  | amd64         | RTAI       | linuxcnc        | machine control (known issues)
 | Debian Jessie  | amd64 & i386  | Stock      | linuxcnc-uspace | simulation only
 | Debian Wheezy  | i386          | RTAI       | linuxcnc        | machine control & simulation
@@ -173,9 +173,9 @@ Simply install the package in the same way as any other package from the Synapti
 === Installing on Debian Bookworm (with the Preempt-RT kernel)
 
 . Install Debian Bookworm (Debian 12), amd64 version.
-. Make sure you have aonnection (preferably wired) to the internet
+. Make sure you have connection (preferably wired) to the internet
 . After burning the iso and booting up , select 'Install' or 'Graphical Install'. When asked to select a desktop we strongly recommend you use XFCE and don't install the default gnome desktop. This is because Gnome uses Wayland for graphic rendering. Linuxcnc has been developed over many years and was written using Xorg so full Wayland support may not have been achieved.
-
++
 
 [WARNING]
 Do not enter a root password, if you do sudo is disabled and you won't be able to complete the following steps.
@@ -205,68 +205,107 @@ uname -v
 ----
 
 === Installing on Raspberry Pi using Debian Bookworm
-FIX_ME - this needs testing.
-. Download a Debian Bookworm  image from https://raspi.debian.net/tested-images/ and burn to an SD card and install in the
-  https://www.raspberrypi.org/documentation/installation/installing-images/README.md[usual way].
-. Boot the Pi. It will  open a text based terminal
-. Login using the root account (which does not have a password yet). Type:
+NOTE: Raspberry Pis (and most other Single Board Computers, or SBUs) are ARM64 machines. These instructions will feature arm64 kernel and can't be used for AMD64 machines (which is what many PCs are, including all Intel based machines.)
 
+. Download a Debian Bookworm  image from either https://raspi.debian.net/tested-images/ or https://raspi.debian.net/daily-images/ and burn to an SD card and install in the
+  https://www.raspberrypi.org/documentation/installation/installing-images/README.md[usual way].
++
+NOTE: These instructions assume not using the Advanced Menu to set things like userid, password, time-zone, keyboard layout,etc. +
+Also, there have been reported black screen lockout with the "tested" images on some Pis. It may be that removing dtoverlay=vc4-fkms-v3d-pi4 from /boot/config.txt resolves that problem. +
+These instructions were tested using the 2023/05/15 daily build.
+
+. Insure the Pi is connected to the internet. Boot the Pi. It will  open a text based terminal
+. Login using the root account (which does not have a password yet). Type:
++
 ----
 root
 ---- 
 and hit enter
 . Add a password to the root user account. Type:
-
++
 ----
 passwd
 ----
 and allocate a password you will never forget! 
 . Add a new user and allocate a password. I used pi:
-
++
 ----
 adduser pi
 ----
 . Add your user to the sudo group. Type:
-
++
 ----
 usermod -aG sudo pi
 ----
-. Type the following lines:
-
+. To get the Real Time (-rt-) kernel, type the following lines:
++
 ----
 apt update
 apt upgrade
 apt install linux-image-rt-arm64 linux-headers-rt-arm64
 ----
-. Reboot into the PREEMPT_RT kernel log in with root and the password you set. Type:
+NOTE: If the image was drawn from the daily build, there will typically be no packages to upgrade. +
+The 'apt install' command here will default to the most current -rt- kernel available. If you wish a specific version, type its exact name instead.
+. Reboot to finalize installing the PREEMPT_RT kernel. 
+. Login as root using the password set previously.
+. To improve performance there are several settings in two places:
 
+.. To change the startup command line settings, which will be built into `/boot/firmware/cmdline.txt` we modify an upstream file by typing:
++
 ----
-nano /boot/firmware/cmdline.txt
+nano /etc/default/raspi-extra-cmdline
 ----
-and add this to the line:
-
+and add this to the empty file:
++
 ----
 processor.max_cstate=1 isolcpus=2,3
 ----
 Save and exit nano
+.. To change configuration settings, which will be built into  `/boot/firmware/config.txt` we modify its upstream file by typing:
++
+----
+nano /etc/default/raspi-firmware-custom
+----
+and add to this empty file the following lines:
++
+----
+dtoverlay=vc4-fkms-v3d-pi4
+disable_overscan=1
+dtparam=audio=off
+----
+Save and exit nano
++
+NOTE: These commands (a) use video graphics resources for 3D acceleration (increases performance considerably), (b) don't overscan (fixes some black border issues), and (c) don't use audio (unknown performance enhancement)
++
+WARNING: The first command is only tested on RasPi 4 models, and it specifically references pi4. +
 
+.. Issue the configuration update command, which will take those changes and write them to the `/boot/firmware/cmdline.txt` and `/boot/firmware/config.txt`  files:
++
+----
+update-initramfs -u -k all
+----
 . Install a graphical environment by typing
-
++
 ----
-tasksel
+apt install task-xfce-desktop
 ----
-Select a desktop environment.  Only Select XFCE. Press Tab to select ok, press enter and  continue. Select a keyboard when prompted and continue. Don’t panic if the screen display appears corrupt, just wait until completed.
-Install linuxcnc. Type:
+During the install you will need to select a keyboard layout/language, then tab to the "OK" and press Enter. 
++
+Don’t panic if the screen display appears corrupt, just wait until completed.
 
+. Install linuxcnc. Type:
++
 ----
 apt install linuxcnc-uspace linuxcnc-uspace-dev
 ----
 . To start the graphical environment type:
-
++
 ----
 startx
 ----
-. Reboot. Your graphical envieonment should start normally. Log in with the username and password you created in step 7 (I used pi)
++ 
+NOTE: This has put you into a desktop as root. It is not best practice to work as root. 
+. Reboot. Your graphical environment should start normally. Log in with the non-root username and password you created earlier. 
 
 [[sec:_bookworm_tweaks]]
 == Bookworm Tweaks(((LinuxCNC:Bookworm Tweaks)))(((Installation:Bookworm Tweaks)))
