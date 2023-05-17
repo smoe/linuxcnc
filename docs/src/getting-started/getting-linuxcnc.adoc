@@ -170,7 +170,7 @@ NOTE: LinuxCNC v2.8 and above is not supported on Ubuntu Lucid or older.
 The Preempt-rt kernels are available for Debian from the regular debian.org archives. The package is called `linux-image-rt-*`.
 Simply install the package in the same way as any other package from the Synaptic Package manager or with `sudo apt-get install` at the command-line if it is not installed with linuxcnc-uspace.
 
-=== Installing on Debian Bookworm (with the Preempt-RT kernel)
+=== Installing Debian Bookworm on X86 PC (with the Preempt-RT kernel)
 
 . Install Debian Bookworm (Debian 12), amd64 version.
 . Make sure you have connection (preferably wired) to the internet
@@ -214,7 +214,7 @@ NOTE: These instructions assume not using the Advanced Menu to set things like u
 Also, there have been reported black screen lockout with the "tested" images on some Pis. It may be that removing dtoverlay=vc4-fkms-v3d-pi4 from /boot/config.txt resolves that problem. +
 These instructions were tested using the 2023/05/15 daily build.
 
-. Insure the Pi is connected to the internet. Boot the Pi. It will  open a text based terminal
+. Ensure the Pi is connected to the internet. Boot the Pi. It will  open a text based terminal
 . Login using the root account (which does not have a password yet). Type:
 +
 ----
