@@ -4,24 +4,18 @@
 [[cha:getting-linuxcnc]]
 = Getting LinuxCNC(((Getting LinuxCNC)))
 
-This section describes the recommended way to download
-and make a fresh install of LinuxCNC.  There are also
-<<sec:_alternate_install_methods,Alternate Install Methods>> for the
-adventurous.  If you have an existing install that you want to upgrade,
-go to the <<cha:updating-linuxcnc,Updating LinuxCNC>> section instead.
+This section describes the recommended way to download and make a fresh install of LinuxCNC.
+There are also <<sec:_alternate_install_methods,Alternate Install Methods>> for the adventurous.
+If you have an existing install that you want to upgrade, go to the <<cha:updating-linuxcnc,Updating LinuxCNC>> section instead.
 
 NOTE: LinuxCNC requires a special kernel with real-time extensions.
 There are three possibilities here: preempt-rt, RTAI or Xenomai. Preempt_rt  will eventually become part of the core Linux kernel and is now included as a package in most modern Linux distributions. LinuxCNC is now included in Debian Bookworm. There are two other versions of LinuxCNC which work with Xenomai and RTAI kernels.
 See the table below for details.
 [[sec:download_image]]
 == Download the image
-Fresh installs of LinuxCNC are most easily created using the Live/Install
-Image.  This is a hybrid ISO filesystem image that can be written to a
-USB storage device or a DVD and used to boot a computer.  At boot time
-you will be given a choice of booting the "Live" system (to run LinuxCNC
-without making any permanent changes to your computer) or booting the
-Installer (to install LinuxCNC and its operating system onto your
-computer's hard drive).
+Fresh installs of LinuxCNC are most easily created using the Live/Install Image.
+This is a hybrid ISO filesystem image that can be written to a USB storage device or a DVD and used to boot a computer.
+At boot time you will be given a choice of booting the "Live" system (to run LinuxCNC without making any permanent changes to your computer) or booting the Installer (to install LinuxCNC and its operating system onto your computer's hard drive).
 
 With the release of Debian Bookworm (Debian 12) on 10 June 2023, another option is to simply install Debian from the debian.org website and install linuxcnc-uspace from the Synaptic package manager or by simply opening a terminal window and typing:
 ----
@@ -35,7 +29,7 @@ The outline of the process looks like this:
 . Boot the Live system to test out LinuxCNC if using The Live/Install image.
 . Boot the Installer to install LinuxCNC.
 
-If you choose use Debian Bookworm, some additional configuration may be required to make a more friendly environment. These steps will be covered in an seperate section later in this document. This section describes some methods for downloading the Live/Install Image.
+If you choose use Debian Bookworm, some additional configuration may be required to make a more friendly environment.These steps will be covered in an seperate section later in this document. This section describes some methods for downloading the Live/Install Image.
 
 [[sec:_normal_download]]
 === Normal Download
@@ -73,55 +67,43 @@ The .iso file will be to big to fit on a CD but if required, it can be burnt to 
 
 == Writing the image to a DVD in Linux
 
-. Insert a blank DVD into your burner. A 'CD/DVD Creator' or 'Choose
-  Disc Type' window will pop up. Close this, as we will not be using it.
+. Insert a blank DVD into your burner. A 'CD/DVD Creator' or 'Choose Disc Type' window will pop up. Close this, as we will not be using it.
 . Browse to the downloaded image in the file browser.
 . Right click on the ISO image file and choose Write to Disc.
-. Select the write speed. It is recommended that you write at the lowest
-  possible speed.
+. Select the write speed. It is recommended that you write at the lowest possible speed.
 . Start the burning process.
-. If a 'choose a file name for the disc image' window pops up, just pick
-  OK.
+. If a 'choose a file name for the disc image' window pops up, just pick OK.
 
 == Testing LinuxCNC with Live Image
 
-With the USB storage device plugged in or the DVD in the DVD drive,
-shut down the computer then turn the computer back on. This will boot
-the computer from the Live/Install Image and choose the Live boot option.
+With the USB storage device plugged in or the DVD in the DVD drive, shut down the computer then turn the computer back on.
+This will boot the computer from the Live/Install Image and choose the Live boot option.
 
-NOTE: If the system does not boot from the DVD or USB stick it might be
-necessary to change the boot order in the PC BIOS.
+NOTE: If the system does not boot from the DVD or USB stick it might be necessary to change the boot order in the PC BIOS.
 
-Once the computer has booted up you can try out LinuxCNC without
-installing it. You can not create custom configurations or modify most
-system settings in a Live session, but you can (and should) run the
-latency test.
+Once the computer has booted up you can try out LinuxCNC without installing it.
+You can not create custom configurations or modify most system settings in a Live session, but you can (and should) run the latency test.
 
-To try out LinuxCNC: from the Applications/CNC menu pick LinuxCNC. A
-dialog box will open from which you can choose one of many sample
-configurations. At this point it only really makes sense to pick a "sim"
-configuration. Some of the sample configurations include onscreen
-3D simulated machines, look for "Vismach" to see these.
+To try out LinuxCNC: from the Applications/CNC menu pick LinuxCNC.
+A dialog box will open from which you can choose one of many sample configurations.
+At this point it only really makes sense to pick a "sim" configuration.
+Some of the sample configurations include onscreen 3D simulated machines, look for "Vismach" to see these.
 
-To see if your computer is suitable for software step pulse generation
-run the Latency Test as shown <<sec:latency-test,here>>.
+To see if your computer is suitable for software step pulse generation run the Latency Test as shown <<sec:latency-test,here>>.
 
-At the time of writing the Live-Image is only available with the
-preempt-rt kernel and a matching LinuxCNC. On some hardware this might
-not offer good enough latency. There is an experimental version available
-using the RTAI realtime kernel which will often give better latency. RTAI is only supported on older versions of Debian. For further information about RTAI, refer to the documentation for Version 2.8 of Linuxcnc.
+At the time of writing the Live-Image is only available with the preempt-rt kernel and a matching LinuxCNC.
+On some hardware this might not offer good enough latency.
+There is an experimental version available using the RTAI realtime kernel which will often give better latency.
+RTAI is only supported on older versions of Debian. For further information about RTAI, refer to the documentation for Version 2.8 of LinuxCNC.
 Modern hardware demands a modern operating system so RTAI may be a poor choice on modern hardware.
 
 == Installing LinuxCNC
 
-To install LinuxCNC from the LiveCD select 'Install (Graphical)' at
-bootup.
+To install LinuxCNC from the LiveCD select 'Install (Graphical)' at bootup.
 
 == Updates to LinuxCNC(((Updates to LinuxCNC)))
 
-With the normal install from the live disk, the Update Manager will notify you of updates
-to LinuxCNC when you go on line and allow you to easily upgrade with no
-Linux knowledge needed.
+With the normal install from the live disk, the Update Manager will notify you of updates to LinuxCNC when you go on line and allow you to easily upgrade with no Linux knowledge needed.
 It is OK to upgrade everything except the operating system when asked to.
 
 [WARNING]
@@ -134,23 +116,19 @@ Most problems booting the installation image are due to uefi hardware. Fortunate
 
 Sometimes you can tell the BIOS to boot legacy (non-uefi) hardware.
 
-In rare cases you might have to reset the BIOS to default settings if
-during the Live CD install it cannot recognize the hard drive
-during the boot up.
+In rare cases you might have to reset the BIOS to default settings if during the Live CD install it cannot recognize the hard drive during the boot up.
     
 [[sec:_alternate_install_methods]]
 == Alternate Install Methods(((LinuxCNC:Alternate Install Methods)))(((Installation:Alternate Methods)))
 
-The easiest, preferred way to install LinuxCNC is to use the Live/Install
-Image or Debian Bookworm as described above.  Both methods are as simple and reliable as we can make it, and are suitable for novice users and experienced users alike. Both methods  will typically replace any existing operating system on your hard drive.
+The easiest, preferred way to install LinuxCNC is to use the Live/Install Image or Debian Bookworm as described above.
+Both methods are as simple and reliable as we can make it, and are suitable for novice users and experienced users alike.
+Both methods  will typically replace any existing operating system on your hard drive.
 
-Experienced users who are familiar with Debian system
-administration (finding install images, manipulating apt sources, changing kernel flavors, etc), new installs are supported on following platforms:
-("amd64" means "64-bit", and is not specific to AMD processors, it will
-run on any 64-bit x86 system)
-Note that in Debian Bookworm, the preempt_rt kernel is a dependency of linuxcnc-uspace so it is automatically installed with linuxcnc so the Stock kernel is not listed.
+Experienced users who are familiar with Debian system administration (finding install images, manipulating apt sources, changing kernel flavors, etc), new installs are supported on platforms shown in the following table ("amd64" means "64-bit", and is not specific to AMD processors, it will run on any 64-bit x86 system).
+Note that in Debian Bookworm, the preempt_rt kernel is a dependency of linuxcnc-uspace so it is automatically installed with linuxcnc so the stock kernel is not listed.
 
-If you wish to use RTAI or Xenomai, please follow the instructions in the Linuxcnc V2.8 documentation.  
+If you wish to use RTAI or Xenomai, please follow the instructions in the LinuxCNC V2.8 documentation.  
 
 [options="header"]
 |===
@@ -174,7 +152,7 @@ Simply install the package in the same way as any other package from the Synapti
 
 . Install Debian Bookworm (Debian 12), amd64 version.
 . Make sure you have connection (preferably wired) to the internet
-. After burning the iso and booting up , select 'Install' or 'Graphical Install'. When asked to select a desktop we strongly recommend you use XFCE and don't install the default gnome desktop. This is because Gnome uses Wayland for graphic rendering. Linuxcnc has been developed over many years and was written using Xorg so full Wayland support may not have been achieved.
+. After burning the iso and booting up , select 'Install' or 'Graphical Install'. When asked to select a desktop we strongly recommend you use XFCE and don't install the default gnome desktop. This is because Gnome uses Wayland for graphic rendering. LinuxCNC has been developed over many years and was written using Xorg so full Wayland support may not have been achieved.
 +
 
 [WARNING]
@@ -187,7 +165,7 @@ sudo apt-get update
 sudo apt-get dist-upgrade
 ----
 
-. Install linuxcnc and the Preempt-RT kernel:
+. Install the linuxcnc package and the Preempt-RT kernel:
 +
 ----
 sudo apt-get install linuxcnc-uspace linuxcnc-uspace-dev
@@ -293,7 +271,7 @@ During the install you will need to select a keyboard layout/language, then tab 
 +
 Don’t panic if the screen display appears corrupt, just wait until completed.
 
-. Install linuxcnc. Type:
+. Install LinuxCNC. Type:
 +
 ----
 apt install linuxcnc-uspace linuxcnc-uspace-dev
@@ -310,9 +288,9 @@ NOTE: This has put you into a desktop as root. It is not best practice to work a
 [[sec:_bookworm_tweaks]]
 == Bookworm Tweaks(((LinuxCNC:Bookworm Tweaks)))(((Installation:Bookworm Tweaks)))
 === Basic Tweaks
-To make life easy, there are some standard tweaks you can make to Bookworm which should work on both X86 and the pi.
+To make life easy, there are some standard tweaks you can make to Bookworm which should work on both X86 and the Pi.
 
-From the menu settings/Power manager set the power settings to suit your needs. You can turn off screen saver and screen lock here
+From the menu settings/Power manager set the power settings to suit your needs. You can turn off screen saver and screen lock here.
 Install geany and grub-customizer:
 ----
 sudo apt install geany grub-customizer
@@ -321,13 +299,13 @@ Finally now geany is installed, enable auto login
 ----
 sudo geany /etc/lightdm/lightdm.conf
 ----
-scroll down to about line 126 and uncomment (remove #) both of the following lines and add YOUR login user name. Eg an example for user matt.
+Scroll down to about line 126 and uncomment (remove #) both of the following lines and add YOUR login user name. E.g., an example for user matt.
 ----
 autologin-user=matt
 autologin-user-timeout=0
 ----
 === Preempt_rt Tweaks
-isolcpus can make a huge difference to latency on some systems because it isolates specific CPU cores so they are purely used by real time threads (eg the linuxcnc servo thread). The instructions below assume a 4 core CPU eg. Celeron, i3, i5 etc) those with 2 cores or more than 4 cores need different isolcpus settings. Never isolate core 0 as it is used for system threads so it already includes a lot of running threads.
+isolcpus can make a huge difference to latency on some systems because it isolates specific CPU cores so they are purely used by real time threads (e.g., the LinuxCNC servo thread). The instructions below assume a 4 core CPU, e.g., Celeron, i3, i5 etc.) those with 2 cores or more than 4 cores need different isolcpus settings. Never isolate core 0 as it is used for system threads so it already includes a lot of running threads.
 + Now we need to isolate 2 cores for better RT performance on a 4 core machine.
 ----
 sudo grub-customizer
@@ -348,15 +326,15 @@ latency-histogram --nobase --sbins=1000
 It should be much improved.
 
 === Review Latency
-Use latency-histogram  instead of latency-test to review latency particularly if you are using a mesa card or ethercat and don;t need a base thread: 
+Use latency-histogram  instead of latency-test to review latency particularly if you are using a mesa card or ethercat and don't need a base thread: 
 ----
 latency-histogram --nobase --sbins 1000 
 ---- 
-How to evaluate latency is covered in the linuxcnc documents
+How to evaluate latency is covered in the LinuxCNC documents.
 Among other things, latency is affected by: BIOS settings; Isolcpus and other boot time settings; Kernel version used
 
 === Realtek network drivers
-Some users have been reporting significant error finishing read issues with some Realtek NIC’s. 
+Some users have been reporting significant error finishing read issues with some Realtek NICs. 
 
 There are two additional device drivers available in Debian for realtek cards;
 
@@ -372,7 +350,7 @@ You can see your driver if you type the following to identify your NIC name:
 ----
 ip a
 ----
-Now display the NIC info eg: 
+Now display the NIC info, e.g.: 
 ----
 sudo apt install ethtool
 ethtool -i enps02
@@ -401,8 +379,7 @@ If you have not installed a later kernel as described above install linux-header
 ----
 sudo apt install linux-headers-$(uname -r)
 ----
-You can now install the r8168 or R8125 driver. Depending on your driver 
-Type: 
+You can now install the r8168 or R8125 driver. Depending on your driver type: 
 ----
 sudo apt install r8168-dkms 
 ----
@@ -414,20 +391,23 @@ Reboot and check you still have a network driver with
 ----
 ip a
 ----
-Check you can still ping the mesa card 
+Check you can still ping the mesa card:
 ----
 ping 10.10.10.10 
 ----
-If you have to remove this driver, it needs to be purged completely or you will have no network. Eg.  
+If you have to remove this driver, it needs to be purged completely or you will have no network. E.g.  
 ----
 sudo apt purge r8168-dkms 
 ----
 === Set fixed ip address - only for mesa card.
-Usually we set up the mesa card to have the ip address 10.10.10.10. We need to set a fixed ip address of 10.10.10.1 to the network interface that connects to it. Type:
+Usually we set up the mesa card to have the ip address 10.10.10.10.
+We need to set a fixed ip address of 10.10.10.1 to the network interface that connects to it.
+Type
 ----
 ip a 
 ----
-to determine the network interface name used for your mesa card. This is usually something like eth0 or enp2s0. Type 
+to determine the network interface name used for your mesa card. This is usually something like eth0 or enp2s0.
+Type 
 ----
 sudo geany /etc/network/interfaces
 ----
