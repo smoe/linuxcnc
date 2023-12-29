@@ -7,8 +7,12 @@
 
 This section describes the recommended way to download
 and make a fresh install of LinuxCNC.  There are also
-<<_alternate_install_methods,Alternate Install Methods>> for the
-adventurous.  If you have an existing install that you want to upgrade,
+<<_alternate_install_methods,Alternate Install Methods>> that may suit you if
+
+* you already know how to install Linux or
+* you are already running a version of Debian or Ubuntu.
+
+If you have an existing install that you want to upgrade,
 go to the <<cha:updating-linuxcnc,Updating LinuxCNC>> section instead.
 
 NOTE: LinuxCNC requires a special kernel with real-time extensions. There are
