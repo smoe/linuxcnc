@@ -8,14 +8,14 @@ wait_for_pin() {
     value="$2"
     maxwait=10 # seconds
     while [ 0 -lt $maxwait ] \
-      && [ "$value" != "$(halcmd -s show pin $pin | awk '{print $4}')" ]; do
+      && [ "$value" != "$(halcmd -s show pin "$pin" | awk '{print $4}')" ]; do
         sleep 1
-	maxwait=$(($maxwait -1))
+	maxwait=$((maxwait - 1))
     done
     if [ 0 -eq $maxwait ] ; then
 	echo "error: waiting for pin $pin timed out"
-	kill $linuxcncpid
-	kill $samplerpid
+	kill "$linuxcncpid"
+	kill "$samplerpid"
 	exit 1
     fi
 }
@@ -31,7 +31,7 @@ while [  $TOGO -gt 0 ]; do
         break
     fi
     sleep 0.25
-    TOGO=$(($TOGO - 1))
+    TOGO=$((TOGO - 1))
 done
 if [  $TOGO -eq 0 ]; then
     echo connection to linuxcncrsh timed out
@@ -63,12 +63,12 @@ samplerpid=$!
     echo shutdown
 ) | nc localhost 5007
 
-kill $samplerpid
-wait $samplerpid
+kill "$samplerpid"
+wait "$samplerpid"
 echo finished capturing data
 
 # wait for linuxcnc to finish
-wait $linuxcncpid
+wait "$linuxcncpid"
 
 exit 0
 

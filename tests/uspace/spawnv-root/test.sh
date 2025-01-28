@@ -2,6 +2,8 @@
 set -eo pipefail
 set -x
 
+# Don't follow links
+# shellcheck disable=SC1091
 . ./rtapi.conf
 
 if [ "$RTPREFIX" != uspace ]; then

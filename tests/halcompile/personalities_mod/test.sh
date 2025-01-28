@@ -7,6 +7,8 @@ ${SUDO} halcompile --personalities=2 --install bitslice_test.comp
 
 # This tells us the expected filename extension ${MODULE_EXT} of realtime
 # modules.
+# Don't follow links
+# shellcheck disable=SC1091
 if [[ -f "${EMC2_HOME}/scripts/rtapi.conf" ]]; then
     source "${EMC2_HOME}/scripts/rtapi.conf"
 else

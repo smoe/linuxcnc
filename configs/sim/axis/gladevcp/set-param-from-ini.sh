@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd $(dirname $::argv0)
+cd "$(dirname "$0")" || exit
 
 gladevcp -u ./meter_scale.py ./meter_scale.ui &
 
