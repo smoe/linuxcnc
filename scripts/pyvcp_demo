@@ -82,7 +82,7 @@ if [ -n "$debug" ] ; then
   echo "COMPNAME=$COMPNAME"
 fi
 
-cd "$(dirname "$XMLFILE")" || (echo "E: Could not change directory to '$(dirname "$XMLFILE")'"; exit 1);# to allow relative includes
+cd "$(dirname "$XMLFILE")" || { echo "E: Could not change directory to '$(dirname "$XMLFILE")'"; exit 1; }  # to allow relative includes
 pyvcp -c "$COMPNAME" "$XMLFILE" &
 pyvcpjob=$!
 ct=0
@@ -102,18 +102,18 @@ while true ; do
    ct=$((ct+1))
 done
 
-cd "$(dirname "$HALFILE")" || (echo "E: Could not change directory to '$(dirname "$HALFILE")'"; exit 1) ;# so HALFILE can source relative files
+cd "$(dirname "$HALFILE")" || { echo "E: Could not change directory to '$(dirname "$HALFILE")'"; exit 1; } # so HALFILE can source relative files
 
 halmsg=/tmp/pyvcp_demo_halcmd.err
 # Always write to the $halmsg file, first empty the file (the >| overrides 'noclobber')
->|$halmsg
+true >| "$halmsg"
 halcmd -f "$HALFILE" > "$halmsg" 2>&1
 halstatus=$?
 if [ "$halstatus" != 0 ] ; then
   IFS=$'\n' # split lines
   newmsg=
   # put extra blank line between lines of output
-  for line in $(cat $halmsg) ; do
+  for line in $(cat "$halmsg") ; do
     newmsg="$newmsg
 $line
 "

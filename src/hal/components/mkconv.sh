@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ "$#" -lt 2 ]; then
+if [ $# -lt 2 ]; then
 	echo "Too few arguments to $(basename "$0")." >&2
 	echo "Usage: $(basename "$0") <from_type> <to_type>." >&2
 	exit 1
@@ -78,14 +78,12 @@ test	"$1" = 'float' -o \
 	\( "$2" = 's32' -a "$1" != 'bit' \) -o \
 	\( "$1" = 'u64' -a "$2" != 'float' \) -o \
 	\( "$1" = 's64' -a "$2" = 'u32' \)
-# shellcheck disable=SC2319
 MAXEN="s,@MAXEN@,$?,g"
 
 # Enable (val < MIN) test
 test	"$1" = 'float' -o \
 	\( "$1" = 's64' -a "$2" != 'float' \) -o \
 	\( "$1" = 's32' -a \( "$2" = 'u32' -o "$2" = 'u64' -o "$2" = 'bit' \) \)
-# shellcheck disable=SC2319
 MINEN="s,@MINEN@,$?,g"
 
 # Disable clamp code

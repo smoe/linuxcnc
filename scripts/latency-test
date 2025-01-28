@@ -7,7 +7,7 @@ fi
 
 T=$(mktemp -d)
 trap 'cd /; [ -d $T ] && rm -rf $T' SIGINT SIGTERM EXIT
-cd "$T" || (echo "E: Cannot change directory to 'T'"; exit 1)
+cd "$T" || { echo "E: Cannot change directory to 'T'"; exit 1; }
 node=$(uname -n)
 machine=$(uname  -m)
 date=$(date +%d%b%Y)
