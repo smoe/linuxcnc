@@ -17,6 +17,7 @@ Build-Depends:
     libepoxy-dev,
     libgl1-mesa-dev | libgl1-mesa-swx11-dev,
     libgl-dev | libgl1-mesa-dev,
+    libglu1-mesa-dev,
     libgpiod-dev,
     libgtk2.0-dev,
     libgtk-3-dev,
@@ -38,7 +39,13 @@ Build-Depends:
     tclx,
     tk8.6-dev,
     xvfb <!nocheck>,
-    yapps2
+    yapps2,
+    python3-gst-1.0,gstreamer1.0-plugins-base,
+    python3-pil,
+    python3-pil.imagetk,
+    python3-pyqt5, python3-pyqt5.qsci, python3-pyqt5.qtsvg, python3-pyqt5.qtopengl, python3-opencv, python3-dbus, python3-espeak, python3-dbus.mainloop.pyqt5,
+    python3-pyqt5.qtwebengine, espeak-ng, pyqt5-dev-tools, gstreamer1.0-tools, espeak, sound-theme-freedesktop, python3-poppler-qt5,
+    python3-yapps
 Build-Depends-Indep:
     asciidoc (>= 8.5) <!nodoc>,
     asciidoc-dblatex <!nodoc>,
@@ -64,8 +71,9 @@ Build-Depends-Indep:
     texlive-lang-spanish <!nodoc>,
     texlive-latex-recommended <!nodoc>,
     asciidoc-dblatex <!nodoc>,
-    texlive-xetex | texlive-lang-chinese (<=  2020.20210202~) <!nodoc>
-Standards-Version: 4.6.0
+    texlive-xetex | texlive-lang-chinese (<=  2020.20210202~) <!nodoc>,
+    fonts-dejavu, texlive-lang-european
+Standards-Version: 4.7.2
 Vcs-Browser: https://github.com/LinuxCNC/linuxcnc
 Vcs-Git: https://github.com/LinuxCNC/linuxcnc.git
 Rules-Requires-Root: binary-targets
