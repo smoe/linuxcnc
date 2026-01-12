@@ -1,8 +1,5 @@
 linuxcnc-uspace
 files
-rules
-compat
-control
 tmp
 linuxcnc
 linuxcnc-dev
@@ -16,9 +13,7 @@ linuxcnc-uspace.manpages
 
 *.debhelper
 shlibs.local
-linuxcnc-uspace.lintian-overrides
 
 autoreconf.after
 autoreconf.before
 debhelper-build-stamp
-

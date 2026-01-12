@@ -127,8 +127,14 @@ Xenomai::
   From https://xenomai.org. You will have to compile or obtain a Xenomai kernel yourself.
 
 Preempt-RT::
-  From https://rt.wiki.kernel.org.
-  A Linux kernel with the Preempt-RT patch is occasionally available from the Debian archive at https://www.debian.org, and from the wayback machine at https://snapshot.debian.org.
+  From https://rt.wiki.kernel.org. A Linux kernel with the Preempt-RT
+  patch is available from the Debian archive at
+  https://www.debian.org, and from the wayback machine at
+  https://snapshot.debian.org.
+
+To make use of the realtime capabilities of LinuxCNC, certain parts of
+LinuxCNC need to run with root privileges.  To enable root for these
+parts, run this extra command after the `make` that builds LinuxCNC:
 
 Non-realtime::
   LinuxCNC can also be built and run on non-realtime platforms,
@@ -233,7 +239,7 @@ delivery to end users, and when building the software for a machine
 that does not have the build environment installed, or that does not have
 internet access.
 
-For the impatient, try this:
+Building Debian packages uses the `dpkg-buildpackage` tool, from the `dpkg-dev` package:
 
 ----
 $ sudo apt-get install build-essential
@@ -252,6 +258,7 @@ that are detailed below:
    as described in the section <<Satisfying-Build-Dependencies,Satisfying Build Dependencies>>.
  * file in debian folder need to be complete that describe the package
 
+<<<<<<< HEAD
 Build tools have been gathered as a virtual package named `build-essential`. To install it, run:
 
 ----
@@ -275,9 +282,10 @@ The `debian/configure` accepts arguments depending on the platform you are build
 see the <<debian-configure-arguments, `debian/configure` arguments>> section.
 It defaults to LinuxCNC running in user space ("uspace"), expecting the preempt_rt kernel
 to minimize latencies.
-====
-
-Once the Debian package scripts and meta-data are configured, build the package by running `dpkg-buildpackage`:
+Once those prerequisites are met, building the Debian packages consists of a single steps.
+This step is to build the package by running `dpkg-buildpackage`.
+One can also use `debuild` from the devscripts package, to automate a few more steps in the build process.
+Note that these programs needs to run from the `linuxcnc-dev` directory, *not* from `linuxcnc-dev/debian`:
 
 ----
 $ dpkg-buildpackage -b -uc
@@ -289,45 +297,16 @@ $ dpkg-buildpackage -b -uc
 `dpkg-buildpackage` takes an optional argument ``-j``_N_ (where _N_ is a number). This enables to run multiple jobs simultaneously.
 ====
 
-[[debian-configure-arguments]]
-==== LinuxCNC's `debian/configure` arguments
+The build system is set up to use Debian
+link:https://www.debian.org/doc/debian-policy/ch-source.html#s-debianrules-options[package options]
+and link:https://wiki.debian.org/BuildProfileSpec[package profiles] to
+make it optional to build documentation packages.  This is done by
+adding `BUILD_OPTIONS=nodoc` and 1DEB_BUILD_PROFILES=nodoc` to the
+environment when building, for example like this:
 
-The LinuxCNC source tree has a debian directory with all the info about how the Debian package shall be built,
-but some key files within are only distributed as templates. The `debian/configure` script readies those build instructions
-for the regular Debian packaging utilities and must thus be run prior to `dpkg-checkbuilddeps` or `dpkg-buildpackage`.
-
-The `debian/configure` script takes a single argument which specifies the underlying realtime or non-realtime platform to build for.
-The regular values for this argument are:
-
-`no-docs`::
-  Skip building documentation.
-
-`uspace`::
-  Configure the Debian package for Preempt-RT realtime or for non-realtime (these two are compatible).
-
-`noauto`::
-`rtai`::
-`xenomai`::
-  Normally, the lists of RTOSes for uspace realtime to support is detected automatically.
-  However, if you wish, you may specify one or more of these after `uspace` to enable support for these RTOSes.
-  Or, to disable autodetection, specify `noauto`.
-+
-If you want just the traditional RTAI "kernel module" realtime, use `-r` or `$KERNEL_VERSION` instead.
-
-`rtai=<package name>`::
-  If the development package for RTAI, lxrt, does not start with "rtai-modules",
-  or if the first such package listed by apt-cache search is not the desired one,
-  then explicitly specify the package name.
-
-`-r`::
-  Configure the Debian package for the currently running RTAI kernel.
-  You must be running an RTAI kernel on your build machine for this to work!
-
-`$KERNEL_VERSION`::
-  Configure the Debian package for the specified RTAI kernel version (for example "3.4.9-rtai-686-pae").
-  The matching kernel headers Debian package must be installed on your build machine, e.g. "linux-headers-3.4.9-rtai-686-pae".
-  Note that you can _build_ LinuxCNC in this configuration,
-  but if you are not running the matching RTAI kernel you will not be able to _run_ LinuxCNC, including the test suite.
+-----
+DEB_BUILD_OPTIONS=nodoc DEB_BUILD_PROFILES=nodoc debuild -b -uc"
+-----
 
 [[Satisfying-Build-Dependencies]]
 ==== Satisfying Build Dependencies
