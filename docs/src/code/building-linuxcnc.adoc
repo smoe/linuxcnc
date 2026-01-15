@@ -164,7 +164,7 @@ Building for Run-In-Place follows the steps in the <<Quick-Start,Quick Start>> s
 possibly with different arguments to `src/configure` and `make`.
 
 [[src-configure-arguments]]
-==== `src/configure` arguments
+.`src/configure` arguments
 
 The `src/configure` script configures how the source code will be compiled.
 It takes many optional arguments.
@@ -201,7 +201,7 @@ The most commonly used arguments are:
   The building of the translated documentation takes a huge amount of time, so it is recommend to skip that if not really needed.
 
 [[make-arguments]]
-==== `make` arguments
+.`make`
 
 The `make` command takes two useful optional arguments.
 
@@ -258,7 +258,6 @@ that are detailed below:
    as described in the section <<Satisfying-Build-Dependencies,Satisfying Build Dependencies>>.
  * file in debian folder need to be complete that describe the package
 
-<<<<<<< HEAD
 Build tools have been gathered as a virtual package named `build-essential`. To install it, run:
 
 ----
@@ -274,9 +273,7 @@ $ cd linuxcnc-dev
 $ ./debian/configure
 ----
 
-[NOTE]
-====
-The `debian/configure` script is different from the `src/configure` script!
+[NOTE]: The `debian/configure` script is different from the `src/configure` script!
 
 The `debian/configure` accepts arguments depending on the platform you are building on/for,
 see the <<debian-configure-arguments, `debian/configure` arguments>> section.
@@ -293,23 +290,20 @@ $ dpkg-buildpackage -b -uc
 
 [NOTE]
 ====
-`dpkg-buildpackage` needs to run from the root of the source tree, which you mave have named `linuxcnc-source-dir`, *not* from within `linuxcnc-source-dir/debian`. +
-`dpkg-buildpackage` takes an optional argument ``-j``_N_ (where _N_ is a number). This enables to run multiple jobs simultaneously.
+`dpkg-buildpackage` needs to run from the root of the source tree, which you mave have named `linuxcnc-source-dir`, *not* from within `linuxcnc-source-dir/debian`.  
+`dpkg-buildpackage` takes an optional argument ``-j``__N__ (where _N_ is a number). This enables to run multiple jobs simultaneously.
 ====
 
-The build system is set up to use Debian
-link:https://www.debian.org/doc/debian-policy/ch-source.html#s-debianrules-options[package options]
-and link:https://wiki.debian.org/BuildProfileSpec[package profiles] to
-make it optional to build documentation packages.  This is done by
-adding `BUILD_OPTIONS=nodoc` and 1DEB_BUILD_PROFILES=nodoc` to the
-environment when building, for example like this:
+The build system is set up to use Debian link:https://www.debian.org/doc/debian-policy/ch-source.html#s-debianrules-options[package options]
+and link:https://wiki.debian.org/BuildProfileSpec[package profiles] to make it optional to build documentation packages.
+This is done by adding `BUILD_OPTIONS=nodoc` and DEB_BUILD_PROFILES=nodoc` to the environment when building, for example like this:
 
------
-DEB_BUILD_OPTIONS=nodoc DEB_BUILD_PROFILES=nodoc debuild -b -uc"
------
+----
+DEB_BUILD_OPTIONS=nodoc DEB_BUILD_PROFILES=nodoc debuild -b -uc
+----
 
 [[Satisfying-Build-Dependencies]]
-==== Satisfying Build Dependencies
+.Satisfying Build Dependencies
 
 On Debian-based platforms we provide packaging meta-data that knows
 what external software packages need to be installed in order to build LinuxCNC.
@@ -323,10 +317,10 @@ You can use this meta-data to easily list the required packages missing from you
 First, go to the source tree of LinuxCNC and initiate its default self-configuration,
 if not already performed:
 
------
+----
 $ cd linuxcnc-dev
 $ ./debian/configure
------
+----
 
 This will prepare the file debian/control that contains lists of Debian packages
 to create with the runtime dependencies for those packages and for our cause also
@@ -387,7 +381,7 @@ automated:: Run `sudo apt build-dep .` .
 
 If in doubt about what a particular package of a build-dep may be providing, check out the package's description with ``apt-cache show`` _packagename_.
 
-==== Options for `dpkg-buildpackage`
+.Options for `dpkg-buildpackage`
 
 For a typical Debian package to build, you would run dpkg-buildpackage without any arguments.
 As introduced above, the command has two extra options passed to it.
@@ -415,7 +409,7 @@ DEB_BUILD_OPTIONS=nocheck dpkg-buildpackage -uc -B
 ----
 would combine all the options introduced in this section.
 
-==== Installing self-built Debian packages
+.Installing self-built Debian packages
 
 A Debian package can be recognised by its .deb extension.
 The tool installing it, `dpkg` is part of every Debian installation.
