@@ -1,0 +1,1 @@
+This test runs mb2hal with VERSION=1.1 and verifies custom PIN_NAMES are exported correctly.

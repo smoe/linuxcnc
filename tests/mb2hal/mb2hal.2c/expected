@@ -1,0 +1,20 @@
+Component Pins:
+Owner   Type  Dir                 Value  Name
+     (ignored comp id)  bit   OUT                 FALSE  mb2hal.NamedBits.foo.bit
+     (ignored comp id)  bit   OUT                  TRUE  mb2hal.NamedBits.foo.bit-inv
+
+Component Pins:
+Owner   Type  Dir                 Value  Name
+     (ignored comp id)  bit   OUT                 FALSE  mb2hal.NamedBits.bar.bit
+     (ignored comp id)  bit   OUT                  TRUE  mb2hal.NamedBits.bar.bit-inv
+
+Component Pins:
+Owner   Type  Dir                 Value  Name
+     (ignored comp id)  float OUT                     0  mb2hal.NamedRegs.alpha.float
+     (ignored comp id)  s32   OUT                     0  mb2hal.NamedRegs.alpha.int
+
+Component Pins:
+Owner   Type  Dir                 Value  Name
+     (ignored comp id)  float OUT                     0  mb2hal.NamedRegs.beta.float
+     (ignored comp id)  s32   OUT                     0  mb2hal.NamedRegs.beta.int
+
