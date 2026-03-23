@@ -1,0 +1,7 @@
+# Load MB2HAL
+loadusr -W mb2hal config=mb2hal.ini
+
+show pin mb2hal.NamedBits.foo
+show pin mb2hal.NamedBits.bar
+show pin mb2hal.NamedRegs.alpha
+show pin mb2hal.NamedRegs.beta

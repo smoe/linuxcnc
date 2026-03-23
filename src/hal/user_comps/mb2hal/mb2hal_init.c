@@ -132,37 +132,62 @@ static retCode parse_pin_names(const char * const names_string, mb_tx_t * const 
     int name_count = 0;
     int name_buf_size = NAME_ALLOC_SIZE;
     char **name_ptrs = malloc(sizeof(char *) * name_buf_size);
-    /* FIXME This memory block is leaked */
-    char *names = strndup(names_string,999942);
-    if(name_ptrs == NULL || names == NULL)
-    {
+    char *names = strndup(names_string, 999942);
+    char *name;
+
+    if (name_ptrs == NULL || names == NULL) {
+        free(name_ptrs);
+        free(names);
         ERR(gbl.init_dbg, "Failed allocating memory");
         return retERR;
     }
-    char * name = strtok(names, ",");
-    while(name)
-    {
-        if(strlen(name) > HAL_NAME_LEN - 15) //this is only a rough estimate
-        {
+
+    name = strtok(names, ",");
+    while (name) {
+        char *dup_name;
+
+        if (strlen(name) > HAL_NAME_LEN - 15) { //this is only a rough estimate
+            while (name_count > 0) {
+                free(name_ptrs[--name_count]);
+            }
+            free(name_ptrs);
+            free(names);
             ERR(gbl.init_dbg, "pin name '%s' is too long", name);
             return retERR;
         }
-        if(name_count >= name_buf_size)
-        {
+        if (name_count >= name_buf_size) {
             name_buf_size += NAME_ALLOC_SIZE;
             char ** tmp = realloc(name_ptrs, sizeof(char *) * name_buf_size);
-            if(NULL == tmp)
-            {
+            if (tmp == NULL) {
+                while (name_count > 0) {
+                    free(name_ptrs[--name_count]);
+                }
+                free(name_ptrs);
+                free(names);
                 ERR(gbl.init_dbg, "Failed allocating memory");
                 return retERR;
             }
             name_ptrs = tmp;
         }
-        name_ptrs[name_count++]=name;
+
+        dup_name = strdup(name);
+        if (dup_name == NULL) {
+            while (name_count > 0) {
+                free(name_ptrs[--name_count]);
+            }
+            free(name_ptrs);
+            free(names);
+            ERR(gbl.init_dbg, "Failed allocating memory");
+            return retERR;
+        }
+
+        name_ptrs[name_count++] = dup_name;
         name = strtok(NULL, ",");
     }
-    if(name_count == 0)
-    {
+    free(names);
+
+    if (name_count == 0) {
+        free(name_ptrs);
         ERR(gbl.init_dbg, "no pin names specified");
         return retERR;
     }
@@ -184,14 +209,14 @@ retCode parse_transaction_section(const int mb_tx_num)
         ERR(gbl.init_dbg, "gbl.ini_file_ptr NULL pointer");
         return retERR;
     }
-    if (mb_tx_num < 0 || mb_tx_num > gbl.tot_mb_tx) {
+    if (mb_tx_num < 0 || mb_tx_num >= gbl.tot_mb_tx) {
         ERR(gbl.init_dbg, "out of range");
         return retERR;
     }
 
     this_mb_tx = &gbl.mb_tx[mb_tx_num];
 
-    if (gbl.ini_file_ptr == NULL || mb_tx_num < 0 || mb_tx_num > gbl.tot_mb_tx) {
+    if (gbl.ini_file_ptr == NULL || mb_tx_num < 0 || mb_tx_num >= gbl.tot_mb_tx) {
         ERR(gbl.init_dbg, "parameter error");
         return retERR;
     }
@@ -393,7 +418,7 @@ retCode parse_tcp_subsection(const char *section, const int mb_tx_num)
         ERR(gbl.init_dbg, "gbl.ini_file_ptr NULL pointer");
         return retERR;
     }
-    if (mb_tx_num < 0 || mb_tx_num > gbl.tot_mb_tx) {
+    if (mb_tx_num < 0 || mb_tx_num >= gbl.tot_mb_tx) {
         ERR(gbl.init_dbg, "out of range");
         return retERR;
     }
@@ -450,7 +475,7 @@ retCode parse_serial_subsection(const char *section, const int mb_tx_num)
         ERR(gbl.init_dbg, "gbl.ini_file_ptr NULL pointer");
         return retERR;
     }
-    if (mb_tx_num < 0 || mb_tx_num > gbl.tot_mb_tx) {
+    if (mb_tx_num < 0 || mb_tx_num >= gbl.tot_mb_tx) {
         ERR(gbl.init_dbg, "out of range");
         return retERR;
     }
@@ -745,11 +770,12 @@ retCode init_mb_links()
         }
     }
 
-    gbl.mb_links = realloc(gbl.mb_links, sizeof(mb_link_t) * gbl.tot_mb_links);
-    if (gbl.mb_links == NULL) {
+    mb_link_t *tmp_links = realloc(gbl.mb_links, sizeof(mb_link_t) * gbl.tot_mb_links);
+    if (tmp_links == NULL) {
         DBG(gbl.init_dbg, "realloc gbl.mb_links failed [%s]", strerror(errno));
         return retERR;
     }
+    gbl.mb_links = tmp_links;
 
     return retOK;
 }

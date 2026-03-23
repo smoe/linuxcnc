@@ -28,6 +28,30 @@
 
 gbl_t gbl;
 
+static void free_mb_tx_names(void)
+{
+    int tx_counter;
+
+    if (gbl.mb_tx == NULL) {
+        return;
+    }
+
+    for (tx_counter = 0; tx_counter < gbl.tot_mb_tx; tx_counter++) {
+        mb_tx_t *this_mb_tx = &gbl.mb_tx[tx_counter];
+        int name_counter;
+
+        if (this_mb_tx->mb_tx_names == NULL) {
+            continue;
+        }
+
+        for (name_counter = 0; name_counter < this_mb_tx->mb_tx_nelem; name_counter++) {
+            free(this_mb_tx->mb_tx_names[name_counter]);
+        }
+        free(this_mb_tx->mb_tx_names);
+        this_mb_tx->mb_tx_names = NULL;
+    }
+}
+
 /*
  * Main: init global params, parse args, open ini file, parse ini file
  * (transaction structures), init links (links structures), init and
@@ -284,7 +308,7 @@ retCode is_this_tx_ready(const int this_mb_link_num, const int this_mb_tx_num, i
     mb_tx_t *this_mb_tx;
     int this_mb_tx_link_num;
 
-    if (this_mb_tx_num < 0 || this_mb_tx_num > gbl.tot_mb_tx) {
+    if (this_mb_tx_num < 0 || this_mb_tx_num >= gbl.tot_mb_tx) {
         ERR(gbl.init_dbg, "parameter out of range this_mb_tx_num[%d]", this_mb_tx_num);
         return retERR;
     }
@@ -330,7 +354,7 @@ retCode get_tx_connection(const int this_mb_tx_num, int *ret_connected)
     int        this_mb_link_num;
     struct timeval timeout;
 
-    if (this_mb_tx_num < 0 || this_mb_tx_num > gbl.tot_mb_tx) {
+    if (this_mb_tx_num < 0 || this_mb_tx_num >= gbl.tot_mb_tx) {
         ERR(gbl.init_dbg, "parameter out of range this_mb_tx_num[%d]", this_mb_tx_num);
         return retERR;
     }
@@ -459,13 +483,24 @@ void quit_cleanup(void)
             gbl.mb_links[counter].modbus = NULL;
         }
     }
+    free(gbl.mb_links);
+    gbl.mb_links = NULL;
     gbl.tot_mb_links = 0;
 
+    free_mb_tx_names();
     if (gbl.mb_tx != NULL) {
         free(gbl.mb_tx);
     }
     gbl.mb_tx = NULL;
     gbl.tot_mb_tx = 0;
+
+    free(gbl.ini_file_path);
+    gbl.ini_file_path = NULL;
+
+    if (gbl.ini_file_ptr != NULL) {
+        fclose(gbl.ini_file_ptr);
+        gbl.ini_file_ptr = NULL;
+    }
 
     if (gbl.hal_mod_id >= 0) {
         ret = hal_exit(gbl.hal_mod_id);
