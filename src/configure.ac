@@ -451,17 +451,32 @@ AC_SUBST([HIDRAW_H_USABLE])
 # Check for rpc/rpc.h
 #
 
-AC_MSG_CHECKING([for usability of rpc/rpc.h])
+AC_CHECK_DECLS([xdr_int8_t, xdr_uint8_t, xdr_uint16_t, xdr_uint32_t, xdr_uint64_t],
+    [], [], [[#include <rpc/rpc.h>]])
+
+AC_MSG_CHECKING([for usability of the NML XDR API])
 AC_LINK_IFELSE([AC_LANG_PROGRAM([[
-#include <rpc/rpc.h>
+#include "libnml/cms/nml_xdr_compat.h"
     ]], [[
-struct sockaddr_in *foo;
-get_myaddress(foo);
+/* XDR API used by libnml/cms/cms_xup.cc; the fixed-width routines are
+   where Sun RPC implementations differ. */
+XDR xdrs;
+char buf[64] = {0};
+int8_t i8 = 0; uint8_t u8 = 0; int16_t i16 = 0; uint16_t u16 = 0;
+int32_t i32 = 0; uint32_t u32 = 0; int64_t i64 = 0; uint64_t u64 = 0;
+/* Function designators require declarations even with older C compilers. */
+(xdrmem_create)(&xdrs, buf, sizeof buf, XDR_ENCODE);
+(xdr_int8_t)(&xdrs, &i8); (xdr_uint8_t)(&xdrs, &u8);
+(xdr_int16_t)(&xdrs, &i16); (xdr_uint16_t)(&xdrs, &u16);
+(xdr_int32_t)(&xdrs, &i32); (xdr_uint32_t)(&xdrs, &u32);
+(xdr_int64_t)(&xdrs, &i64); (xdr_uint64_t)(&xdrs, &u64);
+xdr_setpos(&xdrs, xdr_getpos(&xdrs));
+xdr_destroy(&xdrs);
     ]])],[
         AC_MSG_RESULT(yes)
     ],[
         AC_MSG_RESULT(no)
-        AC_MSG_ERROR([Unable to use rpc.h])
+        AC_MSG_ERROR([Required NML XDR API unavailable; see config.log for missing declarations or symbols])
     
 ])
 
